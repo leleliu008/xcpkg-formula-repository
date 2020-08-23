@@ -75,3 +75,8 @@ formula is a POSIX sh script used to describe how to compile a package for [ipkg
 |`nproc`|`make --directory="$DIR_BUILD" -j$(nproc) install`|
 |`sed_in_place`|`sed_in_place 's/system(/system2(/g' shell.c`<br>`sed_in_place '1i #include "system2.c"' shell.c`|
 |`format_unix_timestamp`|`format_unix_timestamp "$TIMESTAMP_UNIX" '+%Y/%m/%d %H:%M:%S'`|
+|`getvalue`|`VALUE=$(getvalue --target-abi=armv7a)`|
+|`is_sha256sum_match`|`is_sha256sum_match FILE SHA256SUM`|
+|`fetch`|`fetch URL [--output-dir=DIR --output-name=NAME --sha256=SHA256]`|
+|`fetch_config_sub`|`fetch_config_sub     [DIR]`|
+|`fetch_config_guess`|`fetch_config_guess [DIR]`|

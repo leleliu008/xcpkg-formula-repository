@@ -8,7 +8,6 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DBUILD_TESTING=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -G "Unix Makefiles" \
     -Wno-dev \
