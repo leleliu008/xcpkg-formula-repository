@@ -5,9 +5,8 @@ sha256="d24c0d0f2abffbc8f4f34dcf114b0f131ec3774895f3555922fe2f40f3d5e3f1"
 dependencies="gmp"
 
 prepare() {
-    curl -L -o config.sub   "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" &&
-    curl -L -o config.guess "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" &&
-    sed_in_place 's/arm64-*/arm64-*|arm64e-*/g' config.sub
+    fetch_config_sub &&
+    fetch_config_guess
 }
 
 build() {
