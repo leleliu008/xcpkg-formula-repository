@@ -11,17 +11,9 @@ build() {
     esac
 
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SHARED=OFF \
     -DENABLE_STATIC=ON \
     -DWITH_JAVA=OFF \
     -DWITH_SIMD="$WITH_SIMD" \
-    -DFORCE_INLINE=ON \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S "$DIR_SRC" \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install 
+    -DFORCE_INLINE=ON
 }

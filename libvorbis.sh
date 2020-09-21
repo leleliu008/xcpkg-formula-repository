@@ -25,14 +25,6 @@ build() {
 
 build2() {
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DCMAKE_BUILD_TYPE=Release \
     -DOGG_INCLUDE_DIRS="$libogg_DIR_INCLUDE" \
-    -DOGG_LIBRARIES="$libogg_DIR_LIB/libogg.a" \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S "$DIR_SRC" \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install
+    -DOGG_LIBRARIES="$libogg_DIR_LIB/libogg.a"
 }

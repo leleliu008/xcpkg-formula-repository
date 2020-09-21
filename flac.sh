@@ -5,34 +5,27 @@ sha256="668cdeab898a7dd43cf84739f7e1f3ed6b35ece2ef9968a5c7079fe9adfe1689"
 version="1.3.3"
 dependencies="libogg libiconv"
 
-#prepare() {
-#    ./autogen.sh
-#}
-
-build2() {
-    cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DOGG_INCLUDE_DIR="$libogg_DIR_INCLUDE" \
-    -DOGG_LIBRARY="$libogg_DIR_LIB/libogg.a" \
-    -DIntl_INCLUDE_DIR="" \
-    -DIntl_LIBRARY="" \
-    -DPKG_CONFIG_EXECUTABLE="" \
-    -DBUILD_TESTING=OFF \
-    -DBUILD_EXAMPLES=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_CXXLIBS=ON \
-    -DWITH_OGG=ON \
-    -DWITH_ASM=OFF \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S "$DIR_SRC" \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" install
+prepare() {
+    # 去掉libintl的查找
+    cat > src/share/getopt/CMakeLists.txt <<EOF
+check_include_file("string.h" HAVE_STRING_H)
+add_library(getopt STATIC getopt.c getopt1.c)
+EOF
 }
 
 build() {
+    cmake \
+    -DBUILD_EXAMPLES=OFF \
+    -DBUILD_CXXLIBS=ON \
+    -DENABLE_WERROR=OFF \
+    -DWITH_XMMS=OFF \
+    -DWITH_ASM=OFF \
+    -DWITH_OGG=ON \
+    -DOGG_INCLUDE_DIR="$libogg_DIR_INCLUDE" \
+    -DOGG_LIBRARY="$libogg_DIR_LIB/libogg.a"
+}
+
+build2() {
     [ -d "$DIR_BUILD" ] || mkdir -p "$DIR_BUILD"
     cd "$DIR_BUILD"
     "$DIR_SRC/configure" \

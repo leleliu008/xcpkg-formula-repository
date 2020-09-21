@@ -7,23 +7,16 @@ dependencies="xz"
 
 build() {
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
+    -DZSTD_MULTITHREAD_SUPPORT=ON \
     -DZSTD_BUILD_TESTS=OFF \
     -DZSTD_BUILD_CONTRIB=OFF \
     -DZSTD_BUILD_PROGRAMS=ON \
     -DZSTD_BUILD_STATIC=ON \
     -DZSTD_BUILD_SHARED=OFF \
-    -DZSTD_MULTITHREAD_SUPPORT=ON \
     -DZSTD_ZLIB_SUPPORT=ON \
     -DZSTD_LZMA_SUPPORT=ON \
+    -DZSTD_LZ4_SUPPORT=OFF \
     -DLIBLZMA_INCLUDE_DIR="$xz_DIR_INCLUDE" \
     -DLIBLZMA_LIBRARY="$xz_DIR_LIB/liblzma.a" \
-    -DZSTD_LZ4_SUPPORT=OFF \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S build/cmake \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" install
+    -S build/cmake
 }

@@ -6,22 +6,11 @@ dependencies="libpng"
 
 build() {
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DBUILD_SHARED_LIBS=OFF \
+    -DWITH_TOOLS=ON \
     -DWITH_TESTS=OFF \
-    -DWITH_TOOLS=OFF \
     -DWITHOUT_PNG=OFF \
     -DPNG_PNG_INCLUDE_DIR="$libpng_DIR_INCLUDE" \
-    -DPNG_LIBRARY_RELEASE="$libpng_DIR_LIB/libpng.a" \
-    -DZLIB_INCLUDE_DIR="$zlib_DIR_INCLUDE" \
-    -DZLIB_LIBRARY_RELEASE="$zlib_DIR_LIB/libz.a" \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S "$DIR_SRC" \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install 
+    -DPNG_LIBRARY_RELEASE="$libpng_DIR_LIB/libpng.a"
 }
 
 build2() {

@@ -21,9 +21,6 @@ build() {
     esac
 
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DCMAKE_BUILD_TYPE=Release \
     -DSDL_SHARED=OFF \
     -DSDL_STATIC=ON \
     -DSDL_TEST=OFF \
@@ -41,13 +38,7 @@ build() {
     -DARMSIMD="$ARMSIMD" \
     -DVIDEO_OPENGL=OFF \
     -DVIDEO_OPENGLES=OFF \
-    -DVIDEO_COCOA=OFF \
-    -DPKG_CONFIG_EXECUTABLE="" \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S "$DIR_SRC" \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install
+    -DVIDEO_COCOA=OFF
 }
 
 build2() {

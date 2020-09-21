@@ -4,23 +4,19 @@ url="http://downloads.webmproject.org/releases/webp/libwebp-1.1.0.tar.gz"
 sha256="98a052268cc4d5ece27f76572a7f50293f439c17a98e67c4ea0c7ed6f50ef043"
 dependencies="libpng libtiff libjpeg-turbo giflib"
 
-build2() {
+build() {
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DENABLE_PIC=ON \
-    -DENABLE_CLI=OFF \
-    -DENABLE_SHARED=OFF \
-    -DENABLE_ASSEMBLY=OFF \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S "$DIR_SRC" \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install
+    -DPNG_PNG_INCLUDE_DIR="$libpng_DIR_INCLUDE" \
+    -DPNG_LIBRARY="$libpng_DIR_LIB/libpng.a" \
+    -DJPEG_INCLUDE_DIR="$libjpeg_turbo_DIR_INCLUDE" \
+    -DJPEG_LIBRARY="$libjpeg_turbo_DIR_LIB/libjpeg.a"\
+    -DTIFF_INCLUDE_DIR="$libtiff_DIR_INCLUDE" \
+    -DTIFF_LIBRARY="$libtiff_DIR_LIB/libtiff.a" \
+    -DGIF_INCLUDE_DIR="$giflib_DIR_INCLUDE" \
+    -DGIF_LIBRARY="$giflib_DIR_LIB/libgif.a"
 }
 
-build() {
+build2() {
     $DIR_SRC/configure \
         --host="$TARGET_HOST" \
         --prefix="$DIR_INSTALL_PREFIX" \

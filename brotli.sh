@@ -5,15 +5,5 @@ sha256="4c61bfb0faca87219ea587326c467b95acb25555b53d1a421ffa3c8a9296ee2c"
 version="1.0.7"
 
 build() {
-    cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DBUILD_TESTING=OFF \
-    -DBUILD_SHARED_LIBS=OFF \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S . \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install
+    cmake
 }

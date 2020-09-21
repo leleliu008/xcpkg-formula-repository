@@ -6,10 +6,6 @@ dependencies="bzip2"
 
 build() {
     cmake \
-    -DCMAKE_TOOLCHAIN_FILE="$CMAKE_TOOLCHAIN_FILE" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX="$DIR_INSTALL_PREFIX" \
-    -DBUILD_SHARED_LIBS=OFF \
     -DPCRE_BUILD_PCRE8=ON \
     -DPCRE_BUILD_PCRE16=ON \
     -DPCRE_BUILD_PCRE32=ON \
@@ -20,10 +16,33 @@ build() {
     -DPCRE_SUPPORT_LIBZ=ON \
     -DPCRE_SUPPORT_LIBBZ2=ON \
     -DBZIP2_INCLUDE_DIR="$bzip2_DIR_INCLUDE" \
-    -DBZIP2_LIBRARY_RELEASE="$bzip2_DIR_LIB/libbz2.a" \
-    -G "Unix Makefiles" \
-    -Wno-dev \
-    -S . \
-    -B "$DIR_BUILD" &&
-    make --directory="$DIR_BUILD" -j$(nproc) install
+    -DBZIP2_LIBRARY_RELEASE="$bzip2_DIR_LIB/libbz2.a" &&
+    gen_pc_files
+}
+
+gen_pc_files() {
+    eval $(grep 'PACKAGE_VERSION=' configure)
+
+    for item in pcre pcre16 pcre32 pcreposix
+    do
+        DIR_PC_FILE_PCRE="$DIR_INSTALL_PREFIX/lib/pkgconfig"
+
+        [ -d "$DIR_PC_FILE_PCRE" ] || mkdir -p "$DIR_PC_FILE_PCRE"
+        [ -f "$DIR_PC_FILE_PCRE/lib$item.pc" ] && continue
+
+        cat > "$DIR_PC_FILE_PCRE/lib$item.pc" <<EOF
+prefix=$DIR_INSTALL_PREFIX
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include
+
+Name: lib$item
+URL: http://www.pcre.org/
+Description: PCRE - Perl compatible regular expressions C library with 8 bit character support
+Version: $PACKAGE_VERSION
+Libs: -L\${libdir} -l$item
+Libs.private: -D_THREAD_SAFE -pthread
+Cflags: -I\${includedir}
+EOF
+    done
 }
