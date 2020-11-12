@@ -5,26 +5,12 @@ sha256="af00bb5a784e7c9e69f56823de4637c350643deedaf333d0fa86ecdba6fcb415"
 dependencies="libogg"
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --with-ogg="$libogg_DIR_INSTALL_PREFIX" \
-        --disable-shared \
-        --enable-static \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    make clean &&
-    make install
+    export CPPFLAGS="$CPPFLAGS -include stdint.h"
+    configure --with-ogg="$libogg_INSTALL_DIR"
 }
 
 build2() {
     cmake \
-    -DOGG_INCLUDE_DIRS="$libogg_DIR_INCLUDE" \
-    -DOGG_LIBRARIES="$libogg_DIR_LIB/libogg.a"
+    -DOGG_INCLUDE_DIRS="$libogg_INCLUDE_DIR" \
+    -DOGG_LIBRARIES="$libogg_LIBRARY_DIR/libogg.a"
 }

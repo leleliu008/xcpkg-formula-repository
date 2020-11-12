@@ -9,30 +9,15 @@ prepare() {
     gen_c_file_stub_system &&
     sed_in_place 's/system(cmd)/stub_system(cmd)/g' builtin.c &&
     sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" builtin.c &&
-    fetch_config_sub &&
-    fetch_config_guess &&
-    cp config.sub   extension/build-aux/ &&
-    cp config.guess extension/build-aux/
+    fetch_config_sub   extension/build-aux/ &&
+    fetch_config_guess extension/build-aux/
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-mpfr="$mpfr_DIR_INSTALL_PREFIX" \
+    configure \
+        --with-mpfr="$mpfr_INSTALL_DIR" \
         --enable-extensions \
         --enable-lint \
         --enable-mpfr \
-        --enable-largefile \
-        --disable-nls \
-        --disable-rpath \
-        --disable-builtin-intdiv0 \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    make clean &&
-    make install
+        --disable-builtin-intdiv0
 }

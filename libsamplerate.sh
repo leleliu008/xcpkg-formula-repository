@@ -6,29 +6,14 @@ dependencies="libsndfile fftw"
 
 prepare() {
     autoreconf -ivf &&
-    sed_in_place '$d' autogen.sh && ./autogen.sh
+    sed_in_place '$d' autogen.sh && ./autogen.sh &&
+    sed_in_place 's/(defined (__MACH__) && defined (__APPLE__))/0/g' examples/audio_out.c &&
+    fetch_config_sub   Cfg &&
+    fetch_config_guess Cfg
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --disable-option-checking \
-        --disable-shared \
-        --enable-static \
+    configure \
         --enable-sndfile \
-        --enable-fftw \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        PKG_CONFIG="" &&
-    make clean &&
-    make install
+        --enable-fftw
 }

@@ -5,28 +5,6 @@ sha256="91bcb0403866b4e7c4bc1cc52ed4c364a9b5414b3994f718c70303f7f765e702"
 license="GPL-3.0"
 dependencies="libgpg-error"
 
-prepare() {
-    fetch_config_sub   build-aux &&
-    fetch_config_guess build-aux
-}
-
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --with-libgpg-error-prefix="$libgpg_error_DIR_INSTALL_PREFIX" \
-        --enable-static \
-        --enable-shared \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        CC_FOR_BUILD=/usr/bin/cc &&
-    make clean &&
-    make install
+    configure --with-libgpg-error-prefix="$libgpg_error_INSTALL_DIR"
 }

@@ -7,15 +7,6 @@ dependencies="libevent"
 prepare() {
     gen_c_file_stub_system &&
     
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" opal/tools/opal-restart/opal-restart.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" opal/mca/hwloc/hwloc201/hwloc/hwloc/dolib.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" opal/mca/pmix/pmix3x/pmix/examples/server.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/tools/orte-clean/orte-clean.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/test/mpi/ziatest.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/mca/filem/raw/filem_raw_module.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/mca/sstore/stage/sstore_stage_global.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/mca/sstore/stage/sstore_stage_local.c &&
-    
     sed_in_place "s/system(/stub_system(/g" opal/tools/opal-restart/opal-restart.c &&
     sed_in_place "s/system(/stub_system(/g" opal/mca/hwloc/hwloc201/hwloc/hwloc/dolib.c &&
     sed_in_place "s/system(/stub_system(/g" opal/mca/pmix/pmix3x/pmix/examples/server.c &&
@@ -24,44 +15,36 @@ prepare() {
     sed_in_place "s/system(/stub_system(/g" orte/mca/filem/raw/filem_raw_module.c &&
     sed_in_place "s/system(/stub_system(/g" orte/mca/sstore/stage/sstore_stage_global.c &&
     sed_in_place "s/system(/stub_system(/g" orte/mca/sstore/stage/sstore_stage_local.c &&
+    
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" opal/tools/opal-restart/opal-restart.c &&
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" opal/mca/hwloc/hwloc201/hwloc/hwloc/dolib.c &&
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" opal/mca/pmix/pmix3x/pmix/examples/server.c &&
+    sed_in_place "1i extern int stub_system(const char *command);" orte/tools/orte-clean/orte-clean.c &&
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/test/mpi/ziatest.c &&
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/mca/filem/raw/filem_raw_module.c &&
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/mca/sstore/stage/sstore_stage_global.c &&
+    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" orte/mca/sstore/stage/sstore_stage_local.c &&
 
-    fetch_config_sub &&
-    fetch_config_guess && {
-        for item in config/ opal/mca/pmix/pmix3x/pmix/config/ opal/mca/event/libevent2022/libevent/ ompi/mca/io/romio321/romio/confdb/
+    fetch_config_sub   config &&
+    fetch_config_guess config && {
+        for item in opal/mca/pmix/pmix3x/pmix/config/ opal/mca/event/libevent2022/libevent/ ompi/mca/io/romio321/romio/confdb/
         do
-            cp config.sub   $item &&
-            cp config.guess $item
+            cp config/config.sub   $item &&
+            cp config/config.guess $item
         done
     }
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --disable-debug \
+    configure \
         --disable-coverage \
         --disable-mpi-fortran \
         --disable-oshmem-fortran \
         --disable-builtin-atomics \
         --enable-sysv-shmem=no \
         --enable-sysv-sshmem=no \
-        --enable-static \
-        --enable-shared \
         --enable-binaries \
         --enable-mpi-java \
-        --with-libevent="$libevent_DIR_INSTALL_PREFIX" \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        FC='' \
-        PKG_CONFIG='' && \
-    make clean &&
-    make install
+        --with-libevent="$libevent_INSTALL_DIR" \
+        FC=''
 }

@@ -9,26 +9,12 @@ build() {
     -DWITH_TOOLS=ON \
     -DWITH_TESTS=OFF \
     -DWITHOUT_PNG=OFF \
-    -DPNG_PNG_INCLUDE_DIR="$libpng_DIR_INCLUDE" \
-    -DPNG_LIBRARY_RELEASE="$libpng_DIR_LIB/libpng.a"
+    -DPNG_PNG_INCLUDE_DIR="$libpng_INCLUDE_DIR" \
+    -DPNG_LIBRARY_RELEASE="$libpng_LIBRARY_DIR/libpng.a"
 }
 
 build2() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --without-tools \
-        --enable-static=yes \
-        --enable-shared=no \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" && \
-    make clean && \
-    make install
+    configure
 }
 
 create_framework() {

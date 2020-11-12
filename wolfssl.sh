@@ -1,22 +1,19 @@
 summary="Embedded SSL Library written in C"
 homepage="https://www.wolfssl.com"
-url="https://github.com/wolfSSL/wolfssl/archive/v4.4.0-stable.tar.gz"
-sha256="7f854804c8ae0ca49cc77809e38e9a3b5a8c91ba7855ea928e6d6651b0d35f18"
 version="4.4.0"
+url="https://github.com/wolfSSL/wolfssl/archive/v$version-stable.tar.gz"
+sha256="7f854804c8ae0ca49cc77809e38e9a3b5a8c91ba7855ea928e6d6651b0d35f18"
 
-#https://stackoverflow.com/questions/52282646/build-error-targeted-os-version-does-not-support-use-of-thread-local-variables
+# ld: targeted OS version does not support use of thread local variables in _benchmark_test for architecture x86_64
+# https://stackoverflow.com/questions/52282646/build-error-targeted-os-version-does-not-support-use-of-thread-local-variables
+
 prepare() {
-    ./autogen.sh &&
-    curl -L -o build-aux/config.sub   "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD" &&
-    curl -L -o build-aux/config.guess "http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD" &&
-    sed_in_place 's/arm64-*/arm64-*|arm64e-*/g' build-aux/config.sub
+    ./autogen.sh
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
+    BUILD_FOR_HOST=$(echo "$BUILD_FOR_HOST" | sed 's/-ios/-darwin/')
+    configure \
         --disable-asm \
         --disable-bump \
         --disable-examples \
@@ -64,16 +61,5 @@ build() {
         --enable-tls13 \
         --enable-sp \
         --enable-fastmath \
-        --enable-fasthugemath \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        PKG_CONFIG='' && \
-    make clean &&
-    make install
+        --enable-fasthugemath
 }

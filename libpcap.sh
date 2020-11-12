@@ -3,7 +3,6 @@ homepage="https://www.tcpdump.org"
 url="https://www.tcpdump.org/release/libpcap-1.9.1.tar.gz"
 sha256="635237637c5b619bcceba91900666b64d56ecb7be63f298f601ec786ce087094"
 
-# -DCMAKE_OSX_ARCHITECTURES="$TARGET_ARCH" \
 build() {
     cmake \
     -DINET6=ON \

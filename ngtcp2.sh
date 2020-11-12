@@ -5,10 +5,10 @@ dependencies="libev nghttp3"
 
 build() {
     cmake \
-    -DENABLE_WERROR=OFF \
-    -DENABLE_DEBUG=OFF \
-    -DENABLE_ASAN=ON \
-    -DENABLE_LIB_ONLY=OFF \
-    -DLIBEV_INCLUDE_DIR="$libev_DIR_INCLUDE" \
-    -DLIBEV_LIBRARY="$libev_DIR_LIB/libev.so"
+        -DENABLE_WERROR=OFF \
+        -DENABLE_DEBUG=OFF \
+        -DENABLE_ASAN=ON \
+        -DENABLE_LIB_ONLY=OFF \
+        -DLIBEV_INCLUDE_DIR="$libev_INCLUDE_DIR" \
+        -DLIBEV_LIBRARY="$libev_LIBRARY_DIR/libev.so"
 }

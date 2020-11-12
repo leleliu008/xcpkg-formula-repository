@@ -9,7 +9,6 @@ prepare() {
 }
 
 build() {
-    unset TARGET_ARCH
-    make clean &&
-    make install PREFIX="$DIR_INSTALL_PREFIX" CC="$CC" AR="$AR" CFLAGS="$CFLAGS" USOURCES="qprintf.c quantize.c getarg.c gif_err.c"
+    $MAKE -C "$SOURCE_DIR" clean &&
+    $MAKE -C "$SOURCE_DIR" install PREFIX="$ABI_INSTALL_DIR" CC="$CC" AR="$AR" CFLAGS="$CFLAGS" USOURCES="qprintf.c quantize.c getarg.c gif_err.c"
 }

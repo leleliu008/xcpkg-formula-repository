@@ -7,29 +7,14 @@ sha256="486748abfb16abd8af664e3a5f03b228e5f124682b0c942e157644bf6fff7d10"
 prepare() {
     gen_c_file_stub_system &&
     sed_in_place 's/system(/stub_system(/g' shell.c &&
-    sed_in_place "1i #include \"$C_FILE_STUB_SYSTEM\"" shell.c &&
-    fetch_config_sub &&
-    fetch_config_guess
+    sed_in_place "1i #include \"$C_FILE_STUB_SYSTEM\"" shell.c
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
+    configure \
         --enable-threadsafe \
-        --enable-static \
-        --disable-shared \
+        --disable-tcl \
         --disable-editline \
         --disable-readline \
-        --disable-debug \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" && \
-    make clean &&
-    make install
+        --disable-load-extension
 }

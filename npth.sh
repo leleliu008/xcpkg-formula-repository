@@ -7,27 +7,9 @@ license="LGPL-2.1"
 prepare() {
     gen_c_file_stub_system &&
     sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" src/npth.c &&
-    sed_in_place 's/system(cmd)/stub_system(cmd)/g' src/npth.c &&
-    fetch_config_sub   build-aux &&
-    fetch_config_guess build-aux
+    sed_in_place 's/system(cmd)/stub_system(cmd)/g' src/npth.c
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --enable-static \
-        --enable-shared \
-        --disable-tests \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    make clean &&
-    make install
+    configure --disable-tests
 }

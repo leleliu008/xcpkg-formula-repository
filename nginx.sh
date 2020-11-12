@@ -32,24 +32,24 @@ prepare() {
 }
 
 build() {
+    cd "$SOURCE_DIR" || return 1
+
     export NGX_SYSTEM=Darwin
     export NGX_RELEASE=unkown
-    export NGX_MACHINE=$TARGET_ARCH
+    export NGX_MACHINE=$BUILD_FOR_ARCH
     
-    case $TARGET_ARCH in
+    case $BUILD_FOR_ARCH in
         armv*|x86)
-            sed_in_place 's/ngx_size=`$NGX_AUTOTEST`/ngx_size=4/' auto/types/sizeof
-            ;;
+            sed_in_place 's/ngx_size=`$NGX_AUTOTEST`/ngx_size=4/' auto/types/sizeof ;;
         arm64*|x86_64)
-            sed_in_place 's/ngx_size=`$NGX_AUTOTEST`/ngx_size=8/' auto/types/sizeof
-            ;;
+            sed_in_place 's/ngx_size=`$NGX_AUTOTEST`/ngx_size=8/' auto/types/sizeof ;;
     esac
     
     [ -f Makefile ] && make clean
     
     ./configure \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --crossbuild=Darwin:unkown:$TARGET_ARCH \
+        --prefix="$ABI_INSTALL_DIR" \
+        --crossbuild=Darwin:unkown:$BUILD_FOR_ARCH \
         --with-cc="$CC" \
         --with-cc-opt="$CFLAGS $CPPFLAGS" \
         --with-ld-opt="$LDFLAGS -lcrypto" \

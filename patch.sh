@@ -8,24 +8,11 @@ prepare() {
     gen_c_file_stub_system &&
     sed_in_place 's/system (/stub_system (/g'       src/util.c &&
     sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" src/util.c &&
-    sed_in_place '1i #include"../config.h"'         src/util.c &&
-    fetch_config_sub   build-aux &&
-    fetch_config_guess build-aux
+    sed_in_place '1i #include"../config.h"'         src/util.c
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --enable-largefile \
+    configure \
         --enable-xattr \
-        --disable-gcc-warnings \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    make clean &&
-    make install
+        --disable-gcc-warnings
 }

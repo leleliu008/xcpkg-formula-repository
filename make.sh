@@ -6,28 +6,12 @@ license="GPL-3.0"
 
 prepare() {
     sed_in_place '/sigsetmask (siggetmask (0) & ~fatal_signal_mask)/a ;' src/job.c &&
-    sed_in_place 's/__ANDROID__/__APPLE__/' src/arscan.c &&
-    fetch_config_sub   build-aux &&
-    fetch_config_guess build-aux
+    sed_in_place 's/__ANDROID__/__APPLE__/' src/arscan.c
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --enable-largefile \
-        --disable-rpath \
-        --disable-nls \
+    configure \
         --without-guile \
         --without-dmalloc \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        PKG_CONFIG_PATH='' &&
-    sed_in_place '/HAVE_SIGSETMASK/d' src/config.h &&
-    make clean &&
-    make install
+        ac_cv_func_sigsetmask=no
 }

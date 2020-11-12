@@ -5,30 +5,16 @@ sha256="c5fefbdf9858f7e4feb86f036e1247a54c79fc2d8e4b7064d5aaa1f47dfa789a"
 license="GPL-3.0"
 
 prepare() {
-    fetch_config_sub   build-aux &&
-    fetch_config_guess build-aux
+    sed_in_place 's/find.texi\ //' doc/Makefile.am &&
+    sed_in_place 's/find.texi\ //' doc/Makefile.in
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
+    configure \
         --without-selinux \
         --with-included-regex \
         --enable-threads=posix \
-        --enable-largefile \
         --enable-leaf-optimisation \
         --enable-d_type-optimisation \
-        --disable-nls \
-        --disable-rpath \
-        --disable-assert \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    sed_in_place 's/find.texi\ //' doc/Makefile &&
-    make clean &&
-    make install
+        --disable-assert
 }

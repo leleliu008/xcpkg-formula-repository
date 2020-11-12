@@ -9,9 +9,9 @@ formula is a POSIX sh script used to describe how to compile a package for [ipkg
 |-|-|-|
 |`summary`|required|the summary of this package.|
 |`homepage`|required|the homepage of this package.|
-|`url`|required|the source code download url of this package.|
-|`sha256`|required|the sha256sum of source code.|
-|`version`|optional|the version of this package.|
+|`url`|required|the source code download url of this package. the value of `url` must end with one of `.git` `.zip` `.tar.xz` `.tar.gz` `.tar.bz2` `.tar.tgz` `.tar.txz`|
+|`sha256`|optional|the `sha256sum` of source code. If the value of `url` end with `.git`, this variable is optional, otherwise, this variable must be declared.|
+|`version`|optional|the version of this package. If this variable is not declared, it will be calculated from `url`.|
 |`dependencies`|optional|the dependencies of this package. If specify multiple values, separate them with spaces.|
 
 ## the variable can be used in a formula
@@ -19,36 +19,37 @@ formula is a POSIX sh script used to describe how to compile a package for [ipkg
 |-|-|
 |`TIMESTAMP_UNIX`|the unix timestamp of this installation.|
 |||
-|`IPKG_VERSION`|the version of ipkg.|
-|`IPKG_HOME`|the home directory of ipkg.|
-|||
-|`DIR_DOWNLOAD`|the downloads directory of ipkg.|
-|`DIR_PKG`|the pkg directory of ipkg.|
-|`DIR_SRC`|the source code directory of this package.|
-|`DIR_BUILD`|the build directory of this `TARGET_ARCH`.|
-|`DIR_INSTALL_PACKAGE`|the installation directory of this package.|
-|`DIR_INSTALL_PREFIX`|the installation directory of this `TARGET_ARCH`.|
-|||
-|`x_DIR_INSTALL_PREFIX`|the installation directory of x package.|
-|`x_DIR_INCLUDE`|the include directory of x package.|
-|`x_DIR_LIB`|the lib directory of x package.|
-|||
 |`DEVELOPER_DIR`|the `Xcode` developer directory. `xcode-select -p`|
 |`XCODE_VERSION`|the version of `Xcode`.|
 |||
-|`TARGET_PLATFORM`|it's value may be one of `iPhoneOS`, `iPhoneSimulator`, `WatchOS`, `WatchSimulator`, `AppleTVOS`, `AppleTVSimulator`, `MacOSX`|
-|`PLATFORM_MIN_VERSION`||
-|`TARGET_HOST`|it's value may be one of `armv7-ios-darwin`, `armv7s-ios-darwin`, `armv7k-ios-darwin`, `arm-ios-darwin`, `i386-ios-darwin`, `x86_64-ios-darwin`|
-|`TARGET_ARCH`|it's value may be one of `armv7`, `armv7s`, `armv7k`, `arm64`, `arm64e`, `arm64_32`, `i386`, `x86_64`|
+|`MY_VERSION`|the version of `ipkg`.|
+|`MY_HOME_DIR`|the home directory of `ipkg`.|
+|`MY_HOME_PAGE`|the home webpage of `ipkg`.|
+|`MY_CACHED_DIR`|the downloads directory of `ipkg`.|
+|`MY_INSTALL_DIR`|the installed directory of `ipkg`.|
+|`MY_FORMULA_REPO_URL`|the formula repository of `ipkg`. default is `https://github.com/leleliu008/ipkg-formula.git`. this value can be override by `NDK_PKG_FORMULA_REPO_URL` enviroment variable.|
 |||
-|`CMAKE_TOOLCHAIN_FILE`||
+|`WORKING_DIR`|the direcotory where the source code tarball uncompressed to or copy to.|
+|`SOURCE_DIR`|the source code directory of this installation. `the source code direcotory` is the direcotory who contains `Makefile` or `configure` or `CMakeLists.txt` or `meson.build`|
+|`BUILD_DIR`|the build directory of this abi.|
+|`PKG_INSTALL_DIR`|the installation directory of this package.|
+|`ABI_INSTALL_DIR`|the installation directory of this package of this abi.|
+|`x_INSTALL_DIR`|the installation directory of x package of this abi.|
+|`x_INCLUDE_DIR`|the include directory of x package of this abi.|
+|`x_LIBRARY_DIR`|the lib directory of x package of this abi.|
+|||
+|`BUILD_FOR_PLATFORM`|it's value may be one of `iPhoneOS`, `iPhoneSimulator`, `WatchOS`, `WatchSimulator`, `AppleTVOS`, `AppleTVSimulator`, `MacOSX`|
+|`PLATFORM_MIN_VERSION`||
+|`BUILD_FOR_HOST`|it's value may be one of `armv7-ios-darwin`, `armv7s-ios-darwin`, `armv7k-ios-darwin`, `arm-ios-darwin`, `i386-ios-darwin`, `x86_64-ios-darwin`|
+|`BUILD_FOR_ARCH`|it's value may be one of `armv7`, `armv7s`, `armv7k`, `arm64`, `arm64e`, `arm64_32`, `i386`, `x86_64`|
+|`BUILD_FOR_ABI`|represents `$BUILD_FOR_PLATFORM/$BUILD_FOR_ARCH`|
+|||
 |`SYSROOT`||
-|`CC`|the C Compiler for `TARGET_ARCH`.|
+|`CC`|the C Compiler for `BUILD_FOR_ABI`.|
 |`CFLAGS`|the flags of `CC`.|
-|`CXX`|the C++ Compiler for `TARGET_ARCH`.|
+|`CXX`|the C++ Compiler for `BUILD_FOR_ABI`.|
 |`CXXFLAGS`|the flags of `CXX`.|
-|`CPP`|the C PreProcesser for `CC`.|
-|`CPPFLAGS`|the flags of `CPP`.|
+|`CPPFLAGS`|the flags of `C PreProcessor`.|
 |`AS`|the assembler.|
 |`AR`|the archiver.|
 |`RANLIB`|the archiver extra tool.|
@@ -61,22 +62,27 @@ formula is a POSIX sh script used to describe how to compile a package for [ipkg
 |function|required?|overview|
 |-|-|-|
 |`prepare`|optional|this function only run once.|
-|`build`|required|this function will run many times. each time build for one `TARGET_ARCH`.|
+|`build`|required|this function will run many times. each time build for one abi.|
 
 ## the function can be used in a formula
 |function|example|
 |-|-|
-|`msg`|`msg 'your message\n'`|
-|`info`|`info 'your infomation\n'`|
-|`warn`|`warn "PLATFORM_MIN_VERSION is not set. use default value [8.0].\n"`|
-|`error`|`error 'error message\n'`|
-|`die`|`die "please provide a pkg name.\n"`|
-|`success`|`success "build success.\n"`|
-|`nproc`|`make --directory="$DIR_BUILD" -j$(nproc) install`|
-|`sed_in_place`|`sed_in_place 's/system(/system2(/g' shell.c`<br>`sed_in_place '1i #include "system2.c"' shell.c`|
+|`msg`|`msg 'your message.'`|
+|`echo`|`echo 'your message.'`|
+|`info`|`info 'your infomation.'`|
+|`warn`|`warn "your warning."`|
+|`error`|`error 'error message.'`|
+|`die`|`die "please specify a package name."`|
+|`success`|`success "build success."`|
+|`nproc`|`make --directory="$BUILD_DIR" -j$(nproc)`|
+|`sed_in_place`|`sed_in_place 's/-mandroid//g' Configure`|
 |`format_unix_timestamp`|`format_unix_timestamp "$TIMESTAMP_UNIX" '+%Y/%m/%d %H:%M:%S'`|
-|`getvalue`|`VALUE=$(getvalue --target-abi=armv7a)`|
-|`is_sha256sum_match`|`is_sha256sum_match FILE SHA256SUM`|
+|`getvalue`|`VALUE=$(getvalue --rule=default)`|
+|`sha256sum`|`VALUE=$(sha256sum FILEPATH)`|
+|`is_sha256sum_match`|`is_sha256sum_match FILEPATH SHA256SUM`|
 |`fetch`|`fetch URL [--output-dir=DIR --output-name=NAME --sha256=SHA256]`|
 |`fetch_config_sub`|`fetch_config_sub     [DIR]`|
 |`fetch_config_guess`|`fetch_config_guess [DIR]`|
+|`configure`|`configure --enable-pic`|
+|`cmake`|`cmake -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON`|
+|`meson`|`meson -Dneon=disabled -Darm-simd=disabled`|

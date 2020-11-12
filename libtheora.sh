@@ -8,26 +8,12 @@ prepare() {
     sed_in_place '$d' autogen.sh && ./autogen.sh
 }
 
-build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --with-ogg="$libogg_DIR_INSTALL_PREFIX" \
-        --with-vorbis="$libvorbis_DIR_INSTALL_PREFIX" \
-        --with-sdl-prefix="$sdl2_DIR_INSTALL_PREFIX" \
+build() { 
+    export CPPFLAGS="$CPPFLAGS -include stdint.h"
+    configure \
+        --with-ogg="$libogg_INSTALL_DIR" \
+        --with-vorbis="$libvorbis_INSTALL_DIR" \
+        --with-sdl-prefix="$sdl2_INSTALL_DIR" \
         --disable-examples \
-        --disable-shared \
-        --enable-static \
-        --enable-asm \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        PKG_CONFIG="" &&
-    make clean &&
-    make install
+        --enable-asm
 }

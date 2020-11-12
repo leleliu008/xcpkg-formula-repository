@@ -5,38 +5,15 @@ sha256="1b11659fb49e20e18db460d44485f09442c8c56d5df165de9461eb09c8302f85"
 license="GPL-2.0"
 dependencies="isl gmp libmpc mpfr"
 
-prepare() {
-    fetch_config_sub &&
-    fetch_config_guess
-}
-
 build() {
-    [ -f Makefile ] && make distclean
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-sysroot="$SYSROOT" \
-        --with-isl="$isl_DIR_INSTALL_PREFIX" \
-        --with-gmp="$gmp_DIR_INSTALL_PREFIX" \
-        --with-mpc="$libmpc_DIR_INSTALL_PREFIX" \
-        --with-mpfr="$mpfr_DIR_INSTALL_PREFIX" \
+    configure \
+        --with-isl="$isl_INSTALL_DIR" \
+        --with-gmp="$gmp_INSTALL_DIR" \
+        --with-mpc="$libmpc_INSTALL_DIR" \
+        --with-mpfr="$mpfr_INSTALL_DIR" \
         --with-system-zlib \
         --disable-werror \
-        --enable-static \
-        --enable-shared \
         --enable-interwork \
         --enable-multilib \
-        --enable-targets=all \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    make clean &&
-    make &&
-    make install
+        --enable-targets=all
 }

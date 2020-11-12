@@ -3,26 +3,6 @@ homepage="https://www.gnu.org/software/cpio"
 url="https://ftp.gnu.org/gnu/cpio/cpio-2.13.tar.bz2"
 sha256="eab5bdc5ae1df285c59f2a4f140a98fc33678a0bf61bdba67d9436ae26b46f6d"
 
-prepare() {
-    fetch_config_sub   build-aux &&
-    fetch_config_guess build-aux
-}
-
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --enable-largefile \
-        --disable-rpath \
-        --disable-nls \
-        --disable-mt \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" &&
-    make clean &&
-    make install
+    configure --disable-mt
 }

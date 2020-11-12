@@ -1,26 +1,28 @@
 summary="PNG image optimizing utility"
 homepage="https://pngquant.org"
-url="https://pngquant.org/pngquant-2.12.5-src.tar.gz"
-sha256="3638936cf6270eeeaabcee42e10768d78e4dc07cac9310307835c1f58b140808"
 version="2.12.5"
+url="https://pngquant.org/pngquant-$version-src.tar.gz"
+sha256="3638936cf6270eeeaabcee42e10768d78e4dc07cac9310307835c1f58b140808"
 dependencies="libpng"
 
 prepare() {
+    sed_in_place 's/! find_library/find_library/' configure &&
     sed_in_place 's/find_pkgconfig libpng/true/g' configure &&
     sed_in_place 's/-mmacosx-version-min=10.7//g' configure &&
     sed_in_place 's/-mmacosx-version-min=10.7//g' lib/configure
 }
 
 build() {
-    unset TARGET_ARCH
+    export OSTYPE=darwin
+    cd "$SOURCE_DIR" &&
     ./configure \
-        --prefix="$DIR_INSTALL_PREFIX" \
+        --prefix="$ABI_INSTALL_DIR" \
         --disable-sse \
-        --with-libpng="$libpng_DIR_INSTALL_PREFIX" \
+        --with-libpng="$libpng_INSTALL_DIR" \
         --without-lcms2 \
         CC="$CC" \
         CFLAGS="$CFLAGS $CPPFLAGS" \
         LDFLAGS="$LDFLAGS -lpng" &&
-    make clean &&
-    make install
+    $MAKE clean &&
+    $MAKE install
 }

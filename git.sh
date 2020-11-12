@@ -15,28 +15,15 @@ prepare() {
     sed_in_place '/uname_S :=/c uname_S := Darwin' config.mak.uname &&
     gen_c_file_stub_system &&
     sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" t/helper/test-drop-caches.c &&
-    sed_in_place 's/system(/stub_system(/g'         t/helper/test-drop-caches.c &&
-    fetch_config_sub &&
-    fetch_config_guess
+    sed_in_place 's/system(/stub_system(/g'         t/helper/test-drop-caches.c
 }
 
 build() {
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-iconv="$libiconv_DIR_INSTALL_PREFIX" \
-        --with-expat="$expat_DIR_INSTALL_PREFIX" \
-        --with-curl="$curl_DIR_INSTALL_PREFIX" \
-        --with-openssl="$openssl_DIR_INSTALL_PREFIX" \
-        --with-libpcre2="$pcre2_DIR_INSTALL_PREFIX" \
-        --with-zlib \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        PKG_CONFIG='' && \
-    make clean &&
-    make install
+    configure \
+        --with-iconv="$libiconv_INSTALL_DIR" \
+        --with-expat="$expat_INSTALL_DIR" \
+        --with-curl="$curl_INSTALL_DIR" \
+        --with-openssl="$openssl_INSTALL_DIR" \
+        --with-libpcre2="$pcre2_INSTALL_DIR" \
+        --with-zlib
 }

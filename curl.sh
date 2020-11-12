@@ -5,29 +5,12 @@ sha256="032f43f2674008c761af19bf536374128c16241fb234699a55f9fb603fcfbae7"
 dependencies="openssl"
 
 prepare() {
-    fetch_config_sub &&
-    fetch_config_guess &&
     sed_in_place '/min="-mmacosx-version-min=/d' configure
 }
 
 build() {
-    ./configure \
-       --host="$TARGET_HOST" \
-       --prefix="$DIR_INSTALL_PREFIX" \
-       --with-sysroot="$SYSROOT" \
-       --with-ssl="$openssl_DIR_INSTALL_PREFIX" \
-       --disable-debug \
-       --disable-shared \
-       --enable-static \
+    configure \
+       --with-ssl="$openssl_INSTALL_DIR" \
        --enable-optimize \
-       --enable-pthreads \
-       CC="$CC" \
-       CFLAGS="$CFLAGS" \
-       CPP="$CPP" \
-       CPPFLAGS="$CPPFLAGS" \
-       LDFLAGS="$LDFLAGS" \
-       AR="$AR" \
-       RANLIB="$RANLIB" &&
-    make clean &&
-    make install
+       --enable-pthreads
 }

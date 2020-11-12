@@ -7,11 +7,11 @@ sha256="ddb04774f1e32f0c49751e21b67216ac87852ceb056b75209af2443400636d46"
 #https://github.com/openssl/openssl/issues/7582
 
 build() {
-    case $TARGET_PLATFORM in
+    case $BUILD_FOR_PLATFORM in
         *Simulator)
             os_compiler='iossimulator-xcrun'
             ;;
-        *)  case $TARGET_ARCH in
+        *)  case $BUILD_FOR_ARCH in
                 armv*)
                     os_compiler='ios-cross'
                     ;;
@@ -20,6 +20,7 @@ build() {
                     ;;
             esac
     esac
+    cd "$SOURCE_DIR" &&
     ./Configure \
         no-ssl2 \
         no-ssl3 \
@@ -27,8 +28,8 @@ build() {
         no-hw \
         no-engine \
         no-asm \
-        --prefix="$DIR_INSTALL_PREFIX" \
+        --prefix="$ABI_INSTALL_DIR" \
         "$os_compiler" &&
-    make clean &&
-    make install
+    $MAKE clean &&
+    $MAKE install
 }

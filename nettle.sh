@@ -5,34 +5,18 @@ sha256="d24c0d0f2abffbc8f4f34dcf114b0f131ec3774895f3555922fe2f40f3d5e3f1"
 dependencies="gmp"
 
 prepare() {
-    fetch_config_sub &&
-    fetch_config_guess
+    sed_in_place '/cat >conftest.c <<EOF/a #include<stdlib.h>' configure &&
+    sed_in_place 's/-soname=/-install_name,/g' configure
 }
 
 build() {
-    [ -f Makefile ] && make distclean
-    ./configure \
-        --host="$TARGET_HOST" \
-        --prefix="$DIR_INSTALL_PREFIX" \
-        --with-include-path="$gmp_DIR_INCLUDE" \
-        --with-lib-path="$gmp_DIR_LIB" \
+    configure \
+        --with-include-path="$gmp_INCLUDE_DIR" \
+        --with-lib-path="$gmp_LIBRARY_DIR" \
         --disable-fat \
         --disable-gcov \
         --disable-openssl \
         --disable-mini-gmp \
-        --disable-shared \
-        --enable-static \
         --disable-assembler \
-        --enable-documentation \
-        CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
-        AR="$AR" \
-        RANLIB="$RANLIB" \
-        PKG_CONFIG='' && \
-    make clean &&
-    make install
+        --enable-documentation
 }
