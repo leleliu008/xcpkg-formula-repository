@@ -10,6 +10,7 @@ prepare() {
 }
 
 build() {
+    # https://invisible-island.net/ncurses/announce-6.0.html
     configure \
         --with-ospeed='long' \
         --without-pkg-config \
