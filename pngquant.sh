@@ -1,9 +1,9 @@
-summary="PNG image optimizing utility"
-homepage="https://pngquant.org"
-version="2.12.5"
-url="https://pngquant.org/pngquant-$version-src.tar.gz"
-sha256="3638936cf6270eeeaabcee42e10768d78e4dc07cac9310307835c1f58b140808"
-dependencies="libpng"
+summary  "PNG image optimizing utility"
+homepage "https://pngquant.org"
+version  "2.12.5"
+url      "https://pngquant.org/pngquant-$(version)-src.tar.gz"
+sha256   "3638936cf6270eeeaabcee42e10768d78e4dc07cac9310307835c1f58b140808"
+dependencies "libpng"
 
 prepare() {
     sed_in_place 's/! find_library/find_library/' configure &&

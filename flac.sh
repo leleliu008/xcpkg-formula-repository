@@ -1,9 +1,8 @@
-summary="Free lossless audio codec"
-homepage="https://xiph.org/flac"
-version="1.3.3"
-url="https://github.com/xiph/flac/archive/$version.tar.gz"
-sha256="668cdeab898a7dd43cf84739f7e1f3ed6b35ece2ef9968a5c7079fe9adfe1689"
-dependencies="libogg libiconv"
+summary  "Free lossless audio codec"
+homepage "https://xiph.org/flac"
+url      "https://github.com/xiph/flac/archive/1.3.3.tar.gz"
+sha256   "668cdeab898a7dd43cf84739f7e1f3ed6b35ece2ef9968a5c7079fe9adfe1689"
+dependencies "libogg libiconv"
 
 prepare() {
     # 去掉libintl的查找

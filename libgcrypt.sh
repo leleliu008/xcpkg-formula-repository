@@ -1,13 +1,11 @@
-summary="Cryptographic library based on the code from GnuPG"
-homepage="https://gnupg.org/related_software/libgcrypt"
-url="https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.8.6.tar.bz2"
-sha256="0cba2700617b99fc33864a0c16b1fa7fdf9781d9ed3509f5d767178e5fd7b975"
-dependencies="libgpg-error"
+summary  "Cryptographic library based on the code from GnuPG"
+homepage "https://gnupg.org/related_software/libgcrypt"
+url      "https://gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.8.6.tar.bz2"
+sha256   "0cba2700617b99fc33864a0c16b1fa7fdf9781d9ed3509f5d767178e5fd7b975"
+dependencies "libgpg-error"
 
 prepare() {
-    gen_c_file_stub_system &&
-    sed_in_place "1i #include\"$C_FILE_STUB_SYSTEM\"" tests/random.c &&
-    sed_in_place 's/system (/stub_system (/g'         tests/random.c
+    inject_stub_system tests/random.c
 }
 
 build() {

@@ -1,9 +1,9 @@
-summary="C/C++ and Java libraries for Unicode and globalization"
-homepage="http://site.icu-project.org/home"
-url="https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-67_1-src.tgz"
-version="67.1"
-sha256="94a80cd6f251a53bd2a997f6f1b5ac6653fe791dfab66e1eb0227740fb86d5dc"
-license="ICU"
+summary  "C/C++ and Java libraries for Unicode and globalization"
+homepage "http://site.icu-project.org/home"
+url      "https://github.com/unicode-org/icu/releases/download/release-67-1/icu4c-67_1-src.tgz"
+version  "67.1"
+sha256   "94a80cd6f251a53bd2a997f6f1b5ac6653fe791dfab66e1eb0227740fb86d5dc"
+license  "ICU"
 
 # https://www.talkwithdevices.com/archives/260
 prepare() {
@@ -15,11 +15,7 @@ prepare() {
     make &&
     cd "$SOURCE_DIR" &&
     cp config/mh-darwin config/mh-unknown &&
-    gen_c_file_stub_system &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" tools/tzcode/zic.c &&
-    sed_in_place 's/system(/stub_system(/g'         tools/tzcode/zic.c &&
-    sed_in_place "1i #include<$C_FILE_STUB_SYSTEM>" tools/pkgdata/pkgdata.cpp &&
-    sed_in_place 's/system(/stub_system(/g'         tools/pkgdata/pkgdata.cpp
+    inject_stub_system tools/tzcode/zic.c tools/pkgdata/pkgdata.cpp
 }
 
 build() {

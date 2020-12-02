@@ -1,8 +1,8 @@
-summary="GNU File, Shell, and Text utilities"
-homepage="https://www.gnu.org/software/coreutils"
-url="https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz"
-sha256="4458d8de7849df44ccab15e16b1548b285224dbba5f08fac070c1c0e0bcc4cfa"
-license="GPL-3.0"
+summary  "GNU File, Shell, and Text utilities"
+homepage "https://www.gnu.org/software/coreutils"
+url      "https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz"
+sha256   "4458d8de7849df44ccab15e16b1548b285224dbba5f08fac070c1c0e0bcc4cfa"
+license  "GPL-3.0"
 
 # __OSX_AVAILABLE(10.12) __IOS_PROHIBITED
 # __TVOS_PROHIBITED __WATCHOS_PROHIBITED
