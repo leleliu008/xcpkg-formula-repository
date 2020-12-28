@@ -1,30 +1,29 @@
-summary  "charset conversion library"
-homepage "https://www.gnu.org/software/libiconv"
-url      "https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz"
-sha256   "e6a1b1b589654277ee790cce3734f07876ac4ccfaecbee8afa0b649cf529cc04"
+summary "charset conversion library"
+webpage "https://www.gnu.org/software/libiconv"
+src_url "https://ftp.gnu.org/gnu/libiconv/libiconv-1.16.tar.gz"
+src_sum "e6a1b1b589654277ee790cce3734f07876ac4ccfaecbee8afa0b649cf529cc04"
 
 build() {
     configure \
        --enable-relocatable \
-       --enable-extra-encodings
-    gen_pc_files
+       --enable-extra-encodings &&
+    install_pc_files
 }
 
-gen_pc_files() {
-    mkdir "$ABI_PKG_CONFIG_DIR" || return 1
+install_pc_files() {
     for item in iconv charset
     do
-        cat > "$ABI_PKG_CONFIG_DIR/lib$item.pc" <<EOF
+        install_pc_file "lib$item" <<EOF
 prefix=$ABI_INSTALL_DIR
 exec_prefix=\${prefix}
 libdir=\${exec_prefix}/lib
 includedir=\${prefix}/include
 
 Name: lib$item
-URL: https://www.gnu.org/software/libiconv
-Description: charset conversion library
+URL: $(webpage)
+Description: $(summary)
 Version: $(version)
-Libs: -L\${libdir} -liconv
+Libs: -L\${libdir} -l$item
 Cflags: -I\${includedir}
 EOF
     done
