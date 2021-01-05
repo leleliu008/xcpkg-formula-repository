@@ -25,6 +25,7 @@ build() {
         ac_cv_func_gethostname=yes \
         ac_cv_func_dprintf=yes \
         ac_cv_func_vprintf=yes \
+        ac_cv_func_snprintf=yes \
         ac_cv_func_strpbrk=yes \
         ac_cv_func_mkfifo=yes \
         ac_cv_func_strchr=yes \

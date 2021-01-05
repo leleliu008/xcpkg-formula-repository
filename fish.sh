@@ -14,12 +14,14 @@ build() {
         -DWITH_GETTEXT=OFF \
         -DPCRE2_INCLUDE_DIR="$pcre2_INCLUDE_DIR" \
         -DPCRE2_LIB="$pcre2_LIBRARY_DIR/libpcre2-32.a" \
-        -DZLIB_LIBRARY_RELEASE="$SYSTEM_LIBRARY_DIR/libz.a" \
+        -DZLIB_INCLUDE_DIR="$zlib_INCLUDE_DIR" \
+        -DZLIB_LIBRARY_RELEASE="$zlib_LIBRARY_DIR/libz.a" \
         -DBZIP2_INCLUDE_DIR="$bzip2_INCLUDE_DIR" \
         -DBZIP2_LIBRARY_RELEASE="$bzip2_LIBRARY_DIR/libbz2.a" \
         -DREADLINE_INCLUDE_DIR="$readline_INCLUDE_DIR" \
         -DREADLINE_LIBRARY="$readline_LIBRARY_DIR/libreadline.a" \
         -DCURSES_INCLUDE_PATH="$ncurses_INCLUDE_DIR" \
+        -DCURSES_CURSES_LIBRARY="$ncurses_LIBRARY_DIR/libncurses.a" \
         -DCURSES_NCURSES_LIBRARY="$ncurses_LIBRARY_DIR/libncurses.a" \
         -DCURSES_FORM_LIBRARY="$ncurses_LIBRARY_DIR/libform.a"
 }

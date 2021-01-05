@@ -12,6 +12,8 @@ prepare() {
     sed_in_place 's|-O3 -arch arm64 -mios-version-min=7.0.0 -isysroot \\$(CROSS_TOP)/SDKs/\\$(CROSS_SDK)|\\$(CFLAGS)|' Configure
 }
 
+build_in_sourced
+
 build() {
     case $BUILD_FOR_PLATFORM in
         MacOSX)
@@ -27,7 +29,6 @@ build() {
             esac
     esac
     
-   cd "$SOURCE_DIR" &&
     perl Configure \
         no-ssl2 \
         no-ssl3 \

@@ -8,8 +8,9 @@ prepare() {
     sed_in_place 's/-mmacosx-version-min=10.7//g' configure
 }
 
+build_in_sourced
+
 build() {
-    cd "$SOURCE_DIR" &&
     ./configure \
         --prefix="$ABI_INSTALL_DIR" \
         --disable-sse \

@@ -2,6 +2,7 @@ summary "HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server"
 webpage "https://nginx.org"
 src_url "https://nginx.org/download/nginx-1.19.1.tar.gz"
 src_sum "a004776c64ed3c5c7bc9b6116ba99efab3265e6b81d49a57ca4471ff90655492"
+require "make"
 depends "openssl pcre"
 
 trace_configure() {
@@ -31,13 +32,13 @@ prepare() {
     sed_in_place '/ngx_test=/i CC_TEST_FLAGS="$NGX_CC_OPT"' auto/types/uintptr_t
 }
 
-build() {
-    cd "$SOURCE_DIR" || return 1
+build_in_sourced
 
+build() {
     export NGX_SYSTEM=Darwin
     export NGX_RELEASE=unkown
     export NGX_MACHINE=$BUILD_FOR_ARCH
-    
+
     case $BUILD_FOR_ARCH in
         armv*|x86)
             sed_in_place 's/ngx_size=`$NGX_AUTOTEST`/ngx_size=4/' auto/types/sizeof ;;

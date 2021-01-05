@@ -7,8 +7,9 @@ prepare() {
     sed_in_place 's|install -D|install|g' makefile
 }
 
+build_in_sourced
+
 build() {
-    cd "$SOURCE_DIR"  &&
     $MAKE -f makefile unrar CXX="$CXX" AR="$AR" STRIP="$STRIP" CXXFLAGS="$CXXFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" &&
     install -d "$ABI_BINARY__DIR" &&
     $MAKE -f makefile install-unrar DESTDIR="$ABI_INSTALL_DIR" &&

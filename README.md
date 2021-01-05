@@ -4,52 +4,82 @@ the formula repository for [ipkg](https://github.com/leleliu008/ipkg)
 ## what's formula
 formula is a POSIX sh script used to describe how to compile a package for [ipkg](https://github.com/leleliu008/ipkg).
 
-## the variable can be declared in a formula
-|variable|required?|overview|
+## the function must be invoked on top of the formula
+|function|required?|overview|
 |-|-|-|
-|`summary`|required|the summary of this package.|
-|`homepage`|required|the homepage of this package.|
-|`url`|required|the source code download url of this package. the value of `url` must end with one of `.git` `.zip` `.tar.xz` `.tar.gz` `.tar.bz2` `.tar.tgz` `.tar.txz`|
-|`sha256`|optional|the `sha256sum` of source code. If the value of `url` end with `.git`, this variable is optional, otherwise, this variable must be declared.|
-|`version`|optional|the version of this package. If this variable is not declared, it will be calculated from `url`.|
-|`dependencies`|optional|the dependencies of this package. If specify multiple values, separate them with spaces.|
+|`summary VALUE`|required|the summary of this package.|
+|`webpage VALUE`|required|the home webpage of this package.|
+|`src_git VALUE`|optional|the source code git repository.|
+|`src_url VALUE`|required|the source code download url of this package. the argument of `src_url` must end with one of `.git` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz` `.c` `.cc` `.cxx` `.cpp`. `src_url` also support format like `dir://DIR`|
+|`src_sum VALUE`|optional|the `sha256sum` of source code. If the argument of `src_url` end with `.git`, this function is optional, otherwise, this function must be invoked.|
+|`version VALUE`|optional|the version of this package. If this function is not invoked, it will be calculated from `src_url`.|
+|`license VALUE`|optional|the license of this package.|
+|`require VALUE`|optional|the commands will be used when installing. If specify multiple values, separate them with spaces.|
+|`depends LIST`|optional|the packages will be used when installing and runtime. If specify multiple values, separate them with spaces.|
+|`patches LIST`|optional|the patches. `URL` `SHA256` pairs. [example](https://github.com/leleliu008/ipkg-formula/blob/master/unzip.sh#L8-L9)|
+|`ldflags LIST`|optional|`LDFLAGS`|
+|`sourced VALUE`|optional|the source directory, relative to `WORKING_DIR`, which contains `configure`, `CMakeLists.txt`, etc.|
+|`build_in_sourced`|optional|build in source directory, otherwise build out-of source directory.|
 
-## the variable can be used in a formula
+## the function can be declared in a formula
+|function|required?|overview|
+|-|-|-|
+|`prepare(){}`|optional|this function only run once.|
+|`build(){}`|required|this function will run many times. each time build for one abi.|
+
+## the function can be invoked in a formula at anywhere
+|function|example|
+|-|-|
+|`print`|`print 'your message.'`|
+|`echo`|`echo 'your message.'`|
+|`info`|`info 'your infomation.'`|
+|`warn`|`warn "--min-sdk-api-level=INTEGER argument is not specified. so, use the default value [21]."`|
+|`error`|`error 'error message.'`|
+|`die`|`die "please specify a package name."`|
+|`success`|`success "build success."`|
+|`nproc`|`make --directory="$BUILD_DIR" -j$(nproc)`|
+|`sed_in_place`|`sed_in_place 's/-mandroid//g' Configure`|
+|`format_unix_timestamp`|`format_unix_timestamp "$TIMESTAMP_UNIX" '+%Y/%m/%d %H:%M:%S'`|
+|`getvalue`|`VALUE=$(getvalue --min-sdk-api-level=21)`|
+|`sha256sum`|`VALUE=$(sha256sum FILEPATH)`|
+|`is_sha256sum_match`|`is_sha256sum_match FILEPATH SHA256SUM`|
+|`fetch`|`fetch URL [--sha256=SHA256] --output-path=PATH`<br>`fetch URL [--sha256=SHA256] --output-dir=DIR --output-name=NAME`<br>`fetch URL [--sha256=SHA256] --output-dir=DIR [--output-name=NAME]`<br>`fetch URL [--sha256=SHA256] [--output-dir=DIR] --output-name=NAME`|
+
+## the function can be invoked in build function only
+|function|example|
+|-|-|
+|`configure`|`configure --enable-pic`|
+|`cmake`|`cmake -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON`|
+|`meson`|`meson -Dneon=disabled -Darm-simd=disabled`|
+|`cargo`|`cargo`|
+
+## the variable can be used in a formula at anywhere
 |variable|overview|
 |-|-|
-|`TIMESTAMP_UNIX`|the unix timestamp of this installation.|
-|||
-|`DEVELOPER_DIR`|the `Xcode` developer directory. `xcode-select -p`|
-|`XCODE_VERSION`|the version of `Xcode`.|
-|||
 |`MY_VERSION`|the version of `ipkg`.|
 |`MY_HOME_DIR`|the home directory of `ipkg`.|
 |`MY_HOME_PAGE`|the home webpage of `ipkg`.|
 |`MY_CACHED_DIR`|the downloads directory of `ipkg`.|
 |`MY_INSTALL_DIR`|the installed directory of `ipkg`.|
-|`MY_FORMULA_REPO_URL`|the formula repository of `ipkg`. default is `https://github.com/leleliu008/ipkg-formula.git`. this value can be override by `NDK_PKG_FORMULA_REPO_URL` enviroment variable.|
+|`MY_FORMULA_REPO_URL`|the formula repository of `ipkg`. default is `https://github.com/leleliu008/ipkg-formula.git`. this value can be overrided by `IPKG_FORMULA_REPO_URL` enviroment variable.|
+
+## the variable can be used in prepare and build function
+|variable|overview|
+|-|-|
+|`DEVELOPER_DIR`|the `Xcode` developer directory. `xcode-select -p`|
+|`XCODE_VERSION`|the version of `Xcode`.|
+|||
+|`TIMESTAMP_UNIX`|the unix timestamp of this installation.|
 |||
 |`WORKING_DIR`|the direcotory where the source code tarball uncompressed to or copy to.|
-|`SOURCE_DIR`|the source code directory of this installation. `the source code direcotory` is the direcotory who contains `Makefile` or `configure` or `CMakeLists.txt` or `meson.build`|
-|`BUILD_DIR`|the build directory of this abi.|
-|`PKG_INSTALL_DIR`|the installation directory of this package.|
-|`ABI_INSTALL_DIR`|the installation directory of this package of this abi.|
-|`x_INSTALL_DIR`|the installation directory of x package of this abi.|
-|`x_INCLUDE_DIR`|the include directory of x package of this abi.|
-|`x_LIBRARY_DIR`|the lib directory of x package of this abi.|
+|`SOURCE_DIR`|the source code directory of this installation. `the source code direcotory` is the direcotory who contains `Makefile` or `configure` or `CMakeLists.txt` or `meson.build` or `Cargo.toml`|
 |||
-|`BUILD_FOR_PLATFORM`|it's value may be one of `iPhoneOS`, `iPhoneSimulator`, `WatchOS`, `WatchSimulator`, `AppleTVOS`, `AppleTVSimulator`, `MacOSX`|
-|`PLATFORM_MIN_VERSION`||
-|`BUILD_FOR_HOST`|it's value may be one of `armv7-ios-darwin`, `armv7s-ios-darwin`, `armv7k-ios-darwin`, `arm-ios-darwin`, `i386-ios-darwin`, `x86_64-ios-darwin`|
-|`BUILD_FOR_ARCH`|it's value may be one of `armv7`, `armv7s`, `armv7k`, `arm64`, `arm64e`, `arm64_32`, `i386`, `x86_64`|
-|`BUILD_FOR_ABI`|represents `$BUILD_FOR_PLATFORM/$BUILD_FOR_ARCH`|
-|||
-|`SYSROOT`||
-|`CC`|the C Compiler for `BUILD_FOR_ABI`.|
+|`CC`|the C Compiler.|
 |`CFLAGS`|the flags of `CC`.|
-|`CXX`|the C++ Compiler for `BUILD_FOR_ABI`.|
+|`CXX`|the C++ Compiler.|
 |`CXXFLAGS`|the flags of `CXX`.|
-|`CPPFLAGS`|the flags of `C PreProcessor`.|
+|`CPP`|the C/C++ PreProcessor.|
+|`CPPFLAGS`|the flags of `CPP`.|
 |`AS`|the assembler.|
 |`AR`|the archiver.|
 |`RANLIB`|the archiver extra tool.|
@@ -58,31 +88,26 @@ formula is a POSIX sh script used to describe how to compile a package for [ipkg
 |`NM`|a command line tool to list symbols from object files.|
 |`STRIP`|a command line tool to discard symbols and other data from object files.|
 
-## the function can be declared in a formula
-|function|required?|overview|
-|-|-|-|
-|`prepare`|optional|this function only run once.|
-|`build`|required|this function will run many times. each time build for one abi.|
-
-## the function can be used in a formula
-|function|example|
+## the variable can be used in build function only
+|variable|overview|
 |-|-|
-|`msg`|`msg 'your message.'`|
-|`echo`|`echo 'your message.'`|
-|`info`|`info 'your infomation.'`|
-|`warn`|`warn "your warning."`|
-|`error`|`error 'error message.'`|
-|`die`|`die "please specify a package name."`|
-|`success`|`success "build success."`|
-|`nproc`|`make --directory="$BUILD_DIR" -j$(nproc)`|
-|`sed_in_place`|`sed_in_place 's/-mandroid//g' Configure`|
-|`format_unix_timestamp`|`format_unix_timestamp "$TIMESTAMP_UNIX" '+%Y/%m/%d %H:%M:%S'`|
-|`getvalue`|`VALUE=$(getvalue --rule=default)`|
-|`sha256sum`|`VALUE=$(sha256sum FILEPATH)`|
-|`is_sha256sum_match`|`is_sha256sum_match FILEPATH SHA256SUM`|
-|`fetch`|`fetch URL [--output-dir=DIR --output-name=NAME --sha256=SHA256]`|
-|`fetch_config_sub`|`fetch_config_sub     [DIR]`|
-|`fetch_config_guess`|`fetch_config_guess [DIR]`|
-|`configure`|`configure --enable-pic`|
-|`cmake`|`cmake -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON`|
-|`meson`|`meson -Dneon=disabled -Darm-simd=disabled`|
+|`BUILD_DIR`|the build directory of this abi.|
+|`PKG_INSTALL_DIR`|the installation directory of this package.|
+|`ABI_INSTALL_DIR`|the installation directory of this package of this abi.|
+|`ABI_BINARY__DIR`|the `bin` directory of this package of this abi.|
+|`ABI_INCLUDE_DIR`|the `include` directory of this package of this abi.|
+|`ABI_LIBRARY_DIR`|the `lib` directory of this package of this abi.|
+|`ABI_PKGCONF_DIR`|the `pkgconfig` directory of this package of this abi.|
+|`x_INSTALL_DIR`|the installation directory of x package of this abi.|
+|`x_INCLUDE_DIR`|the `include` directory of x package of this abi.|
+|`x_LIBRARY_DIR`|the `lib` directory of x package of this abi.|
+|||
+|`BUILD_FOR_PLATFORM`|it's value may be one of `iPhoneOS`, `iPhoneSimulator`, `WatchOS`, `WatchSimulator`, `AppleTVOS`, `AppleTVSimulator`, `MacOSX`|
+|`PLATFORM_MIN_VERSION`||
+|`BUILD_FOR_TARGET`|it's value may be one of `armv7-ios-darwin`, `armv7s-ios-darwin`, `armv7k-ios-darwin`, `arm-ios-darwin`, `i386-ios-darwin`, `x86_64-ios-darwin`|
+|`BUILD_FOR_ARCH`|it's value may be one of `armv7`, `armv7s`, `armv7k`, `arm64`, `arm64e`, `arm64_32`, `i386`, `x86_64`|
+|`BUILD_FOR_ABI`|represents `$BUILD_FOR_PLATFORM/$BUILD_FOR_ARCH`|
+|||
+|`SYSROOT`||
+|`SYSTEM_INCLUDE_DIR`||
+|`SYSTEM_LIBRARY_DIR`||

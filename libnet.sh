@@ -5,6 +5,5 @@ src_sum "caa4868157d9e5f32e9c7eac9461efeff30cb28357f7f6bf07e73933fb4edaa7"
 license "BSD-2-Clause"
 
 build() {
-    BUILD_FOR_HOST=$(echo "$BUILD_FOR_HOST" | sed 's/-ios/-darwin/')
     configure --enable-samples
 }

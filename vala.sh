@@ -7,6 +7,6 @@ require "pkg-config"
 depends "glib graphviz"
 
 build() {
-    #LDFLAGS="$LDFLAGS -lffi -lxdot -lpathplan -lz -lm"
+    LDFLAGS="$LDFLAGS -lffi -lxdot -lexpat -lpathplan -lz -lm"
     configure --with-cgraph
 }

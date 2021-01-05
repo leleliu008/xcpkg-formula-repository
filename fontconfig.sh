@@ -5,7 +5,7 @@ src_url "https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13
 src_sum "f655dd2a986d7aa97e052261b36aa67b0a64989496361eca8d604e6414006741"
 license "MIT"
 require "make pkg-config"
-depends "gettext libiconv util-linux json-c expat freetype-with-harfbuzz"
+depends "gettext libiconv util-linux json-c expat freetype2-with-harfbuzz"
 
 prepare() {
     sed_in_place 's|po-conf test|po-conf|' Makefile.in

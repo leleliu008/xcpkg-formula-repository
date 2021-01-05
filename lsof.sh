@@ -6,6 +6,8 @@ src_sum "a9865eeb581c3abaac7426962ddb112ecfd86a5ae93086eb4581ce100f8fa8f4"
 license "Zlib"
 require "make"
 
+build_in_sourced
+
 build() {
     export LSOF_MAKE="$MAKE"
     export LSOF_CC="$CC"
@@ -16,7 +18,6 @@ build() {
     export LSOF_CFGF="$CFLAGS $CPPFLAGS"
     export LSOF_CFGL="$LDFLAGS -L$SOURCE_DIR/lib"
     
-    cd $SOURCE_DIR &&
     ./Configure -clean &&
     ./Configure darwin &&
     $MAKE &&

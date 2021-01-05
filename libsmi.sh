@@ -9,8 +9,8 @@ prepare() {
     sed_in_place '/#include "smi-data.h"/a #include "smi-check.h"' lib/error.h
 }
 
+build_in_sourced
+
 build() {
-    BUILD_FOR_HOST=$(echo "$BUILD_FOR_HOST" | sed 's/-ios/-darwin/')
-    cd "$SOURCE_DIR" &&
     configure
 }

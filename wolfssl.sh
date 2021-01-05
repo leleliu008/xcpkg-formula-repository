@@ -12,7 +12,6 @@ prepare() {
 }
 
 build() {
-    BUILD_FOR_HOST=$(echo "$BUILD_FOR_HOST" | sed 's/-ios/-darwin/')
     configure \
         --disable-asm \
         --disable-bump \

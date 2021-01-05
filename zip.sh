@@ -6,28 +6,29 @@ version "3.0-11"
 require "patch tar"
 patches "https://deb.debian.org/debian/pool/main/z/zip/zip_$(version).debian.tar.xz" \
         "c5c0714a88592f9e02146bfe4a8d26cd9bd97e8d33b1efc8b37784997caa40ed"
-
 # https://packages.debian.org/sid/zip
 
 prepare() {
-    tar xf $(patches) -C "$WORKING_DIR" || return 1
+    tar xf $(patches) -C "$SOURCE_DIR" || return 1
     while read patch
     do
         patch -p1 < "debian/patches/$patch" || return 1
     done < debian/patches/series
     sed_in_place 's|$(AS) _match.s|$(AS) -o _match.o _match.s|'          unix/Makefile &&
-    sed_in_place 's|$(AS) _crc_i386.s|$(AS) -o _crc_i386.o _crc_i386.s|' unix/Makefile
+    sed_in_place 's|$(AS) _crc_i386.s|$(AS) -o _crc_i386.o _crc_i386.s|' unix/Makefile &&
+    sed_in_place '/-DNO_/c :' unix/configure &&
+    inject_stub_system zip.c
 }
 
+build_in_sourced
+
 build() {
-    cd "$SOURCE_DIR" &&
     $MAKE -f unix/Makefile clean &&
     $MAKE -f unix/Makefile generic \
-        CC="$CC" \
+        CC="$CC $CFLAGS $CPPFLAGS -include string.h" \
         CPP="$CPP" \
         AS="$AS" \
-        AR="$AR" \
-        CFLAGS="$CFLAGS $CPPFLAGS $LDFLAGS" &&
+        AR="$AR" &&
     $MAKE -f unix/Makefile install \
         prefix="$ABI_INSTALL_DIR" \
         MANDIR="$ABI_INSTALL_DIR/share/man/man1"

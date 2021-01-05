@@ -9,8 +9,9 @@ prepare() {
     sed_in_place 's/cpuflags="-mcpu=$cpu"/[ -z "$cpu" ] || cpuflags="-mcpu=$cpu"/g' configure
 }
 
+build_in_sourced
+
 build() {
-    cd "$SOURCE_DIR" &&
     ./configure \
         --prefix="$ABI_INSTALL_DIR" \
         --sysroot="$SYSROOT" \

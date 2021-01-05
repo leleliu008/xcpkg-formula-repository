@@ -14,6 +14,8 @@ prepare() {
     ./bootstrap.sh
 }
 
+build_in_sourced
+
 build() {
     case $BUILD_FOR_ARCH in
         armv7*)
@@ -37,7 +39,6 @@ build() {
             abi=sysv
     esac
 
-    cd "$SOURCE_DIR" &&
     gen_project_config &&
     ./b2 install \
         -q \

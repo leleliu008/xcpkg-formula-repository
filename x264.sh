@@ -9,12 +9,10 @@ prepare() {
 }
 
 build() {
-    BUILD_FOR_HOST=$(echo "$BUILD_FOR_HOST" | sed 's/-ios/-darwin/')
-    chmod a+x "$SOURCE_DIR/config.sub" &&
     configure \
         --disable-asm \
         --disable-cli \
-        --disable-pic \
-        --disable-lto \
-        --disable-strip
+        --enable-pic \
+        --enable-lto \
+        --enable-strip
 }

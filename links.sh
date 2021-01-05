@@ -10,11 +10,12 @@ prepare() {
     inject_stub_system drivers.c os_dep.c
 }
 
-# configure [options] [host]
+build_in_sourced
+
 build() {
-    cd "$SOURCE_DIR" &&
+    # configure [options] [host]
     ./configure \
-        --host="$BUILD_FOR_HOST" \
+        --host="$BUILD_FOR_TARGET" \
         --prefix="$ABI_INSTALL_DIR" \
         --enable-ipv6 \
         --enable-utf8 \
