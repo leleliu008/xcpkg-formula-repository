@@ -19,15 +19,12 @@ jobs:
       HOMEBREW_NO_INSTALL_CLEANUP: set
 
     steps:
-    - name: export -p
-      run:  export -p
+    - run:  export -p
 
-    - name: brew install gnu-sed
-      if:   matrix.os == 'macos-11.0'
+    - if:   matrix.os == 'macos-11.0'
       run:  brew install gnu-sed
 
-    - name: brew install 
-      run:  brew install automake autoconf libtool pkg-config cmake meson gperf itstool tree lzip nasm doxygen protobuf xmlto
+    - run:  brew install automake autoconf libtool pkg-config cmake meson gperf itstool tree lzip nasm doxygen protobuf xmlto
 
     - name: install ipkg
       run: |
@@ -35,8 +32,7 @@ jobs:
         chmod u+x ipkg
         mv ipkg $(brew --prefix)/bin
 
-    - name: ipkg version
-      run:  ipkg version
+    - run:  ipkg version
 
     - uses: actions/checkout@v2
 
@@ -45,5 +41,4 @@ jobs:
         install -d $HOME/.ipkg/formula
         mv *.sh    $HOME/.ipkg/formula
 
-    - name: ipkg install boost
-      run:  ipkg install boost
+    - run: ipkg install boost
