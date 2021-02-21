@@ -8,11 +8,7 @@ prepare() {
     rm config.status &&
     find . -name ".deps"    -exec rm -rf {} + &&
     find . -name "Makefile" -exec rm -rf {} + &&
-    libtoolize --force --copy && \
-    aclocal && \
-    autoheader && \
-    automake --add-missing --include-deps --copy && \
-    autoconf &&
+    autoreconf -ivf &&
     sed_in_place 's/install-data-am: install-dochdrDATA/install-data-am: /' doc/headers/Makefile.in
 }
 
