@@ -1,4 +1,4 @@
-name: ci1 
+name: ci2 
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-11.0, macos-10.15]
-        pkg: [bash,bc,bcrypt,bind,binutils,bison,ccache,check,cjson,cmake,cpio,cpu_features,crosstool-ng,dash,diffutils,dmalloc,faac,faad2,fdk-aac,ffmpeg,file,findutils,fish,flex,folly,gawk,git,gnu-coreutils,gnu-sed,gnu-tar,gnu-which,gnupg,gnutls,google-benchmark,google-test,gperf,graphite2,grep,gzip,htop,hwloc,id3lib,ideviceinstaller,imlib2,jemalloc,json-glib,jsoncpp,krb5,less,libao]
+        pkg: [libass,libatomic_ops,libb2,libbcrypt,libcddb,libcdio,libcroco,libexif,libgit2,libical,libimagequant,libisoburn,libmetalink,libnet,libpipeline,libpsl,libsamplerate,libsigsegv,libsmi,libtool,libxslt,links,lodepng,lsof,lynx,lzip,m4,make,mbedtls,mpg123,mpir,nasm,nginx,ngtcp2,nss,ntbtls,openlibm,openmpi,openssl-fips,packcc,patch,pixman,pkg-config,pkgconf,pngquant,protobuf,putty,python,qrencode,re2]
 
     runs-on: ${{ matrix.os }}
 
