@@ -2,6 +2,7 @@ summary "Low-level access to audio, keyboard, mouse, joystick and graphics"
 webpage "https://www.libsdl.org"
 src_url "https://libsdl.org/release/SDL2-2.0.12.tar.gz"
 src_sum "349268f695c02efbc9b9148a70b85e58cefbbf704abd3e91be654db7f1e2c863"
+bsystem "cmake"
 
 build() {
     case $BUILD_FOR_ARCH in

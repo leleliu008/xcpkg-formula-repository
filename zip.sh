@@ -3,7 +3,8 @@ webpage "https://infozip.sourceforge.io/Zip.html"
 src_url "https://downloads.sourceforge.net/project/infozip/Zip%203.x%20%28latest%29/3.0/zip30.tar.gz"
 src_sum "f0e8bb1f9b7eb0b01285495a2699df3a4b766784c1765a8f1aeedf63c0806369"
 version "3.0-11"
-require "patch tar"
+bsystem "make"
+require "patch"
 patches "https://deb.debian.org/debian/pool/main/z/zip/zip_$(version).debian.tar.xz" \
         "c5c0714a88592f9e02146bfe4a8d26cd9bd97e8d33b1efc8b37784997caa40ed"
 # https://packages.debian.org/sid/zip
@@ -23,13 +24,13 @@ prepare() {
 build_in_sourced
 
 build() {
-    $MAKE -f unix/Makefile clean &&
-    $MAKE -f unix/Makefile generic \
-        CC="$CC $CFLAGS $CPPFLAGS -include string.h" \
-        CPP="$CPP" \
+    make -f unix/Makefile clean &&
+    make -f unix/Makefile generic \
+        CC="'$CC $CFLAGS $CPPFLAGS -include string.h'" \
+        CPP="'$CPP'" \
         AS="$AS" \
         AR="$AR" &&
-    $MAKE -f unix/Makefile install \
+    make -f unix/Makefile install \
         prefix="$ABI_INSTALL_DIR" \
         MANDIR="$ABI_INSTALL_DIR/share/man/man1"
 }

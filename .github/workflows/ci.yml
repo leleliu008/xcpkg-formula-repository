@@ -20,7 +20,7 @@ jobs:
       HOMEBREW_NO_INSTALL_CLEANUP: set
 
     steps:
-    - run:  brew install gnu-sed automake autoconf libtool pkg-config cmake meson gperf itstool tree lzip nasm doxygen protobuf xmlto
+    - run:  brew install gnu-sed
 
     - name: install ipkg
       run: |

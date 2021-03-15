@@ -3,6 +3,7 @@ webpage "https://developer.mozilla.org/docs/Mozilla/Projects/NSPR"
 src_url "https://archive.mozilla.org/pub/nspr/releases/v4.29/src/nspr-4.29.tar.gz"
 src_sum "22286bdb8059d74632cc7c2865c139e63953ecfb33bf4362ab58827e86e92582"
 license "MPL-2.0"
+bsystem "configure"
 sourced "nspr"
 
 build() {

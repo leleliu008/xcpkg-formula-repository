@@ -3,6 +3,7 @@ webpage "http://jemalloc.net"
 src_url "https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2"
 src_sum "34330e5ce276099e2e8950d9335db5a875689a4c6a56751ef3b1d8c537f887f6"
 license "BSD-2-Clause"
+bsystem "configure"
 
 prepare() {
     sed_in_place 's/JEMALLOC_NOTHROW/JEMALLOC_XXXXXXX/' include/jemalloc/jemalloc_macros.h.in
@@ -11,7 +12,7 @@ prepare() {
 build_in_sourced
 
 build() {
-    ./configure \
+    run ./configure \
         --host="$BUILD_FOR_TARGET" \
         --prefix="$ABI_INSTALL_DIR" \
         --disable-debug \
@@ -22,12 +23,12 @@ build() {
         --enable-static \
         --enable-shared \
         CC="$CC" \
-        CFLAGS="$CFLAGS" \
+        CFLAGS="'$CFLAGS'" \
         CXX="$CXX" \
-        CXXFLAGS="$CXXFLAGS" \
-        CPP="$CPP" \
-        CPPFLAGS="$CPPFLAGS" \
-        LDFLAGS="$LDFLAGS" \
+        CXXFLAGS="'$CXXFLAGS'" \
+        CPP="'$CPP'" \
+        CPPFLAGS="'$CPPFLAGS'" \
+        LDFLAGS="'$LDFLAGS'" \
         AR="$AR" \
         RANLIB="$RANLIB" &&
     modify_code &&

@@ -2,6 +2,7 @@ summary "Cryptography and SSL/TLS Toolkit"
 webpage "https://openssl.org"
 src_url "https://www.openssl.org/source/openssl-fips-2.0.16.tar.gz"
 src_sum "a3cd13d0521d22dd939063d3b4a0d4ce24494374b91408a05bdaca8b681c63d4"
+bsystem "make"
 
 prepare() {
     export LC_COLLATE='C'
@@ -29,7 +30,7 @@ build() {
             esac
     esac
     
-    perl Configure \
+    run perl Configure \
         no-ssl2 \
         no-ssl3 \
         no-comp \
@@ -38,6 +39,6 @@ build() {
         no-asm \
         --prefix="$ABI_INSTALL_DIR" \
         "$os_compiler" &&
-    $MAKE clean &&
-    $MAKE install
+    make clean &&
+    make install
 }
