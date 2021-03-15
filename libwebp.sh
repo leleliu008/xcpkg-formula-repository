@@ -4,6 +4,7 @@ src_url "http://downloads.webmproject.org/releases/webp/libwebp-1.1.0.tar.gz"
 src_sum "98a052268cc4d5ece27f76572a7f50293f439c17a98e67c4ea0c7ed6f50ef043"
 bsystem "cmake"
 depends "libpng libtiff libjpeg-turbo giflib"
+ldflags "-llzma -lzstd"
 
 build() {
     cmake \

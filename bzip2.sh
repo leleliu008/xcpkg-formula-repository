@@ -13,8 +13,8 @@ build() {
     make -C "$SOURCE_DIR" install \
         PREFIX="$ABI_INSTALL_DIR" \
         CC="$CC" \
-        CFLAGS="$CFLAGS" \
-        LDFLAGS="$LDFLAGS" \
+        CFLAGS="'$CFLAGS'" \
+        LDFLAGS="'$LDFLAGS'" \
         AR="$AR" && {
         install_pc_file 'libbz2' <<EOF
 prefix=$ABI_INSTALL_DIR
