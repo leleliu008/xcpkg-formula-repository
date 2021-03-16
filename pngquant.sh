@@ -17,7 +17,7 @@ build_in_sourced
 build() {
     export OSTYPE=darwin
 
-    ./configure \
+    run ./configure \
         --prefix="$ABI_INSTALL_DIR" \
         --disable-sse \
         --with-libpng="$libpng_INSTALL_DIR" \
