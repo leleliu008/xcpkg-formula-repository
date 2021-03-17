@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15]
-        pkg: [libass,libatomic_ops,libb2,libbcrypt,libcddb,libcdio,libcroco,libexif,libgit2,libimagequant,libisoburn,libmetalink,libpipeline,libpsl,libsamplerate,libsigsegv,libsmi,libtool,libxslt,links,lodepng,lynx,lzip,m4,make,mbedtls,mpg123,mpir,nasm,nginx,ngtcp2,nspr,ntbtls,openlibm,openmpi,openssl-fips,packcc,patch,pixman,pkg-config,pkgconf,pngquant,protobuf,qrencode,re2,rhash,rsync,swig,tcpdump,texinfo]
+        pkg: [libbcrypt,libcddb,libcdio,libcroco,libexif,libgit2,libimagequant,libisoburn,libmetalink,libmpc,libpcap,libpipeline,libpsl,libsamplerate,libsmi,libtool,libxslt,links,lodepng,lynx,lzip,m4,make,mbedtls,mpg123,mpir,nasm,nginx,ngtcp2,nspr,ntbtls,openlibm,openmpi,openssl-fips,packcc,patch,pixman,pkg-config,pkgconf,pngquant,protobuf,qrencode,re2,rhash,rsync,snappy,swig,texinfo,tree,unbound]
 
     runs-on: ${{ matrix.os }}
 
