@@ -6,6 +6,8 @@ license "GPL-2.0"
 bsystem "cmake"
 depends "pcre2 bzip2 ncurses readline"
 
+# ld: targeted OS version does not support use of thread local variables in __ZZ9thread_idvE6tl_tid for architecture armv7
+
 prepare() {
     inject_stub_system src/print_help.cpp
 }

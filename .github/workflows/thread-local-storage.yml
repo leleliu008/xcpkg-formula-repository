@@ -1,4 +1,4 @@
-name: ci2 
+name: ci1 
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15]
-        pkg: [libbcrypt,libcddb,libcdio,libcroco,libexif,libgit2,libimagequant,libisoburn,libmetalink,libmpc,libpcap,libpipeline,libpsl,libsamplerate,libsmi,libtool,libxslt,links,lodepng,lynx,lzip,m4,make,mbedtls,mpg123,mpir,nasm,nginx,ngtcp2,nspr,ntbtls,openlibm,openmpi,openssl-fips,packcc,patch,pixman,pkg-config,pkgconf,pngquant,protobuf,qrencode,re2,rhash,rsync,snappy,swig,texinfo,tree]
+        pkg: [unbound,bind,fish,gnutls,wolfssl]
 
     runs-on: ${{ matrix.os }}
 
@@ -37,4 +37,4 @@ jobs:
         install -d $HOME/.ipkg/formula
         mv *.sh    $HOME/.ipkg/formula
 
-    - run: ipkg install ${{ matrix.pkg }}
+    - run: ipkg install ${{ matrix.pkg }} --rule=thread-local-storage

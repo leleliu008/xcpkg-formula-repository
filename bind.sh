@@ -7,6 +7,8 @@ bsystem "configure"
 require "base64 patch pkg-config"
 depends "zlib json-c libxml2 libidn2 libuv openssl"
 
+# checking for Thread-Local Storage using __thread... configure: error: Thread Local Storage support required, update your toolchain to build BIND 9
+
 prepare() {
 #--- configure	2020-10-13 16:41:40.000000000 +0800
 #+++ configure2	2020-11-13 16:57:48.000000000 +0800
