@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15]
-        pkg: [universal-ctags,unrar,unzip,utf8proc,vala,xorriso,xvid,yasm,libyuv]
+        pkg: [rtorrent,snappy,swig,tcpdump,texinfo,tree,universal-ctags,unrar,unzip,utf8proc,vala,xorriso,xvid,yasm]
 
     runs-on: ${{ matrix.os }}
 

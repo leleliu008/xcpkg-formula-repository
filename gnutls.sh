@@ -8,7 +8,7 @@ depends "gmp libunistring nettle libtasn1 libidn2 p11-kit"
 # thread-local storage is not supported for the current target
 
 prepare() {
-    inject_stub_system src/libopts/pgusage.c
+    inject_stub_system src/libopts/pgusage.c tests/pkcs11/pkcs11-mock2.c
 }
 
 build() {

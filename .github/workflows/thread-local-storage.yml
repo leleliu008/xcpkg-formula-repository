@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15]
-        pkg: [unbound,bind,fish,gnutls,wolfssl]
+        pkg: [unbound,bind,fish,gnutls,wolfssl,jq,gdbm]
 
     runs-on: ${{ matrix.os }}
 
