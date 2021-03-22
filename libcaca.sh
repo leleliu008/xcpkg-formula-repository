@@ -12,7 +12,9 @@ ldflags "-lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng -lfreetype"
 
 prepare() {
     sed_in_place 's|__BYTE_ORDER|__BYTE_ORDER__|'       caca/dither.c &&
-    sed_in_place 's|__BIG_ENDIAN|__ORDER_BIG_ENDIAN__|' caca/dither.c
+    sed_in_place 's|__BIG_ENDIAN|__ORDER_BIG_ENDIAN__|' caca/dither.c &&
+    sed_in_place 's|__BYTE_ORDER|__BYTE_ORDER__|'       examples/font.c &&
+    sed_in_place 's|__BIG_ENDIAN|__ORDER_BIG_ENDIAN__|' examples/font.c
 }
 
 build() {
