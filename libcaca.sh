@@ -10,11 +10,12 @@ depends "imlib2"
 cdefine "X_DISPLAY_MISSING"
 ldflags "-lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng -lfreetype"
 
-build() {
-    if [ "$BUILD_FOR_ARCH" = 'x86_64' ] ; then
-        sed_in_place '/HAVE_FLDLN2/d' "$SOURCE_DIR/configure" || return 1
-    fi
+prepare() {
+    sed_in_place 's|__BYTE_ORDER|__BYTE_ORDER__|'       caca/dither.c &&
+    sed_in_place 's|__BIG_ENDIAN|__ORDER_BIG_ENDIAN__|' caca/dither.c
+}
 
+build() {
     configure \
         --disable-csharp \
         --disable-python \
