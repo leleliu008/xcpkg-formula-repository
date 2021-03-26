@@ -33,7 +33,6 @@ build0() {
     # gmake: *** [Makefile:120: all] Error 2
 
     configure \
-        --prefix=$PWD/output \
         ac_cv_header_fcntl_h=yes \
         ac_cv_header_unistd_h=yes \
         ac_cv_header_sys_time_h=yes
