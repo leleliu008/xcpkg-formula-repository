@@ -37,5 +37,6 @@ build() {
     
     run "$CC $LDFLAGS -shared -o libblake3.dylib $OBJS" &&
     run "$AR rs libblake3.a $OBJS" &&
-    install_files "$SOURCE_DIR/blake3.h" libblake3.a libblake3.dylib
+    run install_incs "$SOURCE_DIR/blake3.h" &&
+    run install_libs libblake3.a libblake3.dylib
 }

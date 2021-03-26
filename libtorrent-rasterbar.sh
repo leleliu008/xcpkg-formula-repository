@@ -5,9 +5,9 @@ src_url "https://github.com/arvidn/libtorrent/releases/download/v2.0.2/libtorren
 src_sum "3af22ea1b60e04a7cf357a3d770470ea5df15e968501782bd1414634a2b42cb7"
 bsystem "cmake"
 depends "openssl boost"
-ccflags "-x c++ -std=c++14"
 
 build() {
+    export CXXFLAGS="$CXXFLAGS -x c++ -std=c++14"
     cmake \
         -Dstatic_runtime=ON \
         -Dencryption=ON \

@@ -15,7 +15,8 @@ build() {
         CC="$CC" \
         CFLAGS="'$CFLAGS'" \
         LDFLAGS="'$LDFLAGS'" \
-        AR="$AR" && {
+        AR="$AR" \
+        LIB_SHARED_FILE_EXT=dylib && {
         install_pc_file 'libbz2' <<EOF
 prefix=$ABI_INSTALL_DIR
 exec_prefix=\${prefix}
