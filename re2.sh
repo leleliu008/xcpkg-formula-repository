@@ -1,5 +1,4 @@
 summary "Alternative to backtracking PCRE-style regular expression engines"
-webpage "https://github.com/google/re2"
 version "2021-02-02"
 src_git "https://github.com/google/re2.git"
 src_url "https://github.com/google/re2/archive/$(version).tar.gz"

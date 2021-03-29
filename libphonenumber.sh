@@ -1,5 +1,4 @@
 summary "C++ Phone Number library by Google"
-webpage "https://github.com/google/libphonenumber"
 src_git "https://github.com/google/libphonenumber.git"
 src_url "https://github.com/google/libphonenumber/archive/v8.12.20.tar.gz"
 src_sum "a318a40272587305c2e2d6f0663c06f6d7bdb0d0be0877bfd67518a3cdfffe33"

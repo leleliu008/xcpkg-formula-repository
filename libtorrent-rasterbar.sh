@@ -7,6 +7,8 @@ bsystem "cmake"
 depends "openssl boost"
 xxflags "-std=c++14"
 
+# deps/try_signal/try_signal.cpp:48:1: error: thread-local storage is not supported for the current target
+
 build() {
     cmake \
         -Dstatic_runtime=ON \
