@@ -16,11 +16,11 @@ prepare() {
 build_in_sourced
 
 build() {
-    case $BUILD_FOR_PLATFORM in
+    case $TARGET_OS_NAME in
         MacOSX)
             os_compiler='darwin64-x86_64-cc'
             ;;
-        *)  case $BUILD_FOR_ARCH in
+        *)  case $TARGET_OS_ARCH in
                 armv*|i386)
                     os_compiler='ios-cross'
                     ;;

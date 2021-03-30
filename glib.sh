@@ -24,6 +24,6 @@ build() {
 }
 
 build_configed() {
-    sed_in_place "s|MacOSX$(xcrun --sdk macosx --show-sdk-version)|$BUILD_FOR_PLATFORM|g" build.ninja &&
-    sed_in_place "s|MacOSX|$BUILD_FOR_PLATFORM|g"      build.ninja 
+    sed_in_place "s|MacOSX$(xcrun --sdk macosx --show-sdk-version)|$TARGET_OS_NAME|g" build.ninja &&
+    sed_in_place "s|MacOSX|$TARGET_OS_NAME|g"      build.ninja 
 }

@@ -14,7 +14,7 @@ prepare() {
 build() {
     unset EXTRA_CONFIGURE_FLAGS
     
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         *64*)
             EXTRA_CONFIGURE_FLAGS="$EXTRA_CONFIGURE_FLAGS --enable-64bit";;
         *)  EXTRA_CONFIGURE_FLAGS="$EXTRA_CONFIGURE_FLAGS --disable-64bit"

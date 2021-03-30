@@ -15,11 +15,11 @@ build() {
 }
 
 cpu() {
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         armv7*) echo neon   ;;
         arm64*) echo neon64 ;;
         i386)   echo i386   ;;
         x86_64) echo x86-64 ;;
-        *)      echo "$BUILD_FOR_ARCH"
+        *)      echo "$TARGET_OS_ARCH"
     esac
 }

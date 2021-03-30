@@ -8,7 +8,7 @@ bsystem "cmake"
 require "nasm"
 
 build() {
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         i386|x86_64)
             WITH_SIMD=ON;;
         *)  WITH_SIMD=OFF;;

@@ -16,7 +16,7 @@ build_in_sourced
 build() {
     # configure [options] [host]
     run ./configure \
-        --host="$BUILD_FOR_TARGET" \
+        --host="$TARGET_TRIPLE" \
         --prefix="$ABI_INSTALL_DIR" \
         --enable-ipv6 \
         --enable-utf8 \

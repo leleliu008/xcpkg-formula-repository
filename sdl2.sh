@@ -5,7 +5,7 @@ src_sum "349268f695c02efbc9b9148a70b85e58cefbbf704abd3e91be654db7f1e2c863"
 bsystem "cmake"
 
 build() {
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         arm*)
             _3DNOW=OFF
             ARMNEON=ON

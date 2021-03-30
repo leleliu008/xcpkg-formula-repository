@@ -20,5 +20,5 @@ build() {
         LDFLAGS="'$LDFLAGS'" \
         AR="$AR" \
         OS=Darwin \
-        ARCH="$BUILD_FOR_ARCH"
+        ARCH="$TARGET_OS_ARCH"
 }

@@ -13,7 +13,7 @@ build_in_sourced
 
 build() {
     run ./configure \
-        --host="$BUILD_FOR_TARGET" \
+        --host="$TARGET_TRIPLE" \
         --prefix="$ABI_INSTALL_DIR" \
         --disable-debug \
         --disable-prof \

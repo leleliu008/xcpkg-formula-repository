@@ -19,7 +19,7 @@ build0() {
 }
 
 build() {
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         armv7*)
             address_model=32
             architecture=arm
@@ -51,7 +51,7 @@ build() {
         --prefix="$ABI_INSTALL_DIR" \
         -sICU_PATH="$icu4c_INSTALL_DIR" \
         -sICONV_PATH="$libiconv_INSTALL_DIR" \
-        toolset=clang-$BUILD_FOR_ARCH \
+        toolset=clang-$TARGET_OS_ARCH \
         link=static,shared \
         variant=release \
         threading=multi \
@@ -64,6 +64,6 @@ build() {
 
 gen_project_config() {
     cat > project-config.jam <<EOF
-using clang : $BUILD_FOR_ARCH : $CXX : <compileflags>"$CXXFLAGS $CPPFLAGS" <linkflags>"$LDFLAGS -shared" <archiver>$AR <ranlib>$RANLIB ;
+using clang : $TARGET_OS_ARCH : $CXX : <compileflags>"$CXXFLAGS $CPPFLAGS" <linkflags>"$LDFLAGS -shared" <archiver>$AR <ranlib>$RANLIB ;
 EOF
 }

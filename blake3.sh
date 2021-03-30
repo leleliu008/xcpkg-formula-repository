@@ -8,7 +8,7 @@ sourced "c"
 build() {
     SRCS='blake3.c blake3_dispatch.c blake3_portable.c'
     
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         arm*)
             CPPFLAGS="$CPPFLAGS -DBLAKE3_USE_NEON"
             SRCS="$SRCS blake3_neon.c"

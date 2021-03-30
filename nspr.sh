@@ -7,7 +7,7 @@ bsystem "configure"
 sourced "nspr"
 
 build() {
-    export CC="$CC -arch $BUILD_FOR_ARCH"
+    export CC="$CC -arch $TARGET_OS_ARCH"
 
     configure \
         --enable-strip \

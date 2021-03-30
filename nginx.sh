@@ -37,9 +37,9 @@ build_in_sourced
 build() {
     export NGX_SYSTEM=Darwin
     export NGX_RELEASE=unkown
-    export NGX_MACHINE=$BUILD_FOR_ARCH
+    export NGX_MACHINE=$TARGET_OS_ARCH
 
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         armv*|x86)
             sed_in_place 's/ngx_size=`$NGX_AUTOTEST`/ngx_size=4/' auto/types/sizeof ;;
         arm64*|x86_64)
@@ -50,7 +50,7 @@ build() {
     
     run ./configure \
         --prefix="$ABI_INSTALL_DIR" \
-        --crossbuild=Darwin:unkown:$BUILD_FOR_ARCH \
+        --crossbuild=Darwin:unkown:$TARGET_OS_ARCH \
         --with-cc="$CC" \
         --with-cc-opt="'$CFLAGS $CPPFLAGS'" \
         --with-ld-opt="'$LDFLAGS -lcrypto'" \

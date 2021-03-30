@@ -9,7 +9,7 @@ copy_lock_obj_pub() {
 }
 
 copy_lock_obj_pub_() {
-    case $BUILD_FOR_ARCH in
+    case $TARGET_OS_ARCH in
         armv7*) copy_lock_obj_pub arm     ;;
         arm64*) copy_lock_obj_pub aarch64 ;;
         i386)   copy_lock_obj_pub i386    ;;

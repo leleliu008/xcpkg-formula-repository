@@ -102,11 +102,11 @@ formula is a POSIX sh script used to describe how to compile a package for [ipkg
 |`x_INCLUDE_DIR`|the `include` directory of x package of this abi.|
 |`x_LIBRARY_DIR`|the `lib` directory of x package of this abi.|
 |||
-|`BUILD_FOR_PLATFORM`|it's value may be one of `iPhoneOS`, `iPhoneSimulator`, `WatchOS`, `WatchSimulator`, `AppleTVOS`, `AppleTVSimulator`, `MacOSX`|
-|`PLATFORM_MIN_VERSION`||
-|`BUILD_FOR_TARGET`|it's value may be one of `armv7-ios-darwin`, `armv7s-ios-darwin`, `armv7k-ios-darwin`, `arm-ios-darwin`, `i386-ios-darwin`, `x86_64-ios-darwin`|
-|`BUILD_FOR_ARCH`|it's value may be one of `armv7`, `armv7s`, `armv7k`, `arm64`, `arm64e`, `arm64_32`, `i386`, `x86_64`|
-|`BUILD_FOR_ABI`|represents `$BUILD_FOR_PLATFORM/$BUILD_FOR_ARCH`|
+|`TARGET_OS_NAME`|it's value may be one of `iPhoneOS`, `iPhoneSimulator`, `WatchOS`, `WatchSimulator`, `AppleTVOS`, `AppleTVSimulator`, `MacOSX`|
+|`TARGET_OS_VERS`|min version of target os|
+|`TARGET_OS_ARCH`|it's value may be one of `armv7`, `armv7s`, `armv7k`, `arm64`, `arm64e`, `arm64_32`, `i386`, `x86_64`|
+|`TARGET_OS_ABI`|represents `$TARGET_OS_NAME/$TARGET_OS_ARCH`|
+|`TARGET_TRIPLE`|it's value may be one of `armv7-apple-darwin`, `armv7s-apple-darwin`, `armv7k-apple-darwin`, `arm-apple-darwin`, `i386-apple-darwin`, `x86_64-apple-darwin`|
 |||
 |`SYSROOT`||
 |`SYSTEM_INCLUDE_DIR`||

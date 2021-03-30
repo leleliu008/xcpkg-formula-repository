@@ -11,11 +11,11 @@ require "perl"
 build_in_sourced
 
 build() {
-    case $BUILD_FOR_PLATFORM in
+    case $TARGET_OS_NAME in
         *Simulator)
             os_compiler='iossimulator-xcrun'
             ;;
-        *)  case $BUILD_FOR_ARCH in
+        *)  case $TARGET_OS_ARCH in
                 armv*)
                     os_compiler='ios-cross'
                     ;;
