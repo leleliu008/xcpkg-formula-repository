@@ -1,0 +1,7 @@
+package set summary "Portable abstraction of the hierarchical topology of modern architectures"
+package set webpage "https://www.open-mpi.org/projects/hwloc"
+package set src.url "https://www.open-mpi.org/software/hwloc/v2.3/downloads/hwloc-2.3.0.tar.bz2"
+package set src.sum "b607f6097873f69ef6b4b01e66e0dcb45f9939e8979827284664bbf0d4018a64"
+package set license "BSD-3-Clause"
+package set bsystem "configure"
+package set dep.pkg "libxml2"

@@ -1,8 +1,0 @@
-summary "Color management engine supporting ICC profiles"
-webpage "https://www.littlecms.com"
-src_git "https://github.com/mm2/Little-CMS.git"
-src_url "https://downloads.sourceforge.net/project/lcms/lcms/2.12/lcms2-2.12.tar.gz"
-src_sum "18663985e864100455ac3e507625c438c3710354d85e5cbb7cd4043e11fe10f5"
-license "MIT"
-bsystem "configure"
-depends "libtiff libjpeg-turbo zlib"

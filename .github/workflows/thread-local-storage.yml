@@ -1,4 +1,4 @@
-name: ci1 
+name: ci0
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       HOMEBREW_NO_INSTALL_CLEANUP: set
 
     steps:
-    - run:  brew install gnu-sed
+    - run: export -p
 
     - name: install ipkg
       run: |
@@ -28,13 +28,11 @@ jobs:
         chmod u+x ipkg
         mv ipkg $(brew --prefix)/bin
 
-    - run:  ipkg version
+    - run:  ipkg --version
 
     - uses: actions/checkout@v2
 
-    - name: mv *.sh ~/.ipkg/formula
-      run: |
-        install -d $HOME/.ipkg/formula
-        mv *.sh    $HOME/.ipkg/formula
+    - run: install -d ~/.ndk-pkg/repos.d/offical
+    - run: mv *       ~/.ndk-pkg/repos.d/offical
 
     - run: ipkg install ${{ matrix.pkg }} --rule=thread-local-storage
