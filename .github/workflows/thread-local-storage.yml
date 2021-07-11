@@ -32,7 +32,7 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - run: install -d ~/.ndk-pkg/repos.d/offical
-    - run: mv *       ~/.ndk-pkg/repos.d/offical
+    - run: install -d ~/.ipkg/repos.d/offical
+    - run: mv *       ~/.ipkg/repos.d/offical
 
     - run: ipkg install ${{ matrix.pkg }} --rule=thread-local-storage

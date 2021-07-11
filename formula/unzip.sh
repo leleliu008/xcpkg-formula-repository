@@ -11,7 +11,7 @@ package set patches "https://dl.bintray.com/fpliu/ndk-pkg-src/unzip_${PACKAGE_VE
 # https://packages.debian.org/buster/unzip
 
 prepare() {
-    tar xf $(patches) -C "$SOURCE_DIR" || return 1
+    tar xf $PACKAGE_PATCHES -C "$SOURCE_DIR" || return 1
     while read patch
     do
         patch -p1 < "debian/patches/$patch" || return 1

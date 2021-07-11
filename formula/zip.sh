@@ -10,7 +10,7 @@ package set patches "https://deb.debian.org/debian/pool/main/z/zip/zip_${PACKAGE
 # https://packages.debian.org/sid/zip
 
 prepare() {
-    tar xf $(patches) -C "$SOURCE_DIR" || return 1
+    tar xf $PACKAGE_PATCHES -C "$SOURCE_DIR" || return 1
     while read patch
     do
         patch -p1 < "debian/patches/$patch" || return 1
