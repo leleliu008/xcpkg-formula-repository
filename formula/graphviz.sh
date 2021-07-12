@@ -14,6 +14,6 @@ prepare() {
 }
 
 build() {
-    MAKEFLAGS="$MAKEFLAGS HOSTCC=$CC_FOR_BUILD"
+    export HOSTCC="$CC_FOR_BUILD"
     configure --enable-swig=no
 }

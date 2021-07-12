@@ -1,4 +1,4 @@
-# ipkg-formula
+# ipkg-formula-repository
 the offical formula repository for [ipkg](https://github.com/leleliu008/ipkg)
 
 ## what's formula

@@ -5,7 +5,6 @@ package set src.sum "9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9
 package set dep.pkg "sdl2 opus libwebp libvorbis libtheora speex x264 x265 lame"
 package set bsystem "make"
 package set binsrcd 'true'
-package set build_in_parallel false
 
 prepare() {
     sed_in_place 's/$_cc -v/$_cc --version/g' configure &&
