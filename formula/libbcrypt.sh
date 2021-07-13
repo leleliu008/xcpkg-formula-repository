@@ -2,3 +2,7 @@ package set summary "a password hashing method based on the Blowfish block ciphe
 package set webpage "https://www.openwall.com/crypt"
 package set src.git "https://github.com/leleliu008/libbcrypt.git"
 package set bsystem "cmake"
+
+build() {
+    cmakew -DBUILD_ASM=OFF
+}

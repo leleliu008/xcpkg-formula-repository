@@ -3,6 +3,7 @@ package set webpage "https://openssl.org"
 package set src.url "https://www.openssl.org/source/openssl-fips-2.0.16.tar.gz"
 package set src.sum "a3cd13d0521d22dd939063d3b4a0d4ce24494374b91408a05bdaca8b681c63d4"
 package set bsystem "make"
+package set binsrcd 'true'
 
 prepare() {
     export LC_COLLATE='C'
@@ -13,20 +14,12 @@ prepare() {
     sed_in_place 's|-O3 -arch arm64 -mios-version-min=7.0.0 -isysroot \\$(CROSS_TOP)/SDKs/\\$(CROSS_SDK)|\\$(CFLAGS)|' Configure
 }
 
-package set binsrcd true
-
 build() {
     case $TARGET_OS_NAME in
-        MacOSX)
-            os_compiler='darwin64-x86_64-cc'
-            ;;
+        MacOSX) os_compiler='darwin64-x86_64-cc' ;;
         *)  case $TARGET_OS_ARCH in
-                armv*|i386)
-                    os_compiler='ios-cross'
-                    ;;
-                arm64*|x86_64)
-                    os_compiler='ios64-cross'
-                    ;;
+                armv*|i386)    os_compiler='ios-cross'   ;;
+                arm64*|x86_64) os_compiler='ios64-cross' ;;
             esac
     esac
     
