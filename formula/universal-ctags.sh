@@ -6,7 +6,9 @@ package set dep.pkg "jansson libyaml libxml2"
 
 prepare() {
     ./autogen.sh &&
-    inject_stub_system main/sort.c
+    inject_stub_system main/sort.c &&
+    sed_in_place '/general.h/d' main/sort.c &&
+    sed_in_place '1i #include "general.h"' main/sort.c
 }
 
 build() {
