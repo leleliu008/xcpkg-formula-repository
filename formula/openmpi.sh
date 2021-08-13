@@ -27,6 +27,7 @@ build() {
         --enable-sysv-sshmem=no \
         --enable-binaries \
         --enable-mpi-java \
+        --enable-shared \
         --with-libevent="$libevent_INSTALL_DIR" \
         FC=''
 }

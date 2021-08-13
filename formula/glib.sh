@@ -4,7 +4,7 @@ package set src.url "https://download.gnome.org/sources/glib/2.66/glib-2.66.0.ta
 package set src.sum "c5a66bf143065648c135da4c943d2ac23cce15690fc91c358013b2889111156c"
 package set license "LGPL-2.1-or-later"
 package set bsystem "meson"
-package set dep.pkg "gettext libffi pcre"
+package set dep.pkg "gettext libiconv libffi pcre"
 
 prepare() {
     sed_in_place '/build_tests =/a build_tests = false' meson.build &&
