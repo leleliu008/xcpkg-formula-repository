@@ -6,6 +6,5 @@ package set license "LGPL-2.1"
 package set bsystem "meson"
 
 prepare() {
-    sed_in_place "/subdir('test')/d" meson.build &&
-    sed_in_place 's/libpixman = library(/libpixman = static_library(/' pixman/meson.build
+    sed_in_place "/subdir('test')/d" meson.build
 }
