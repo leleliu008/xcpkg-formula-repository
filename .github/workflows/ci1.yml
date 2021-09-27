@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-10.15]
+        os: [macos-10.15, macos-11]
         pkg: [axel,bc,bcrypt,berkeley-db,bind,bison,ccache,check,cjson,cmake,cpio,cpu_features,dash,diffutils,dmalloc,double-conversion,faac,faad2,fdk-aac,ffmpeg,file,findutils,fish,flex,fmt,fribidi,gawk,gdbm,glog,gnu-coreutils,gnu-sed,gnu-tar,gnu-which,gnupg,gnutls,google-benchmark,gperf,graphite2,grep,gzip,hexdump,hwloc,ideviceinstaller,isl,jq,json-glib,jsoncpp,libarchive,libatomic_ops,libb2]
 
     runs-on: ${{ matrix.os }}
@@ -20,13 +20,13 @@ jobs:
       HOMEBREW_NO_INSTALL_CLEANUP: set
 
     steps:
-    - run: export -p
-
     - name: install ipkg
       run: |
         curl -LO https://raw.githubusercontent.com/leleliu008/ipkg/master/bin/ipkg
         chmod u+x ipkg
         mv ipkg $(brew --prefix)/bin
+
+    - run:  ipkg env
 
     - run:  ipkg --version
 
