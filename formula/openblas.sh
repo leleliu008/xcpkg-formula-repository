@@ -6,7 +6,7 @@ package set src.sum "79197543b17cc314b7e43f7a33148c308b0807cd6381ee77f77e15acf3e
 package set license "BSD-3-Clause"
 package set bsystem "make"
 
-package set binsrcd true
+package set binsrcd 'YES'
 
 build() {
     # https://github.com/xianyi/OpenBLAS/wiki/How-to-build-OpenBLAS-for-Android

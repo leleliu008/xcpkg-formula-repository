@@ -12,7 +12,7 @@ prepare() {
     sed_in_place 's/-mmacosx-version-min=10.7//g' lib/configure
 }
 
-package set binsrcd true
+package set binsrcd 'YES'
 
 build() {
     export OSTYPE=darwin

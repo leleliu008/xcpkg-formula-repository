@@ -6,7 +6,7 @@ package set src.sum "a9865eeb581c3abaac7426962ddb112ecfd86a5ae93086eb4581ce100f8
 package set license "Zlib"
 package set bsystem "make"
 
-package set binsrcd true
+package set binsrcd 'YES'
 
 build() {
     export LSOF_MAKE="make"

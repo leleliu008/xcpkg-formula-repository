@@ -10,4 +10,4 @@ prepare() {
     sed_in_place '/#include "smi-data.h"/a #include "smi-check.h"' lib/error.h
 }
 
-package set binsrcd true
+package set binsrcd 'YES'

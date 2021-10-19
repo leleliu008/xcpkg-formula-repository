@@ -9,7 +9,7 @@ prepare() {
     sed_in_place 's/JEMALLOC_NOTHROW/JEMALLOC_XXXXXXX/' include/jemalloc/jemalloc_macros.h.in
 }
 
-package set binsrcd true
+package set binsrcd 'YES'
 
 build() {
     run ./configure \
