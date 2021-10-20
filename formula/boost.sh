@@ -44,7 +44,7 @@ build() {
     run ./b2 install \
         -q \
         -d+2 \
-        -j$(nproc) \
+        -j$NATIVE_OS_NCPU \
         --reconfigure \
         --without-python \
         --prefix="$ABI_INSTALL_DIR" \
