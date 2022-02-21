@@ -20,19 +20,19 @@ jobs:
       HOMEBREW_NO_INSTALL_CLEANUP: set
 
     steps:
-    - name: install ipkg
+    - name: install xcpkg
       run: |
-        curl -LO https://raw.githubusercontent.com/leleliu008/ipkg/master/bin/ipkg
-        chmod u+x ipkg
-        mv ipkg $(brew --prefix)/bin
+        curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/master/bin/xcpkg
+        chmod u+x xcpkg
+        mv xcpkg $(brew --prefix)/bin
 
-    - run:  ipkg env
+    - run:  xcpkg env
 
-    - run:  ipkg --version
+    - run:  xcpkg --version
 
     - uses: actions/checkout@v2
 
-    - run: install -d ~/.ipkg/repos.d/offical
-    - run: mv *       ~/.ipkg/repos.d/offical
+    - run: install -d ~/.xcpkg/repos.d/offical
+    - run: mv *       ~/.xcpkg/repos.d/offical
 
-    - run: ipkg install ${{ matrix.pkg }} --tree
+    - run: xcpkg install ${{ matrix.pkg }} --tree

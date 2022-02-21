@@ -1,8 +1,8 @@
-# ipkg-formula-repository
-the offical formula repository for [ipkg](https://github.com/leleliu008/ipkg)
+# xcpkg-formula-repository
+the offical formula repository for [xcpkg](https://github.com/leleliu008/xcpkg)
 
 ## what's formula
-formula is a POSIX sh script used to describe how to compile a package for [ipkg](https://github.com/leleliu008/ipkg).
+formula is a POSIX sh script used to describe how to compile a package for [xcpkg](https://github.com/leleliu008/xcpkg).
 
 ## the function must be invoked on top of the formula
 ```
@@ -19,7 +19,7 @@ package set <KEY> <VALUE>
 |`src.sum`|optional|the `sha256sum` of source code.<br>If the value of `src.url` end with `.git`, this key is optional, otherwise, this key must be present.|
 |`dep.cmd`|optional|the commands will be used when installing. If specify multiple values, separate them with spaces.|
 |`dep.pkg`|optional|the packages will be used when installing and runtime. If specify multiple values, separate them with spaces.|
-|`patches`|optional|the patches. `URL` `SHA256` pairs. [example](https://github.com/leleliu008/ipkg-formula/blob/master/formula/unzip.sh#L9-L10)|
+|`patches`|optional|the patches. `URL` `SHA256` pairs. [example](https://github.com/leleliu008/xcpkg-formula/blob/master/formula/unzip.sh#L9-L10)|
 |`cdefine`|optional|append to `CPPFLAGS`|
 |`ccflags`|optional|append to `CFLAGS`|
 |`xxflags`|optional|append to `CXXFLAGS`|
@@ -65,11 +65,11 @@ package set <KEY> <VALUE>
 ## the variable can be used in a formula at anywhere
 |variable|overview|
 |-|-|
-|`MY_VERSION`|the version of `ipkg`.|
-|`MY_HOME_DIR`|the home directory of `ipkg`.|
-|`MY_HOME_PAGE`|the home webpage of `ipkg`.|
-|`MY_CACHED_DIR`|the downloads directory of `ipkg`.|
-|`MY_INSTALL_DIR`|the installed directory of `ipkg`.|
+|`MY_VERSION`|the version of `xcpkg`.|
+|`MY_HOME_DIR`|the home directory of `xcpkg`.|
+|`MY_HOME_PAGE`|the home webpage of `xcpkg`.|
+|`MY_CACHED_DIR`|the downloads directory of `xcpkg`.|
+|`MY_INSTALL_DIR`|the installed directory of `xcpkg`.|
 
 ## the variable can be used in prepare and build function
 |variable|overview|
