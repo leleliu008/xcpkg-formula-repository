@@ -27,7 +27,7 @@ prepare_includes() {
     done
 }
 
-package set binsrcd 'YES'
+package set binsrcd 'yes'
 
 build() {
     makew clean &&

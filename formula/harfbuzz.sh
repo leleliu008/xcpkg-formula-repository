@@ -1,5 +1,5 @@
 package set summary "OpenType text shaping engine"
-package set src.git "https://github.com/harfbuzz/harfbuzz.git"
+package set git.url "https://github.com/harfbuzz/harfbuzz.git"
 package set src.url "https://github.com/harfbuzz/harfbuzz/archive/2.7.2.tar.gz"
 package set src.sum "8ec112ee108642477478b75fc7906422abed404d7530e47ba0a4875f553f1b59"
 package set license "MIT"

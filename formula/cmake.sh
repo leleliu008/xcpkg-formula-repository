@@ -1,6 +1,6 @@
 package set summary "Cross-platform make"
 package set webpage "https://www.cmake.org"
-package set src.git "https://gitlab.kitware.com/cmake/cmake.git"
+package set git.url "https://gitlab.kitware.com/cmake/cmake.git"
 package set src.url "https://github.com/Kitware/CMake/releases/download/v3.19.7/cmake-3.19.7.tar.gz"
 package set src.sum "58a15f0d56a0afccc3cc5371234fce73fcc6c8f9dbd775d898e510b83175588e"
 package set license "BSD-3-Clause"

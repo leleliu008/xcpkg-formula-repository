@@ -8,4 +8,4 @@ package set bsystem "autogen"
 package set dep.cmd "pkg-config libtoolize libtool"
 package set dep.pkg "libmediainfo"
 package set sourced "Project/GNU/CLI"
-package set binsrcd 'YES'
+package set binsrcd 'yes'

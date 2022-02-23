@@ -1,5 +1,5 @@
 package set summary "C++ Phone Number library by Google"
-package set src.git "https://github.com/google/libphonenumber.git"
+package set git.url "https://github.com/google/libphonenumber.git"
 package set src.url "https://github.com/google/libphonenumber/archive/v8.12.20.tar.gz"
 package set src.sum "a318a40272587305c2e2d6f0663c06f6d7bdb0d0be0877bfd67518a3cdfffe33"
 package set license "Apache-2.0"

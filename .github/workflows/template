@@ -2,9 +2,9 @@ name: ciINDEX
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, dev ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, dev ]
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
     steps:
     - name: install xcpkg
       run: |
-        curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/master/bin/xcpkg
+        curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/${{ github.ref_name }}/bin/xcpkg
         cat xcpkg
         chmod u+x xcpkg
         mv xcpkg $(brew --prefix)/bin

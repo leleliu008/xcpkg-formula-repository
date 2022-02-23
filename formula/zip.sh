@@ -21,7 +21,7 @@ prepare() {
     inject_stub_system zip.c
 }
 
-package set binsrcd 'YES'
+package set binsrcd 'yes'
 
 build() {
     makew -f unix/Makefile clean &&

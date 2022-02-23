@@ -1,6 +1,6 @@
 package set summary "Embedded SSL Library written in C"
 package set webpage "https://www.wolfssl.com"
-package set src.git "https://github.com/wolfSSL/wolfssl.git"
+package set git.url "https://github.com/wolfSSL/wolfssl.git"
 package set src.url "https://github.com/wolfSSL/wolfssl/archive/v4.4.0-stable.tar.gz"
 package set src.sum "7f854804c8ae0ca49cc77809e38e9a3b5a8c91ba7855ea928e6d6651b0d35f18"
 package set bsystem "autogen"

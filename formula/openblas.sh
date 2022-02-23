@@ -1,12 +1,12 @@
 package set summary "Optimized BLAS library"
 package set webpage "https://www.openblas.net"
-package set src.git "https://github.com/xianyi/OpenBLAS.git"
+package set git.url "https://github.com/xianyi/OpenBLAS.git"
 package set src.url "https://github.com/xianyi/OpenBLAS/archive/v0.3.13.tar.gz"
 package set src.sum "79197543b17cc314b7e43f7a33148c308b0807cd6381ee77f77e15acf3e6459e"
 package set license "BSD-3-Clause"
 package set bsystem "make"
 
-package set binsrcd 'YES'
+package set binsrcd 'yes'
 
 build() {
     # https://github.com/xianyi/OpenBLAS/wiki/How-to-build-OpenBLAS-for-Android

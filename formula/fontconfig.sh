@@ -1,6 +1,6 @@
 package set summary "XML-based font configuration tools"
 package set webpage "https://wiki.freedesktop.org/www/Software/fontconfig"
-package set src.git "https://gitlab.freedesktop.org/fontconfig/fontconfig"
+package set git.url "https://gitlab.freedesktop.org/fontconfig/fontconfig"
 package set src.url "https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.13.1.tar.bz2"
 package set src.sum "f655dd2a986d7aa97e052261b36aa67b0a64989496361eca8d604e6414006741"
 package set license "MIT"
