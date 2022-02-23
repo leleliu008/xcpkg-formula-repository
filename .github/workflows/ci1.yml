@@ -23,6 +23,7 @@ jobs:
     - name: install xcpkg
       run: |
         curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/master/bin/xcpkg
+        cat xcpkg
         chmod u+x xcpkg
         mv xcpkg $(brew --prefix)/bin
 
