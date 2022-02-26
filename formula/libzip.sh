@@ -1,9 +1,7 @@
 package set summary "C library for reading, creating, and modifying zip archives"
 package set webpage "https://libzip.org"
-package set git.url "https://github.com/nih-at/libzip.git"
-package set src.url "https://libzip.org/download/libzip-1.8.0.tar.xz"
-package set src.sum "f0763bda24ba947e80430be787c4b068d8b6aa6027a26a19923f0acfa3dac97e"
-package set dep.pkg "zlib"
+package set src.url "https://libzip.org/download/libzip-1.7.0.tar.xz"
+package set src.sum "d26b2952426d2518f3db5cdeda4fe3cd668fc5bb38a598781e4d1d3f7f8ca7be"
 package set bsystem "cmake"
 
 build() {
