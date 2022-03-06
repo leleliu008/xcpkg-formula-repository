@@ -5,7 +5,6 @@ package set src.sum "aeeaae952d4db395249839a3bd03841d6844843f5a4f84c271ff88f7aa1
 package set license "GPL-2.0"
 package set bsystem "configure"
 package set sourced "build/generic"
-
 package set binsrcd 'yes'
 
 build() {

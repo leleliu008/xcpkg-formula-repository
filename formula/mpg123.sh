@@ -1,7 +1,7 @@
 package set summary "MP3 player"
 package set webpage "https://www.mpg123.de"
-package set src.url "https://www.mpg123.de/download/mpg123-1.26.3.tar.bz2"
-package set src.sum "30c998785a898f2846deefc4d17d6e4683a5a550b7eacf6ea506e30a7a736c6e"
+package set src.url "https://www.mpg123.de/download/mpg123-1.29.3.tar.bz2"
+package set src.sum "963885d8cc77262f28b77187c7d189e32195e64244de2530b798ddf32183e847"
 package set bsystem "configure"
 package set dep.cmd "pkg-config"
 

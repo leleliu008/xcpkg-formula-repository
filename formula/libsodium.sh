@@ -6,4 +6,4 @@ package set src.sum "6f504490b342a4f8a4c4a02fc9b866cbef8622d5df4e5452b46be121e46
 package set license "ISC"
 package set bsystem "configure"
 
-# ld: targeted OS package set version does not support use of thread local variables in _randombytes_internal_random for architecture x86_64
+# ld: targeted OS version does not support use of thread local variables in _randombytes_internal_random for architecture x86_64

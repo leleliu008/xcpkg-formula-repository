@@ -1,7 +1,7 @@
 package set summary "Collection of GNU find, xargs, and locate"
 package set webpage "https://www.gnu.org/software/findutils"
-package set src.url "https://ftp.gnu.org/gnu/findutils/findutils-4.7.0.tar.xz"
-package set src.sum "c5fefbdf9858f7e4feb86f036e1247a54c79fc2d8e4b7064d5aaa1f47dfa789a"
+package set src.url "https://ftp.gnu.org/gnu/findutils/findutils-4.9.0.tar.xz"
+package set src.sum "a2bfb8c09d436770edc59f50fa483e785b161a3b7b9d547573cb08065fd462fe"
 package set license "GPL-3.0"
 package set bsystem "configure"
 

@@ -1,8 +1,9 @@
 package set summary "Play, record, convert, and stream audio and video"
 package set webpage "https://ffmpeg.org"
-package set src.url "https://ffmpeg.org/releases/ffmpeg-4.2.3.tar.xz"
-package set src.sum "9df6c90aed1337634c1fb026fb01c154c29c82a64ea71291ff2da9aacb9aad31"
-package set dep.pkg "sdl2 opus libwebp libvorbis libtheora speex x264 x265 lame"
+package set git.url "https://github.com/FFmpeg/FFmpeg.git"
+package set src.url "https://ffmpeg.org/releases/ffmpeg-5.0.tar.xz"
+package set src.sum "51e919f7d205062c0fd4fae6243a84850391115104ccf1efc451733bc0ac7298"
+package set dep.pkg "sdl2 opus libwebp libvorbis theora speex x264 x265 lame"
 package set bsystem "make"
 package set binsrcd 'yes'
 

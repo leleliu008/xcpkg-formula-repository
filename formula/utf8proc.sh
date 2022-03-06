@@ -4,12 +4,10 @@ package set git.url "https://github.com/JuliaStrings/utf8proc.git"
 package set src.url "https://github.com/JuliaStrings/utf8proc/archive/v2.7.0.tar.gz"
 package set src.sum "4bb121e297293c0fd55f08f83afab6d35d48f0af4ecc07523ad8ec99aa2b12a1"
 package set license "MIT"
-package set bsystem "cmake-make"
+package set bsystem "cmake"
 
 build() {
     cmakew \
         -DUTF8PROC_INSTALL=ON \
-        -DUTF8PROC_ENABLE_TESTING=OFF &&
-    makew -C "$SOURCE_DIR" libutf8proc.pc prefix="$ABI_INSTALL_DIR" &&
-    install_pcfs "$SOURCE_DIR/libutf8proc.pc"
+        -DUTF8PROC_ENABLE_TESTING=OFF
 }

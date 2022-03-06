@@ -1,11 +1,11 @@
 package set summary "Embedded SSL Library written in C"
 package set webpage "https://www.wolfssl.com"
 package set git.url "https://github.com/wolfSSL/wolfssl.git"
-package set src.url "https://github.com/wolfSSL/wolfssl/archive/v4.4.0-stable.tar.gz"
-package set src.sum "7f854804c8ae0ca49cc77809e38e9a3b5a8c91ba7855ea928e6d6651b0d35f18"
+package set src.url "https://github.com/wolfSSL/wolfssl/archive/refs/tags/v5.2.0-stable.tar.gz"
+package set src.sum "409b4646c5f54f642de0e9f3544c3b83de7238134f5b1ff93fb44527bf119d05"
 package set bsystem "autogen"
 
-# ld: targeted OS package set version does not support use of thread local variables in _benchmark_test for architecture x86_64
+# ld: targeted OS version does not support use of thread local variables in _benchmark_test for architecture x86_64
 # https://stackoverflow.com/questions/52282646/build-error-targeted-os-version-does-not-support-use-of-thread-local-variables
 
 build() {

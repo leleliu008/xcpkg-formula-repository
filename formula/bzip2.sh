@@ -2,6 +2,7 @@ package set summary "Burrows–Wheeler-based data compression library and utilit
 package set webpage "https://sourceware.org/bzip2"
 package set src.url "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz"
 package set src.sum "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269"
+package set license "bzip2-1.0.6"
 package set bsystem "make"
 
 prepare() {

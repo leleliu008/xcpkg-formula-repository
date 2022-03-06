@@ -1,8 +1,8 @@
 package set summary "Palette quantization library extracted from pnquant2"
 package set webpage "https://pngquant.org/lib"
 package set git.url "https://github.com/ImageOptim/libimagequant.git"
-package set src.url "https://github.com/ImageOptim/libimagequant/archive/2.14.1.tar.gz"
-package set src.sum "b5fa27da1f3cf3e8255dd02778bb6a51dc71ce9f99a4fc930ea69b83200a7c74"
+package set src.url "https://github.com/ImageOptim/libimagequant/archive/4.0.0.tar.gz"
+package set src.sum "d041f6f2dac36df76f22cedaf74c914f46bff1fea7d6025d1b13199204c25dd8"
 package set license "GPL-3.0"
 package set bsystem "cmake"
 

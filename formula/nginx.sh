@@ -1,7 +1,8 @@
 package set summary "HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server"
 package set webpage "https://nginx.org"
-package set src.url "https://nginx.org/download/nginx-1.19.1.tar.gz"
-package set src.sum "a004776c64ed3c5c7bc9b6116ba99efab3265e6b81d49a57ca4471ff90655492"
+package set git.url "https://github.com/nginx/nginx.git"
+package set src.url "https://nginx.org/download/nginx-1.21.6.tar.gz"
+package set src.sum "66dc7081488811e9f925719e34d1b4504c2801c81dee2920e5452a86b11405ae"
 package set bsystem "make"
 package set dep.pkg "openssl pcre"
 

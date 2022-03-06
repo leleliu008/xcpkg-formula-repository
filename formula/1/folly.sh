@@ -5,7 +5,7 @@ package set src.sum "0e40e7fd536700ef149ddffb72fa17f92f139738d057c2a6d0a6e5736fa
 package set license "Apache-2.0"
 package set bsystem "cmake"
 package set dep.cmd "pkg-config"
-package set dep.pkg "boost double-conpackage set version fmt glog libevent openssl bzip2 lz4 xz zstd snappy libsodium"
+package set dep.pkg "boost double-conversion fmt glog libevent openssl bzip2 lz4 xz zstd snappy libsodium"
 
 prepare() {
     sed_in_place '/-faligned-new/d' CMake/FollyConfigChecks.cmake

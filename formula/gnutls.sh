@@ -1,7 +1,8 @@
 package set summary "GNU Transport Layer Security (TLS) Library"
 package set webpage "https://gnutls.org"
-package set src.url "https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.14.tar.xz"
-package set src.sum "5630751adec7025b8ef955af4d141d00d252a985769f51b4059e5affa3d39d63"
+package set git.url "https://github.com/gnutls/gnutls.git"
+package set src.url "https://www.gnupg.org/ftp/gcrypt/gnutls/v3.7/gnutls-3.7.3.tar.xz"
+package set src.sum "fc59c43bc31ab20a6977ff083029277a31935b8355ce387b634fa433f8f6c49a"
 package set dep.pkg "gmp libunistring nettle libtasn1 libidn2"
 package set bsystem "configure"
 
