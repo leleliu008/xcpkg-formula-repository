@@ -4,7 +4,7 @@ package set git.url "https://github.com/xiph/flac.git"
 package set src.url "https://github.com/xiph/flac/archive/1.3.4.tar.gz"
 package set src.sum "53e9dbe3ae54a9f42c1e65afe7f516c02d8393c0c6d56bc455c15e1e044069a9"
 package set dep.cmd "glibtoolize:libtoolize libtool"
-package set dep.pkg "libogg libiconv"
+package set dep.pkg "libogg"
 package set bsystem "cmake"
 
 prepare() {
