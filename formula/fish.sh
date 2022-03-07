@@ -4,8 +4,8 @@ package set git.url "https://github.com/fish-shell/fish-shell.git"
 package set src.url "https://github.com/fish-shell/fish-shell/releases/download/3.3.1/fish-3.3.1.tar.xz"
 package set src.sum "b5b4ee1a5269762cbbe993a4bd6507e675e4100ce9bbe84214a5eeb2b19fae89"
 package set license "GPL-2.0"
+package set dep.pkg "pcre2 readline"
 package set bsystem "cmake"
-package set dep.pkg "pcre2 bzip2 ncurses readline"
 
 # ld: targeted OS version does not support use of thread local variables in __ZZ9thread_idvE6tl_tid for architecture armv7
 
