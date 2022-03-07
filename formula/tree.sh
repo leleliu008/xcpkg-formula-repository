@@ -5,7 +5,7 @@ package set src.sum "782cd73179f65cfca7f29326f1511306e49e9b11d5b861daa57e13fd726
 package set license "GPL-2.0-or-later"
 package set bsystem "make"
 
-prepare() {
+prepare2() {
     inject_stub_system html.c &&
     sed_in_place '/OBJS=/a OBJS+=strverscmp.o' Makefile
 }

@@ -8,6 +8,7 @@ package set bsystem "cmake"
 
 build() {
     cmakew \
+        -DSNAPPY_BUILD_BENCHMARKS=OFF \
         -DSNAPPY_BUILD_TESTS=OFF \
         -DSNAPPY_FUZZING_BUILD=OFF \
         -DSNAPPY_INSTALL=ON
