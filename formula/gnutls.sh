@@ -8,7 +8,7 @@ package set bsystem "configure"
 
 # thread-local storage is not supported for the current target
 
-prepare() {
+prepare2() {
     inject_stub_system src/libopts/pgusage.c tests/pkcs11/pkcs11-mock2.c
 }
 

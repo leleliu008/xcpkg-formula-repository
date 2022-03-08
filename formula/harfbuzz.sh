@@ -4,6 +4,7 @@ package set src.url "https://github.com/harfbuzz/harfbuzz/archive/4.0.0.tar.gz"
 package set src.sum "4880c25022100c31aef4bdea084be2fe58020f9756e94151b8d1cbf0be1ed54c"
 package set license "MIT"
 package set dep.pkg "icu4c glib graphite2"
+package set ldflags "-lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng"
 package set bsystem "meson"
 
 build() {
