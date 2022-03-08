@@ -7,7 +7,6 @@ package set license "GPL-2.0-only"
 package set dep.pkg "libssh2 pcre2"
 package set dep.cmd "pkg-config"
 package set bsystem "cmake"
-package set ldflags "-lgcrypt -lgpg-error"
 
 build() {
     cmakew \
