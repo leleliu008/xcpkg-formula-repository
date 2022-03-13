@@ -1,0 +1,8 @@
+package set summary "Library for complex text layout"
+package set git.url "https://github.com/HOST-Oman/libraqm.git"
+package set src.url "https://github.com/HOST-Oman/libraqm/archive/v0.9.0.tar.gz"
+package set src.sum "826e43bc638b53ec720e93a26f4ead494c6a28006d280609dac6aef09b39283e"
+package set license "MIT"
+package set dep.pkg "fribidi freetype2-with-harfbuzz"
+package set dep.cmd "pkg-config"
+package set bsystem "meson"
