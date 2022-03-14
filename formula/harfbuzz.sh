@@ -6,6 +6,7 @@ package set license "MIT"
 package set dep.pkg "icu4c glib graphite2"
 package set dep.cmd "pkg-config"
 package set bsystem "meson"
+package set ldflags "-lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng"
 
 build() {
     mesonw \

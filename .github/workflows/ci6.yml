@@ -1,4 +1,4 @@
-name: ci3 
+name: ci6 
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [google-benchmark,googletest,gosh,gperf,grep,gzip,hexdump,htslib,hwloc,ideviceinstaller,isl,ixwebsocket,jbig2dec,jpeg,jq,json-glib,json,jsoncpp,libaec,libao,libarchive,libatomic_ops,libb2,libbcrypt,libcaca]
+        pkg: [minizip-ng,minizip,mozjpeg,mpg123,mpir,msgpack-c,nano,nanomsg,nasm,nginx,ngtcp2,nng,nspr,ntbtls,oat++,openal-soft,openblas,openjpeg,openlibm,openmpi,p11-kit,packcc,patch,pjsip,pkg-config]
 
     runs-on: ${{ matrix.os }}
 

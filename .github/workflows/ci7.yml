@@ -1,4 +1,4 @@
-name: ci3 
+name: ci7 
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [google-benchmark,googletest,gosh,gperf,grep,gzip,hexdump,htslib,hwloc,ideviceinstaller,isl,ixwebsocket,jbig2dec,jpeg,jq,json-glib,json,jsoncpp,libaec,libao,libarchive,libatomic_ops,libb2,libbcrypt,libcaca]
+        pkg: [pkgconf,pngquant,pybind11,pystring,qrencode,quiche,quickjs,rapidjson,re2,re2c,rhash,rsync,rtmpdump,rtorrent,snappy,soundtouch,spdlog,swig,taglib,tbb,tcpdump,texinfo,tinyxml2,toml++,toml11]
 
     runs-on: ${{ matrix.os }}
 

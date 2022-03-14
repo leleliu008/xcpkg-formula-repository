@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [axel,bc,bcrypt,berkeley-db,bind,bison,ccache,check,cjson,cmake,cpio,cpu_features,dash,diffutils,dmalloc,double-conversion,faac,faad2,fdk-aac,ffmpeg,file,findutils,fish,flex,fmt,fribidi,gawk,gdbm,glog,gnu-coreutils,gnu-sed,gnu-tar,gnu-which,gnupg,gnutls,google-benchmark,gperf,graphite2,grep,gzip,hexdump,hwloc,ideviceinstaller,isl,jq,json-glib,jsoncpp,libarchive,libatomic_ops,libb2]
+        pkg: [aalib,abseil,aom,async++,axel,bc,bcrypt,berkeley-db,bind,bison,cairo,catch2,ccache,check,cjson,cmake,cpio,cppunit,cpu_features,cpuinfo,crc32c,cxxopts,darkhttpd,dash,dav1d]
 
     runs-on: ${{ matrix.os }}
 

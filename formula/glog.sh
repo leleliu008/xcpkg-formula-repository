@@ -6,6 +6,11 @@ package set license "BSD-3-Clause"
 package set dep.pkg "gflags"
 package set bsystem "cmake"
 
+prepare() {
+    inject_stub_system src/googletest.h
+    sed_in_place 's|(system(diffcmd|(stub_system(diffcmd|' src/googletest.h
+}
+
 build() {
     cmakew \
         -DWITH_TLS=ON \
