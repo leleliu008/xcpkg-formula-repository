@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [google-benchmark,googletest,gosh,gperf,grep,gzip,hexdump,htslib,hwloc,ideviceinstaller,isl,ixwebsocket,jbig2dec,jpeg,jq,json-glib,json,jsoncpp,libaec,libao,libarchive,libatomic_ops,libb2,libbcrypt,libcaca]
+        pkg: [gperf,grep,gzip,hexdump,htslib,hwloc,ideviceinstaller,isl,ixwebsocket,jasper,jbig2dec,jpeg,jq,json-glib,json,jsoncpp,libaec,libarchive,libatomic_ops,libbcrypt,libcaca,libcddb,libcdio,libcroco,libde265]
 
     runs-on: ${{ matrix.os }}
 

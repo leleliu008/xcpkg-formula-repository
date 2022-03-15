@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [pkgconf,pngquant,pybind11,pystring,qrencode,quiche,quickjs,rapidjson,re2,re2c,rhash,rsync,rtmpdump,rtorrent,snappy,soundtouch,spdlog,swig,taglib,tbb,tcpdump,texinfo,tinyxml2,toml++,toml11]
+        pkg: [rhash,rsync,rtmpdump,rtorrent,snappy,soundtouch,spdlog,swig,taglib,texinfo,tinyxml2,toml++,toml11,tree,unbound,universal-ctags,unrar,unzip,utf8.h,utf8proc,utfcpp,vala,wasm3,websocketpp,wolfssl]
 
     runs-on: ${{ matrix.os }}
 

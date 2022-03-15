@@ -11,9 +11,16 @@ prepare() {
     run autoreconf -ivf &&
     sed_in_place '203c return 0;'         src/aalinuxkbd.c &&
     sed_in_place '1i #include <stdlib.h>' src/aalinuxkbd.c &&
-    sed_in_place 's|exit(1)|return 1|'    src/aasavefont.c
+    sed_in_place '1i #include <stdlib.h>' src/aainfo.c     &&
+    sed_in_place '1i #include <stdlib.h>' src/aafire.c     &&
+    sed_in_place '1i #include <malloc.h>' src/aatest.c     &&
+    sed_in_place '1i #include <string.h>' src/aamoureg.c   &&
+    sed_in_place 's|exit(1)|return 1|'    src/aasavefont.c &&
+    printf '%s\n' '#include <stdlib.h>' >  malloc.h
+    printf '%s\n' '#include <string.h>' >> malloc.h
 }
 
 build() {
+    export CPPFLAGS="$CPPFLAGS -I$SOURCE_DIR"
     configure --without-x --with-ncurses="$ncurses_INSTALL_DIR"
 }

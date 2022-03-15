@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [libsmi,libspng,libtool,libtorrent-rasterbar,libunibreak,libupnp,libxslt,libyuv,libzmq,lighttpd,links,llhttp,lmdb,lodepng,log4cplus,luau,lynx,lzip,lzop,m4,magic_enum,make,md4c,mediainfo,miniz]
+        pkg: [libzmq,links,llhttp,lmdb,lodepng,log4cplus,luau,lynx,lzip,lzop,m4,magic_enum,make,md4c,mediainfo,miniz,minizip-ng,minizip,mozjpeg,mpg123,mpir,msgpack-c,nano,nanomsg,nasm]
 
     runs-on: ${{ matrix.os }}
 

@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [minizip-ng,minizip,mozjpeg,mpg123,mpir,msgpack-c,nano,nanomsg,nasm,nginx,ngtcp2,nng,nspr,ntbtls,oat++,openal-soft,openblas,openjpeg,openlibm,openmpi,p11-kit,packcc,patch,pjsip,pkg-config]
+        pkg: [nginx,ngtcp2,nng,nspr,ntbtls,oat++,openal-soft,openblas,openjpeg,openlibm,openmpi,p11-kit,packcc,patch,pjsip,pkg-config,pkgconf,pngquant,pybind11,pystring,qrencode,quickjs,rapidjson,re2,re2c]
 
     runs-on: ${{ matrix.os }}
 
