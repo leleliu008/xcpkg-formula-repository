@@ -18,5 +18,5 @@ build() {
     esac
     makew clean OSNAME=Darwin ARCH=$ARCH TARGET=$TARGET HOSTCC="$CC_FOR_BUILD" &&
     makew       OSNAME=Darwin ARCH=$ARCH TARGET=$TARGET HOSTCC="$CC_FOR_BUILD" ONLY_CBLAS=1 ARM_SOFTFP_ABI=$ARM_SOFTFP_ABI CC="$CC" AR="$AR" &&
-    makew install PREFIX="$ABI_INSTALL_DIR"
+    makew install PREFIX="$TARGET_INSTALL_DIR"
 }

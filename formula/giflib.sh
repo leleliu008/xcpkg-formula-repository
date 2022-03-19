@@ -12,5 +12,5 @@ prepare() {
 
 build() {
     makew -C "$SOURCE_DIR" clean &&
-    makew -C "$SOURCE_DIR" install PREFIX="$ABI_INSTALL_DIR" CC="$CC" AR="$AR" CFLAGS="'$CFLAGS'" USOURCES="'qprintf.c quantize.c getarg.c gif_err.c'"
+    makew -C "$SOURCE_DIR" install PREFIX="$TARGET_INSTALL_DIR" CC="$CC" AR="$AR" CFLAGS="'$CFLAGS'" USOURCES="'qprintf.c quantize.c getarg.c gif_err.c'"
 }

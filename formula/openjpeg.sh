@@ -6,6 +6,7 @@ package set src.sum "8702ba68b442657f11aaeb2b338443ca8d5fb95b0d845757968a7be31ef
 package set license "BSD-2-Clause"
 package set dep.pkg "libpng lcms2"
 package set bsystem "cmake"
+package set ldflags "-lzstd -llzma"
 
 build() {
     cmakew \

@@ -7,7 +7,7 @@ package set license "LGPL-2.1"
 package set dep.cmd "pkg-config"
 package set dep.pkg "libxml2 libpng pixman lzo glib fontconfig"
 package set bsystem "meson"
-package set ldflags "-liconv"
+package set ldflags "-lgraphite2 -lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng -lharfbuzz -lglib-2.0 -liconv -lintl"
 
 prepare() {
     inject_stub_system boilerplate/cairo-boilerplate-svg.c boilerplate/cairo-boilerplate-ps.c boilerplate/cairo-boilerplate.c boilerplate/cairo-boilerplate-pdf.c

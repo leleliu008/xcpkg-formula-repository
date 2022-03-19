@@ -19,5 +19,5 @@ prepare() {
 
 build() {
     makew clean &&
-    makew install HOST_CC=$CC_FOR_BUILD CC="'$CC $CFLAGS $CPPFLAGS'" AR=$AR STRIP=$STRIP CROSS_PREFIX=xxx prefix="$ABI_INSTALL_DIR"
+    makew install HOST_CC=$CC_FOR_BUILD CC="'$CC $CFLAGS $CPPFLAGS'" AR=$AR STRIP=$STRIP CROSS_PREFIX=xxx prefix="$TARGET_INSTALL_DIR"
 }

@@ -7,7 +7,7 @@ package set license "MIT"
 package set bsystem "configure"
 package set dep.cmd "pkg-config gperf"
 package set dep.pkg "gettext libiconv util-linux json-c expat freetype2-with-harfbuzz"
-package set ldflags "-lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng -lharfbuzz -lglib-2.0 -liconv -lintl"
+package set ldflags "-lgraphite2 -lbz2 -lz -lm -lbrotlidec -lbrotlicommon -lpng -lharfbuzz -lglib-2.0 -liconv -lintl"
 
 prepare() {
     sed_in_place 's|po-conf test|po-conf|' Makefile.in

@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [nginx,ngtcp2,nng,nspr,ntbtls,oat++,openal-soft,openblas,openjpeg,openlibm,openmpi,p11-kit,packcc,patch,pjsip,pkg-config,pkgconf,pngquant,pybind11,pystring,qrencode,quickjs,rapidjson,re2,re2c]
+        pkg: [nng,nspr,ntbtls,oat++,openal-soft,openblas,openexr,openjpeg,openlibm,openmpi,p11-kit,packcc,patch,pjsip,pkg-config,pkgconf,protobuf,pybind11,pystring,qrencode,quickjs,rapidjson,re2,re2c,rhash]
 
     runs-on: ${{ matrix.os }}
 
@@ -36,4 +36,4 @@ jobs:
     - run: install -d ~/.xcpkg/repos.d/offical
     - run: mv *       ~/.xcpkg/repos.d/offical
 
-    - run: xcpkg install ${{ matrix.pkg }} --tree
+    - run: xcpkg install ${{ matrix.pkg }} --tree --install-lib=static

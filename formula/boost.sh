@@ -1,9 +1,9 @@
 package set summary "Collection of portable C++ source libraries"
 package set webpage "https://www.boost.org"
 package set git.url "https://github.com/boostorg/boost.git"
-package set src.url "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2"
-package set src.sum "f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41"
-package set version "1.76.0"
+package set src.url "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2"
+package set src.sum "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc"
+package set version "1.78.0"
 package set license "BSL-1.0"
 package set dep.pkg "xz bzip2 zstd icu4c libiconv"
 package set binsrcd 'yes'
@@ -48,7 +48,7 @@ build() {
         -j$NATIVE_OS_NCPU \
         --reconfigure \
         --without-python \
-        --prefix="$ABI_INSTALL_DIR" \
+        --prefix="$TARGET_INSTALL_DIR" \
         -sICU_PATH="$icu4c_INSTALL_DIR" \
         -sICONV_PATH="$libiconv_INSTALL_DIR" \
         toolset=clang-$TARGET_OS_ARCH \

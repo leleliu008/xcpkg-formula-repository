@@ -12,14 +12,14 @@ prepare() {
 build() {
     makew -C "$SOURCE_DIR" clean &&
     makew -C "$SOURCE_DIR" install \
-        PREFIX="$ABI_INSTALL_DIR" \
+        PREFIX="$TARGET_INSTALL_DIR" \
         CC="$CC" \
         CFLAGS="'$CFLAGS'" \
         LDFLAGS="'$LDFLAGS'" \
         AR="$AR" \
         LIB_SHARED_FILE_EXT=dylib && {
         install_pc_file 'libbz2' <<EOF
-prefix=$ABI_INSTALL_DIR
+prefix=$TARGET_INSTALL_DIR
 exec_prefix=\${prefix}
 libdir=\${exec_prefix}/lib
 includedir=\${prefix}/include
@@ -31,7 +31,7 @@ Version: ${PACKAGE_VERSION}
 Libs: -L\${libdir} -lbz2
 Cflags: -I\${includedir}
 EOF
-    } && (cd "$ABI_PKGCONF_DIR" && ln -s libbz2.pc bzip2.pc)
+    } && (cd "$TARGET_PKGCONF_DIR" && ln -s libbz2.pc bzip2.pc)
 }
 
 repair_makefile() {

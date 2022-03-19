@@ -15,7 +15,7 @@ build() {
         --enable-assembly \
         --enable-pthread &&
     install_pc_file 'xvidcore' <<EOF
-prefix=$ABI_INSTALL_DIR
+prefix=$TARGET_INSTALL_DIR
 exec_prefix=\${prefix}
 libdir=\${exec_prefix}/lib
 includedir=\${prefix}/include

@@ -45,7 +45,7 @@ prepare() {
 build() {
     # https://invisible-island.net/ncurses/announce-6.0.html
     configure \
-        --with-pkg-config-libdir="$ABI_PKGCONF_DIR" \
+        --with-pkg-config-libdir="$TARGET_PKGCONF_DIR" \
         --with-ospeed='long' \
         --without-pkg-config \
         --without-ada \
@@ -67,20 +67,22 @@ build() {
 }
 
 install_links() {
-    cd "$ABI_INCLUDE_DIR" || return 1
+    cd "$TARGET_INCLUDE_DIR" || return 1
     for item in curses.h ncurses.h form.h menu.h panel.h term.h termcap.h
     do
         ln -s "ncursesw/$item" "$item" || return 1
     done
 
-    cd "$ABI_LIBRARY_DIR" || return 1
-    for item in libncurses libpanel libmenu libform
+    cd "$TARGET_LIBRARY_DIR" || return 1
+    for item in libncurses++ libncurses libpanel libmenu libform
     do
-        ln -s "${item}w.a"  "${item}.a"  || return 1
-        ln -s "${item}w.so" "${item}.so" || return 1
+        for ext in a dylib
+        do
+            if [ -e   "${item}w.$ext" ] ; then
+                ln -s "${item}w.$ext" "${item}.$ext" || return 1
+            fi
+        done
     done
-    ln -s libncurses++w.a libncurses++.a || return 1
 
-    cd "$ABI_PKGCONF_DIR" &&
-    ln -s ncursesw.pc ncurses.pc
+    cd "$TARGET_PKGCONF_DIR" && ln -s ncursesw.pc ncurses.pc
 }

@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-10.15, macos-11]
-        pkg: [libdeflate,libexif,libgit2,libidn,libisoburn,liblqr,libmaxminddb,libmetalink,libmill,libmpc,libpcap,libphonenumber,libpipeline,libpsl,libraqm,libsamplerate,libsass,libsmi,libspng,libtool,libtorrent-rasterbar,libunibreak,libupnp,libxslt,libyuv]
+        pkg: [libdeflate,libexif,libgit2,libidn,libisoburn,liblqr,libmaxminddb,libmetalink,libmill,libmpc,libpcap,libpipeline,libpsl,libraqm,libsamplerate,libsass,libsmi,libspng,libtool,libunibreak,libupnp,libvmaf,libxslt,libyuv,libzmq]
 
     runs-on: ${{ matrix.os }}
 
@@ -36,4 +36,4 @@ jobs:
     - run: install -d ~/.xcpkg/repos.d/offical
     - run: mv *       ~/.xcpkg/repos.d/offical
 
-    - run: xcpkg install ${{ matrix.pkg }} --tree
+    - run: xcpkg install ${{ matrix.pkg }} --tree --install-lib=static

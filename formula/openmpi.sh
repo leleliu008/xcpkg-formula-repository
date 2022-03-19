@@ -4,8 +4,8 @@ package set git.url "https://github.com/open-mpi/ompi.git"
 package set src.url "https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.1.tar.bz2"
 package set src.sum "e24f7a778bd11a71ad0c14587a7f5b00e68a71aa5623e2157bafee3d44c07cda"
 package set license "BSD-3-Clause"
-package set bsystem "configure"
 package set dep.pkg "libevent"
+package set bsystem "configure"
 
 prepare() {
     inject_stub_system \
@@ -22,13 +22,13 @@ prepare() {
 build() {
     configure \
         --disable-coverage \
+        --disable-mpi-java \
         --disable-mpi-fortran \
         --disable-oshmem-fortran \
         --disable-builtin-atomics \
         --enable-sysv-shmem=no \
         --enable-sysv-sshmem=no \
         --enable-binaries \
-        --enable-mpi-java \
         --enable-shared \
         --with-libevent="$libevent_INSTALL_DIR" \
         FC=''

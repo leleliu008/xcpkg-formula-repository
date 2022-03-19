@@ -6,7 +6,7 @@ package set bsystem "cmake"
 
 build() {
     cmakew || return 1
-    cd "$ABI_LIBRARY_DIR" || return 1
+    cd "$TARGET_LIBRARY_DIR" || return 1
     for item in libbrotlicommon libbrotlienc libbrotlidec
     do
         run mv "$item-static.a" "$item.a" || return 1

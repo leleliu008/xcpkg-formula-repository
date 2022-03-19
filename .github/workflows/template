@@ -36,4 +36,4 @@ jobs:
     - run: install -d ~/.xcpkg/repos.d/offical
     - run: mv *       ~/.xcpkg/repos.d/offical
 
-    - run: xcpkg install ${{ matrix.pkg }} --tree
+    - run: xcpkg install ${{ matrix.pkg }} --tree --install-lib=static

@@ -6,6 +6,7 @@ package set bsystem "configure"
 package set dep.pkg "libgpg-error libgcrypt libksba"
 
 build() {
+    export ac_cv_path_KSBA_CONFIG="$libksba_INSTALL_DIR/bin/ksba-config"
     configure \
         --with-zlib \
         --with-libgpg-error-prefix="$libgpg_error_INSTALL_DIR" \

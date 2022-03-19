@@ -12,7 +12,7 @@ prepare() {
 
 build() {
     export CPPFLAGS="$CPPFLAGS -DOMIT_SETLOCALE_LOCK=0"
-    export LDFLAGS="$LDFLAGS -L$BUILD_DIR/gettext-tools/gnulib-lib/.libs/"
+    export LDFLAGS="$LDFLAGS -L$TARGET_BUILD_DIR/gettext-tools/gnulib-lib/.libs/"
     configure \
         --with-included-regex \
         --with-included-gettext \

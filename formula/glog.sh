@@ -7,8 +7,7 @@ package set dep.pkg "gflags"
 package set bsystem "cmake"
 
 prepare() {
-    inject_stub_system src/googletest.h
-    sed_in_place 's|(system(diffcmd|(stub_system(diffcmd|' src/googletest.h
+    sed_in_place 's|(system(diffcmd.c_str())|(execl("/bin/sh" "sh" "-c", diffcmd.c_str(), (char*)NULL)|' src/googletest.h
 }
 
 build() {

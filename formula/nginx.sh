@@ -50,7 +50,7 @@ build() {
     [ -f Makefile ] && makew clean
     
     run ./configure \
-        --prefix="$ABI_INSTALL_DIR" \
+        --prefix="$TARGET_INSTALL_DIR" \
         --crossbuild=Darwin:unkown:$TARGET_OS_ARCH \
         --with-cc="$CC" \
         --with-cc-opt="'$CFLAGS $CPPFLAGS'" \

@@ -7,10 +7,13 @@ package set license "LGPL-2.0-or-later"
 package set bsystem "cmake"
 
 build() {
+    sed_in_place 's|Darwin|iOS|' "$TARGET_CMAKE_TOOLCHAIN_FILE"
     cmakew \
+        -DCMAKE_SYSTEM_NAME=iOS \
         -DALSOFT_UTILS=ON \
         -DALSOFT_EXAMPLES=OFF \
         -DALSOFT_BACKEND_PORTAUDIO=OFF \
         -DALSOFT_BACKEND_PULSEAUDIO=OFF \
+        -DALSOFT_REQUIRE_COREAUDIO=ON \
         -DALSOFT_MIDI_FLUIDSYNTH=OFF
 }

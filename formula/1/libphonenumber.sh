@@ -5,6 +5,7 @@ package set src.sum "ff16330f130917e42bc0b1a7efe5e4fba46633bfa62e35268acec855e17
 package set license "Apache-2.0"
 package set dep.pkg "boost icu4c protobuf googletest"
 package set dep.cmd "pkg-config protoc"
+package set bsystem "cmake-make"
 package set sourced "cpp"
 package set xxflags "-std=c++11"
 
@@ -15,6 +16,7 @@ prepare() {
 build() {
     export LDFLAGS="$LDFLAGS $icu4c_LIBRARY_DIR/libicudata.a"
     cmakew \
+        -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER \
         -DBUILD_GEOCODER=OFF \
         -DBUILD_STATIC_LIB=ON \
         -DUSE_POSIX_THREAD=ON \
@@ -27,8 +29,8 @@ build() {
         -DBoost_SYSTEM_LIBRARY_RELEASE="$boost_LIBRARY_DIR/libboost_system.a" \
         -DBoost_THREAD_LIBRARY_RELEASE="$boost_LIBRARY_DIR/libboost_thread.a" \
         -DBoost_DATE_TIME_LIBRARY_RELEASE="$boost_LIBRARY_DIR/libboost_date_time.a" \
-        -DGTEST_INCLUDE_DIR="$google_test_INCLUDE_DIR" \
-        -DGTEST_LIB="$google_test_LIBRARY_DIR/libgtest.a" \
+        -DGTEST_INCLUDE_DIR="$googletest_INCLUDE_DIR" \
+        -DGTEST_LIB="$googletest_LIBRARY_DIR/libgtest.a" \
         -DRE2_INCLUDE_DIR="$re2_INCLUDE_DIR" \
         -DRE2_LIB="$re2_LIBRARY_DIR/libre2.a" \
         -DPROTOBUF_INCLUDE_DIR="$protobuf_INCLUDE_DIR" \

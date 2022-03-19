@@ -33,7 +33,7 @@ build() {
         no-hw \
         no-engine \
         no-asm \
-        --prefix="$ABI_INSTALL_DIR" \
+        --prefix="$TARGET_INSTALL_DIR" \
         "$os_compiler" &&
     makew clean &&
     makew CROSS_COMPILE= &&
