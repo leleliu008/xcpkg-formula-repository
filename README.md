@@ -11,15 +11,23 @@ package set <KEY> <VALUE>
 |KEY|required?|overview|
 |-|-|-|
 |`summary`|required|the summary of this package.|
-|`webpage`|optional|the home webpage of this package.<br>If this key is not present, `src.git` must be present.|
+|`webpage`|optional|the home webpage of this package.<br>If this key is not present, `git.url` must be present.|
 |`version`|optional|the version of this package.<br>If this key is not present, it will be calculated from `src.url`|
 |`license`|optional|the license of this package.|
-|`src.git`|optional|the source code git repository.<br>must end with `.git`|
+||||
+|`git.url`|optional|the source code git repository.<br>must end with `.git`|
+|`git.rev`|optional|the full git commit id, 40-byte hexadecimal string, which to be fetched as source code|
+|`git.tag`|optional|the git tag name, which to be fetched as source code|
+||||
 |`src.url`|required|the source code download url of this package.<br>must end with one of `.git` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz` `.c` `.cc` `.cxx` `.cpp`.<br>also support format like `dir://DIR`|
 |`src.sum`|optional|the `sha256sum` of source code.<br>If the value of `src.url` end with `.git`, this key is optional, otherwise, this key must be present.|
+||||
+|`fix.url`|optional|the patch file download url of this package.<br>must end with one of `.fix` `.diff` `.patch` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz`|
+|`fix.sum`|optional|the `sha256sum` of patch file.|
+||||
 |`dep.cmd`|optional|the commands will be used when installing. If specify multiple values, separate them with spaces.|
 |`dep.pkg`|optional|the packages will be used when installing and runtime. If specify multiple values, separate them with spaces.|
-|`patches`|optional|the patches. `URL` `SHA256` pairs. [example](https://github.com/leleliu008/xcpkg-formula/blob/master/formula/unzip.sh#L9-L10)|
+||||
 |`cdefine`|optional|append to `CPPFLAGS`|
 |`ccflags`|optional|append to `CFLAGS`|
 |`xxflags`|optional|append to `CXXFLAGS`|
@@ -53,7 +61,7 @@ package set <KEY> <VALUE>
 |`is_sha256sum_match`|`is_sha256sum_match FILEPATH SHA256SUM`|
 |`fetch`|`fetch URL [--sha256=SHA256] --output-path=PATH`<br>`fetch URL [--sha256=SHA256] --output-dir=DIR --output-name=NAME`<br>`fetch URL [--sha256=SHA256] --output-dir=DIR [--output-name=NAME]`<br>`fetch URL [--sha256=SHA256] [--output-dir=DIR] --output-name=NAME`|
 
-## the function can be invoked in build function only
+## the function can be invoked in build function
 |function|example|
 |-|-|
 |`configure`|`configure --enable-pic`|
@@ -96,16 +104,15 @@ package set <KEY> <VALUE>
 |`NM`|a command line tool to list symbols from object files.|
 |`STRIP`|a command line tool to discard symbols and other data from object files.|
 
-## the variable can be used in build function only
+## the variable can be used in build function
 |variable|overview|
 |-|-|
-|`BUILD_DIR`|the build directory of this abi.|
-|`PKG_INSTALL_DIR`|the installation directory of this package.|
-|`ABI_INSTALL_DIR`|the installation directory of this package of this abi.|
-|`ABI_BINARY__DIR`|the `bin` directory of this package of this abi.|
-|`ABI_INCLUDE_DIR`|the `include` directory of this package of this abi.|
-|`ABI_LIBRARY_DIR`|the `lib` directory of this package of this abi.|
-|`ABI_PKGCONF_DIR`|the `pkgconfig` directory of this package of this abi.|
+|`TARGET_BUILD_DIR`|the build directory of this abi.|
+|`TARGET_INSTALL_DIR`|the installation directory of this package of this abi.|
+|`TARGET_INCLUDE_DIR`|the `include` directory of this package of this abi.|
+|`TARGET_LIBRARY_DIR`|the `lib` directory of this package of this abi.|
+|`TARGET_PKGCONF_DIR`|the `pkgconfig` directory of this package of this abi.|
+|-|-|
 |`x_INSTALL_DIR`|the installation directory of x package of this abi.|
 |`x_INCLUDE_DIR`|the `include` directory of x package of this abi.|
 |`x_LIBRARY_DIR`|the `lib` directory of x package of this abi.|
