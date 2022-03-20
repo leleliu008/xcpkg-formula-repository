@@ -13,5 +13,7 @@ build() {
         -DENABLE_SHARED=ON \
         -DPNG_SUPPORTED=ON \
         -DWITH_JAVA=OFF \
-        -DWITH_FUZZ=OFF
+        -DWITH_FUZZ=OFF \
+        -DPNG_PNG_INCLUDE_DIR="$libpng_INCLUDE_DIR" \
+        -DPNG_LIBRARY_RELEASE="$libpng_LIBRARY_DIR/libpng.a"
 }
