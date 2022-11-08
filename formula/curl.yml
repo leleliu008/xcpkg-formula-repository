@@ -1,0 +1,17 @@
+summary: Get a file from an HTTP, HTTPS or FTP server
+web-url: https://curl.haxx.se
+git-url: https://github.com/curl/curl.git
+src-url: https://curl.haxx.se/download/curl-7.81.0.tar.bz2
+src-sha: 1e7a38d7018ec060f1f16df839854f0889e94e122c4cfa5d3a37c2dc56f1e258
+dep-pkg: openssl
+dep-upp: pkg-config
+bsystem: configure
+
+prepare: |
+    sed_in_place '/min="-mmacosx-version-min=/d' configure
+
+install: |
+    configure \
+       --with-ssl="$openssl_INSTALL_DIR" \
+       --enable-optimize \
+       --enable-pthreads

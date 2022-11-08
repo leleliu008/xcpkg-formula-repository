@@ -1,6 +1,0 @@
-package set summary "Binary-decimal and decimal-binary routines for IEEE doubles"
-package set git.url "https://github.com/google/double-conversion.git"
-package set src.url "https://github.com/google/double-conversion/archive/v3.2.0.tar.gz"
-package set src.sum "3dbcdf186ad092a8b71228a5962009b5c96abde9a315257a3452eb988414ea3b"
-package set license "BSD-3-Clause"
-package set bsystem "cmake"

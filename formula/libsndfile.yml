@@ -1,0 +1,15 @@
+summary: C library for files containing sampled sound
+web-url: http://www.mega-nerd.com/libsndfile
+git-url: https://github.com/libsndfile/libsndfile.git
+src-url: https://github.com/libsndfile/libsndfile/releases/download/1.0.31/libsndfile-1.0.31.tar.bz2
+src-sha: a8cfb1c09ea6e90eff4ca87322d4168cdbe5035cb48717b40bf77e751cc02163
+bsystem: configure
+dep-pkg: libogg libvorbis flac sqlite
+
+install: |
+    configure \
+        --disable-test-coverage \
+        --disable-full-suite \
+        --disable-octave \
+        --enable-sqlite \
+        --enable-external-libs

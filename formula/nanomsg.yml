@@ -1,0 +1,10 @@
+summary: Socket library in C
+web-url: https://nanomsg.org/
+git-url: https://github.com/nanomsg/nanomsg.git
+src-url: https://github.com/nanomsg/nanomsg/archive/1.1.5.tar.gz
+src-sha: 218b31ae1534ab897cb5c419973603de9ca1a5f54df2e724ab4a188eb416df5a
+license: MIT
+bsystem: cmake
+
+install: |
+    cmakew -DNN_TESTS=OFF -DNN_STATIC_LIB=ON

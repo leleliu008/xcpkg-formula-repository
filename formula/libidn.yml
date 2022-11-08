@@ -1,0 +1,12 @@
+summary: International domain name library
+web-url: https://www.gnu.org/software/libidn/
+src-url: https://ftp.gnu.org/gnu/libidn/libidn-1.38.tar.gz
+src-sha: de00b840f757cd3bb14dd9a20d5936473235ddcba06d4bc2da804654b8bbf0f6
+bsystem: configure
+dep-upp: pkg-config
+
+install: |
+    configure \
+        --disable-valgrind-tests \
+        --enable-gcc-warnings \
+        --enable-doc

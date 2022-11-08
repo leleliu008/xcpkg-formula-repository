@@ -1,0 +1,16 @@
+summary: Library for sample rate conversion of audio data
+web-url: http://www.mega-nerd.com/SRC
+src-url: http://www.mega-nerd.com/SRC/libsamplerate-0.1.9.tar.gz
+src-sha: 0a7eb168e2f21353fb6d84da152e4512126f7dc48ccb0be80578c565413444c1
+bsystem: autotools
+dep-pkg: libsndfile fftw
+
+prepare: |
+    autoreconf -ivf &&
+    sed_in_place '$d' autogen.sh && ./autogen.sh &&
+    sed_in_place 's/(defined (__MACH__) && defined (__APPLE__))/0/g' examples/audio_out.c
+
+install: |
+    configure \
+        --enable-sndfile \
+        --enable-fftw

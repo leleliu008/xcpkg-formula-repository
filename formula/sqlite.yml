@@ -1,0 +1,19 @@
+summary: Command-line interface for SQLite
+web-url: https://sqlite.org
+git-url: https://github.com/sqlite/sqlite.git
+src-url: https://sqlite.org/2022/sqlite-autoconf-3380000.tar.gz
+src-sha: 1c76e25dc63d9f3935e0f406aec520a33ee77cf54ea5147dffe1fae8369eff68
+version: 3.38.0
+license: blessing
+bsystem: configure
+
+prepare: |
+    inject_stub_system shell.c
+
+install: |
+    configure \
+        --enable-threadsafe \
+        --disable-tcl \
+        --disable-editline \
+        --disable-readline \
+        --disable-load-extension

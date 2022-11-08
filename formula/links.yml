@@ -1,0 +1,31 @@
+summary: Lynx-like WWW browser that supports tables, menus, etc.
+web-url: http://links.twibright.com
+src-url: https://fossies.org/linux/www/links-2.25.tar.bz2
+src-sha: 2dd78508698e8279ef4f09a3a2a21e9595040113402da6c553974414fb49dd2c
+license: GPL-2.0
+dep-pkg: xz bzip2 libtiff libjpeg-turbo openssl
+bsystem: make
+binbstd: yes
+
+prepare: |
+    inject_stub_system drivers.c os_dep.c
+
+install: |
+    # configure [options] [host]
+    run ./configure \
+        --host="$TARGET_TRIPLE" \
+        --prefix="$TARGET_INSTALL_DIR" \
+        --enable-ipv6 \
+        --enable-utf8 \
+        --disable-graphics \
+        --without-x \
+        --with-zlib \
+        --with-lzma \
+        --with-bzip2 \
+        --with-libtiff \
+        --with-libjpeg \
+        --with-ssl="$openssl_INSTALL_DIR" &&
+    makew clean &&
+    makew &&
+    makew install &&
+    makew distclean

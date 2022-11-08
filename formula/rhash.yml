@@ -1,0 +1,23 @@
+summary: Utility for computing and verifying hash sums of files
+web-url: http://rhash.sourceforge.net
+git-url: https://github.com/rhash/RHash.git
+src-url: https://github.com/rhash/RHash/archive/v1.4.0.tar.gz
+src-sha: 2ea39540f5c580da0e655f7b483c19e0d31506aed4202d88e8459fa7aeeb8861
+license: 0BSD
+bsystem: make
+binbstd: yes
+
+install: |
+    run ./configure \
+        --cc="$CC" \
+        --ar="$AR" \
+        --extra-cflags="'$CFLAGS $CPPFLAGS'" \
+        --extra-ldflags="'$LDFLAGS'" \
+        --target="$TARGET_TRIPLE" \
+        --prefix="$TARGET_INSTALL_DIR" \
+        --enable-static \
+        --enable-lib-static \
+        --enable-lib-shared &&
+    makew clean &&
+    makew &&
+    makew install

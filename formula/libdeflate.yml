@@ -1,0 +1,10 @@
+summary: Heavily optimized DEFLATE/zlib/gzip compression and decompression
+git-url: https://github.com/ebiggers/libdeflate.git
+src-url: https://github.com/ebiggers/libdeflate/archive/v1.10.tar.gz
+src-sha: 5c1f75c285cd87202226f4de49985dcb75732f527eefba2b3ddd70a8865f2533
+license: MIT
+bsystem: make
+parallel: no
+
+install: |
+    makew -C "$SOURCE_DIR" clean install PREFIX="$TARGET_INSTALL_DIR" CC="$CC" CPPFLAGS="'$CPPFLAGS'" CFLAGS="'$CFLAGS'" AR="$AR" V=1

@@ -1,0 +1,17 @@
+summary: Unified display of technical and tag data for audio/video
+web-url: https://mediaarea.net
+src-url: https://mediaarea.net/download/source/libmediainfo/21.09/libmediainfo_21.09.tar.bz2
+src-sha: 6a31671d99a3da4589f95825a603c061768fee17dc64daaae716e5ade131c27c
+license: BSD-2-Clause
+bsystem: autogen
+dep-upp: pkg-config
+dep-pkg: libzen zlib curl
+bscript: Project/GNU/Library
+binbstd: yes
+
+prepare: |
+    sed_in_place 's|${libdir}/libzen.a||' libmediainfo.pc.in &&
+    ./autogen.sh
+
+install: |
+   configure --with-libcurl="$curl_INSTALL_DIR"

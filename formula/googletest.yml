@@ -1,0 +1,11 @@
+summary: Google's C++ Testing and Mocking Framework
+git-url: https://github.com/google/googletest.git
+src-url: https://github.com/google/googletest/archive/release-1.11.0.tar.gz
+src-sha: b4870bf121ff7795ba20d20bcdd8627b8e088f2d1dab299a031c1034eddc93d5
+license: BSD-3-Clause
+bsystem: cmake
+
+install: |
+    cmakew \
+        -DBUILD_GMOCK=ON \
+        -DINSTALL_GTEST=ON

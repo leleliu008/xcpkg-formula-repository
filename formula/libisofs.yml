@@ -1,0 +1,13 @@
+summary: Library to create an ISO-9660 filesystem with extensions like RockRidge or Joliet
+web-url: https://www.libburnia-project.org
+src-url: http://files.libburnia-project.org/releases/libisofs-1.5.2.tar.gz
+src-sha: ef5a139600b3e688357450e52381e40ec26a447d35eb8d21524598c7b1675500
+bsystem: configure
+parallel: no
+
+install: |
+    configure \
+        --enable-xattr \
+        --enable-zlib \
+        --disable-libacl \
+        --disable-verbose-debug

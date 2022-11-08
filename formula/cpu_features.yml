@@ -1,0 +1,13 @@
+summary: Cross platform C99 library to get cpu features at runtime
+git-url: https://github.com/google/cpu_features.git
+src-url: https://github.com/google/cpu_features/archive/v0.6.0.tar.gz
+src-sha: 95a1cf6f24948031df114798a97eea2a71143bd38a4d07d9a758dda3924c1932
+license: Apache-2.0
+bsystem: cmake
+
+prepare: |
+    sed_in_place 's/\^arm/\^armv7/'               CMakeLists.txt &&
+    sed_in_place 's/\^aarch64/\^(aarch64|arm64)/' CMakeLists.txt
+
+install: |
+    cmakew -DBUILD_PIC=ON

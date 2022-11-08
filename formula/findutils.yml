@@ -1,0 +1,19 @@
+summary: Collection of GNU find, xargs, and locate
+web-url: https://www.gnu.org/software/findutils
+src-url: https://ftp.gnu.org/gnu/findutils/findutils-4.9.0.tar.xz
+src-sha: a2bfb8c09d436770edc59f50fa483e785b161a3b7b9d547573cb08065fd462fe
+license: GPL-3.0
+bsystem: configure
+
+prepare: |
+    sed_in_place 's/find.texi\ //' doc/Makefile.am &&
+    sed_in_place 's/find.texi\ //' doc/Makefile.in
+
+install: |
+    configure \
+        --without-selinux \
+        --with-included-regex \
+        --enable-threads=posix \
+        --enable-leaf-optimisation \
+        --enable-d_type-optimisation \
+        --disable-assert

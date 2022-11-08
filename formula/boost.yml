@@ -1,0 +1,66 @@
+summary: Collection of portable C++ source libraries
+web-url: https://www.boost.org
+git-url: https://github.com/boostorg/boost.git
+src-url: https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2
+src-sha: 8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc
+version: 1.78.0
+license: BSL-1.0
+dep-pkg: xz bzip2 zstd icu4c libiconv
+binbstd: yes
+
+# https://boostorg.github.io/build/manual/master/index.html
+# https://sites.google.com/site/robdevelopertips/how-to-build-boost-1-64-0-for-android
+# https://www.boost.org/doc/libs/1_73_0/libs/context/doc/html/context/architectures/crosscompiling.html
+# https://www.boost.org/doc/libs/1_65_1/libs/context/doc/html/context/architectures.html
+build0: |
+    sed_in_place '1a set -x' bootstrap.sh &&
+    sed_in_place '1a set -x' tools/build/src/engine/build.sh &&
+    run ./bootstrap.sh
+
+install: |
+    case $TARGET_OS_ARCH in
+        armv7*)
+            address_model=32
+            architecture=arm
+            abi=aapcs
+            ;;
+        arm64*)
+            address_model=64
+            architecture=arm
+            abi=aapcs
+            ;;
+        i386)
+            address_model=32
+            architecture=x86
+            abi=sysv
+            ;;
+        x86_64)
+            address_model=64
+            architecture=x86
+            abi=sysv
+    esac
+
+    gen_project_config &&
+    run ./b2 install \
+        -q \
+        -d+2 \
+        -j$NATIVE_OS_NCPU \
+        --reconfigure \
+        --without-python \
+        --prefix="$TARGET_INSTALL_DIR" \
+        -sICU_PATH="$icu4c_INSTALL_DIR" \
+        -sICONV_PATH="$libiconv_INSTALL_DIR" \
+        toolset=clang-$TARGET_OS_ARCH \
+        link=static,shared \
+        variant=release \
+        threading=multi \
+        target-os=darwin \
+        binary-format=mach-o \
+        address-model="$address_model" \
+        architecture="$architecture" \
+        abi="$abi"
+
+gen_project_config() {
+    cat > project-config.jam <<EOF
+using clang : $TARGET_OS_ARCH : $CXX : <compileflags>"$CXXFLAGS $CPPFLAGS" <linkflags>"$LDFLAGS -shared" <archiver>$AR <ranlib>$RANLIB ;
+EOF

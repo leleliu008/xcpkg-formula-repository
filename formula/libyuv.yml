@@ -1,0 +1,12 @@
+summary: C library includes YUV conversion and scaling functionality
+web-url: https://chromium.googlesource.com/external/libyuv
+git-url: https://github.com/leleliu008/libyuv.git
+bsystem: cmake
+dep-pkg: libjpeg-turbo
+cdefine: LIBYUV_DISABLE_NEON
+
+install: |
+    cmakew \
+        -DTEST=OFF \
+        -DJPEG_INCLUDE_DIR="$libjpeg_turbo_INCLUDE_DIR" \
+        -DJPEG_LIBRARY_RELEASE="$libjpeg_turbo_LIBRARY_DIR/libjpeg.a"

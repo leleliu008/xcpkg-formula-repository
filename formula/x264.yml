@@ -1,0 +1,17 @@
+summary: H.264/AVC encoder
+web-url: https://www.videolan.org/developers/x264.html
+version: 20191217-2245
+src-url: http://ftp.videolan.org/pub/x264/snapshots/x264-snapshot-${PACKAGE_VERSION}.tar.bz2
+src-sha: 0bb67d095513391e637b3b47e8efc3ba4603c3844f1b4c2690f4d36da7763055
+bsystem: configure
+
+prepare: |
+    sed_in_place 's|ARCH="AARCH64"|ARCH="ARM"|' configure
+
+install: |
+    configure \
+        --disable-asm \
+        --disable-cli \
+        --enable-pic \
+        --enable-lto \
+        --enable-strip

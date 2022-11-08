@@ -1,0 +1,18 @@
+summary: Graph visualization software from AT&T and Bell Labs
+web-url: https://www.graphviz.org
+git-url: https://gitlab.com/graphviz/graphviz.git
+src-url: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/2.50.0/graphviz-2.50.0.tar.xz
+src-sha: 6b16bf990df114195be669773a1dae975dbbffada45e1de2849ddeb5851bb9a8
+license: EPL-1.0
+dep-upp: pkg-config libtoolize libtool groff ps2pdf
+dep-pkg: fontconfig libpng expat
+bsystem: autotools
+
+prepare: |
+    sed_in_place 's|install-exec-hook|xxxxxxxxxxxx|' cmd/dot/Makefile.am &&
+    autoreconf -ivf &&
+    inject_stub_system lib/sparse/general.c lib/common/utils.c lib/gvpr/compile.c contrib/diffimg/diffimg.c
+
+install: |
+    export HOSTCC="$CC_FOR_BUILD"
+    configure --enable-swig=no

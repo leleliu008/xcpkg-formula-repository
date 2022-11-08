@@ -1,0 +1,12 @@
+summary: C++ functions matching the interface and behavior of python string methods with std::string
+git-url: https://github.com/imageworks/pystring.git
+binbstd: yes
+
+install: |
+    run rm -f pystring.o &&
+    run rm -f pystring.a &&
+    run $CXX $CXXFLAGS $CPPFLAGS $LDFLAGS -c -o pystring.o pystring.cpp &&
+    run $AR rcs libpystring.a pystring.o &&
+    run install -d         "$TARGET_INCLUDE_DIR/pystring" &&
+    run install pystring.h "$TARGET_INCLUDE_DIR/pystring" &&
+    run install_libs libpystring.a

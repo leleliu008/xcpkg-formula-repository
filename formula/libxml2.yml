@@ -1,0 +1,18 @@
+summary: GNOME XML library
+web-url: http://xmlsoft.org
+git-url: https://gitlab.gnome.org/GNOME/libxml2.git
+src-url: ftp://xmlsoft.org/libxml2/libxml2-2.9.12.tar.gz
+src-sha: c8d6681e38c56f172892c85ddc0852e1fd4b53b4209e7f4ebf17f7e2eae71d92
+bsystem: configure
+dep-pkg: libiconv
+
+install: |
+    configure \
+        --with-iconv="$libiconv_INSTALL_DIR" \
+        --with-zlib \
+        --without-lzma \
+        --without-python \
+        --without-readline \
+        --without-debug \
+        --without-coverage \
+        --enable-ipv6

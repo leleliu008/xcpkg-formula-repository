@@ -1,0 +1,14 @@
+summary: Maintained ctags implementation
+git-url: https://github.com/universal-ctags/ctags.git
+bsystem: autogen
+dep-upp: pkg-config
+dep-pkg: jansson libyaml libxml2
+
+prepare: |
+    ./autogen.sh &&
+    inject_stub_system main/sort.c &&
+    sed_in_place '/general.h/d' main/sort.c &&
+    sed_in_place '1i #include "general.h"' main/sort.c
+
+install: |
+    configure --disable-seccomp --disable-static ac_cv_func_iconv_open=yes

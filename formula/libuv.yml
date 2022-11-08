@@ -1,0 +1,18 @@
+summary: Multi-platform support library with a focus on asynchronous I/O
+web-url: https://libuv.org
+git-url: https://github.com/libuv/libuv.git
+src-url: https://github.com/libuv/libuv/archive/v1.43.0.tar.gz
+src-sha: 9e27825a55279de69a7c43e42d509fd1337c9bece2547c761e91a1592e91cc4d
+license: MIT
+bsystem: cmake
+
+prepare: |
+    # https://github.com/libuv/libuv/issues/2975
+    sed_in_place 's/!TARGET_OS_IPHONE/1/' src/unix/darwin.c
+
+install: |
+    cmakew \
+        -DLIBUV_BUILD_TESTS=OFF \
+        -DLIBUV_BUILD_BENCH=OFF \
+        -DQEMU=OFF &&
+    mv "$TARGET_LIBRARY_DIR/libuv_a.a" "$TARGET_LIBRARY_DIR/libuv.a"

@@ -1,8 +1,0 @@
-package set summary "Light UNIX download accelerator"
-package set git.url "https://github.com/axel-download-accelerator/axel.git"
-package set src.url "https://github.com/axel-download-accelerator/axel/releases/download/v2.17.11/axel-2.17.11.tar.xz"
-package set src.sum "580b2c18692482fd7f1e2b2819159484311ffc50f6d18924dceb80fd41d4ccf9"
-package set license "GPL-2.0-or-later"
-package set dep.pkg "openssl"
-package set dep.cmd "pkg-config"
-package set bsystem "configure"

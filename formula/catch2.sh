@@ -1,6 +1,0 @@
-package set summary "Modern, C++-native, header-only, test framework"
-package set git.url "https://github.com/catchorg/Catch2.git"
-package set src.url "https://github.com/catchorg/Catch2/archive/v2.13.8.tar.gz"
-package set src.sum "b9b592bd743c09f13ee4bf35fc30eeee2748963184f6bea836b146e6cc2a585a"
-package set license "BSL-1.0"
-package set bsystem "cmake"

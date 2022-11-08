@@ -1,0 +1,6 @@
+summary: TOML for Modern C++
+web-url: https://github.com/ToruNiina/toml11
+src-url: https://github.com/ToruNiina/toml11/archive/refs/tags/v3.7.0.tar.gz
+src-sha: a0b6bec77c0e418eea7d270a4437510884f2fe8f61e7ab121729624f04c4b58e
+license: MIT
+bsystem: cmake

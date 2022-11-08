@@ -1,0 +1,13 @@
+summary: Library for command-line editing
+web-url: https://www.gnu.org/software/readline
+src-url: https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/readline-8.1.tar.gz
+src-sha: f8ceb4ee131e3232226a17f51b164afc46cd0b9e6cef344be87c65962cb82b02
+license: GPL-3.0-or-later
+bsystem: configure
+dep-pkg: ncurses
+
+install: |
+    configure \
+        --with-curses="$ncurses_INSTALL_DIR" \
+        --enable-multibyte \
+        --enable-install-examples

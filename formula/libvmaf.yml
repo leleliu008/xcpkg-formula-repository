@@ -1,0 +1,14 @@
+summary: Perceptual video quality assessment based on multi-method fusion
+git-url: https://github.com/Netflix/vmaf.git
+src-url: https://github.com/Netflix/vmaf/archive/v2.3.0.tar.gz
+src-sha: d8dcc83f8e9686e6855da4c33d8c373f1735d87294edbd86ed662ba2f2f89277
+license: BSD-2-Clause-Patent
+dep-upp: nasm
+bsystem: meson
+bscript: libvmaf
+
+install: |
+    mesonw \
+        -Denable_tests=false \
+        -Denable_docs=false \
+        -Denable_asm=true

@@ -1,0 +1,14 @@
+summary: Not Too Bad TLS library
+web-url: https://gnupg.org/software/ntbtls/index.html
+src-url: https://gnupg.org/ftp/gcrypt/ntbtls/ntbtls-0.2.0.tar.bz2
+src-sha: 649fe74a311d13e43b16b26ebaa91665ddb632925b73902592eac3ed30519e17
+bsystem: configure
+dep-pkg: libgpg-error libgcrypt libksba
+
+install: |
+    export ac_cv_path_KSBA_CONFIG="$libksba_INSTALL_DIR/bin/ksba-config"
+    configure \
+        --with-zlib \
+        --with-libgpg-error-prefix="$libgpg_error_INSTALL_DIR" \
+        --with-libgcrypt-prefix="$libgcrypt_INSTALL_DIR" \
+        --with-libksba-prefix="$libksba_INSTALL_DIR"

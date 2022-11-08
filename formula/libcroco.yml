@@ -1,0 +1,12 @@
+summary: CSS parsing and manipulation toolkit for GNOME
+web-url: https://gitlab.gnome.org/GNOME/libcroco
+src-url: https://download.gnome.org/sources/libcroco/0.6/libcroco-0.6.13.tar.xz
+src-sha: 767ec234ae7aa684695b3a735548224888132e063f92db585759b422570621d4
+bsystem: configure
+dep-pkg: glib libxml2
+
+install: |
+    configure \
+        --disable-gtk-doc \
+        --disable-Bsymbolic \
+        --enable-checks

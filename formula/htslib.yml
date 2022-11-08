@@ -1,0 +1,11 @@
+summary: C library for high-throughput sequencing data formats
+web-url: https://www.htslib.org/
+git-url: https://github.com/samtools/htslib.git
+src-url: https://github.com/samtools/htslib/releases/download/1.15/htslib-1.15.tar.bz2
+src-sha: 1a9f49911503a22f56817cc82ea9b87fb7e7467b5ff989ca5aa61c12e7d532d9
+license: MIT
+dep-pkg: zlib bzip2 xz curl
+bsystem: configure
+
+install: |
+    configure --enable-libcurl LIBS="'-lssl -lcrypto'"

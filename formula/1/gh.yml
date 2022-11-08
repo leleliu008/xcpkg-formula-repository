@@ -1,0 +1,14 @@
+summary: GitHub command-line tool
+git-url: https://github.com/cli/cli.git
+src-url: https://github.com/cli/cli/archive/v2.5.2.tar.gz
+src-sha: cbf22fea4574047ca3a356ee4ef629d62b872f4c4ff4e4b78fe4f89ca431858e
+license: MIT
+bsystem: go
+
+install: |
+    gow \
+        -buildmode pie \
+        -tags=ios \
+        -X github.com/cli/cli/internal/build.Date=$(date +%Y-%m-%d) \
+        -X github.com/cli/cli/internal/build.Version=$PACKAGE_VERSION \
+        ./cmd/gh

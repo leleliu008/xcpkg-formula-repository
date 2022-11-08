@@ -1,0 +1,21 @@
+summary: Protocol Buffers(data interchange format) compiler and library developed by Google
+git-url: https://github.com/protocolbuffers/protobuf.git
+src-url: https://github.com/protocolbuffers/protobuf/releases/download/v3.19.4/protobuf-all-3.19.4.tar.gz
+src-sha: ba0650be1b169d24908eeddbe6107f011d8df0da5b1a5a4449a913b10e578faf
+license: BSD-3-Clause
+dep-pkg: zlib
+bsystem: cmake
+bscript: cmake
+
+build0: |
+    # used by other package. makew sure protoc and libprotoc same version
+    cmakew \
+        -Dprotobuf_BUILD_TESTS=OFF \
+        -Dprotobuf_BUILD_EXAMPLES=OFF
+
+install: |
+    cmakew \
+        -Dprotobuf_BUILD_TESTS=OFF \
+        -Dprotobuf_BUILD_EXAMPLES=OFF \
+        -DZLIB_INCLUDE_DIR="$zlib_INCLUDE_DIR" \
+        -DZLIB_LIBRARY_RELEASE="$zlib_LIBRARY_DIR/libz.a"

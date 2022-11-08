@@ -1,0 +1,4 @@
+summary: Go-style concurrency in C
+git-url: https://github.com/sustrik/libmill.git
+license: MIT
+bsystem: cmake
