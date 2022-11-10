@@ -2,75 +2,80 @@
 the offical formula repository for [xcpkg](https://github.com/leleliu008/xcpkg)
 
 ## what's formula
-formula is a POSIX sh script used to describe how to compile a package for [xcpkg](https://github.com/leleliu008/xcpkg).
+a formula is a YAML format file which is used to configure a xcpkg's package infomation and describe how to compile a package for [xcpkg](https://github.com/leleliu008/xcpkg).
 
-## the function must be invoked on top of the formula
-```
-package set <KEY> <VALUE>
-```
 |KEY|required?|overview|
 |-|-|-|
 |`summary`|required|the summary of this package.|
-|`webpage`|optional|the home webpage of this package.<br>If this key is not present, `git.url` must be present.|
-|`version`|optional|the version of this package.<br>If this key is not present, it will be calculated from `src.url`|
+|`webpage`|optional|the home webpage of this package.<br>If this key is not present, `git-url` must be present.|
+|`version`|optional|the version of this package.<br>If this key is not present, it will be calculated from `src-url`|
 |`license`|optional|the license of this package.|
 ||||
-|`git.url`|optional|the source code git repository.<br>must end with `.git`|
-|`git.rev`|optional|the full git commit id, 40-byte hexadecimal string, which to be fetched as source code|
-|`git.tag`|optional|the git tag name, which to be fetched as source code|
+|`git-url`|optional|the source code git repository.<br>must end with `.git`|
+|`git-ref`|optional|reference: https://git-scm.com/book/en/v2/Git-Internals-Git-References <br>example values: `HEAD` `refs/heads/master` `refs/heads/main` `refs/tags/v1`, default value is `HEAD`|
+|`git-sha`|optional|the full git commit id, 40-byte hexadecimal string, if `git-ref` and `git-sha` both are given, `git-sha` takes precedence over `git-ref`|
+|`shallow`|optional|whether do a git shallow fetch. values can be `yes` or `no`. default value is `yes`.|
 ||||
-|`src.url`|required|the source code download url of this package.<br>must end with one of `.git` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz` `.c` `.cc` `.cxx` `.cpp`.<br>also support format like `dir://DIR`|
-|`src.sum`|optional|the `sha256sum` of source code.<br>If the value of `src.url` end with `.git`, this key is optional, otherwise, this key must be present.|
+|`src-url`|required|the source code download url of this package.<br>must end with one of `.git` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz` `.c` `.cc` `.cxx` `.cpp`.<br>also support format like `dir://DIR`|
+|`src-uri`|optional|the mirror of `src-url`.|
+|`src-sha`|optional|the `sha256sum` of source code.<br>If the value of `src-url` end with `.git`, this key is optional, otherwise, this key must be present.|
 ||||
-|`fix.url`|optional|the patch file download url of this package.<br>must end with one of `.fix` `.diff` `.patch` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz`|
-|`fix.sum`|optional|the `sha256sum` of patch file.|
+|`fix-url`|optional|the patch file download url of this package.<br>must end with one of `.fix` `.diff` `.patch` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz`|
+|`fix-sha`|optional|the `sha256sum` of patch file.|
 ||||
-|`dep.cmd`|optional|the commands will be used when installing. If specify multiple values, separate them with spaces.|
-|`dep.pkg`|optional|the packages will be used when installing and runtime. If specify multiple values, separate them with spaces.|
+|`res-url`|optional|other resource download url of this package.<br>must end with one of `.fix` `.diff` `.patch` `.zip` `.tar.xz` `.tar.gz` `.tar.lz` `.tar.bz2` `.tgz` `.txz`|
+|`res-sha`|optional|the `sha256sum` of resource file.|
+||||
+|`dep-pkg`|optional|space-separated   `xcpkg packages` that are depended by this package when installing and/or runtime, which will be installed via [xcpkg](https://github.com/leleliu008/xcpkg).|
+|`dep-upp`|optional|space-separated   `uppm packages` that are depended by this package when installing and/or runtime, which will be installed via [uppm](https://github.com/leleliu008/uppm).|
+|`dep-pym`|optional|space-separated `python packages` that are depended by this package when installing and/or runtime, which will be installed via `pip3`.|
+|`dep-plm`|optional|space-separated    `perl modules` that are depended by this package when installing and/or runtime, which will be installed via `cpan`.|
 ||||
 |`cdefine`|optional|append to `CPPFLAGS`|
 |`ccflags`|optional|append to `CFLAGS`|
 |`xxflags`|optional|append to `CXXFLAGS`|
 |`ldflags`|optional|append to `LDFLAGS`|
-|`sourced`|optional|the source directory, relative to `WORKING_DIR` which contains build script such as `configure`, `Makefile`, `CMakeLists.txt`, `meson.build`, `Cargo.toml`, etc.|
-|`binsrcd`|optional|build in source directory, otherwise build out-of source directory.|
-|`bsystem`|optional|build system.<br>values can be `autogen` `autotools` `configure` `cmake` `cmake-make` `cmake-ninja` `meson` `make` `ninja` `cargo` `go`|
+||||
+|`toolset`|optional|C and C++ toolchain name.<br>values can be `system` `gcc` `llvm` `zig`. `system` means follow system. If this key is not present, `zig` will be used. this key only affects GNU/Linux system.|
+|`cstdlib`|optional|C standard library name.<br>values can be `system` `glibc` `musl-libc`. `system` means follow system. If this key is not present, `musl-libc` will be used. this key only affects GNU/Linux system.|
+|`exetype`|optional|indicates whether can be built statically-linked executable.<br>values can be `statically-linked` `dynamically-linked`. If this key is not present, `statically-linked` will be used. this key only affects `GNU/Linux` system.|
+||||
+|`bsystem`|optional|build system.<br>values can be `autogen` `autotools` `configure` `cmake` `cmake-gmake` `cmake-ninja` `meson` `xmake` `gmake` `ninja` `cargo` `go`|
+|`bscript`|optional|the directory where the build script is located in, relative to `PACKAGE_INSTALLING_TOP_DIR`. build script such as `configure`, `Makefile`, `CMakeLists.txt`, `meson.build`, `Cargo.toml`, etc.|
+|`binbstd`|optional|whether build in the directory where the build script is located in, otherwise build in other directory. values can be `yes` or `no`. default value is `no`.|
+|`prepare`|optional|bash shell code to be run before `install`. `pwd` is `PACKAGE_INSTALLING_BST_DIR`|
+|`install`|optional|bash shell code to be run when user run `xcpkg install <PKG>`. If this key is not present, I will run default install code according to `bsystem`|
+|`symlink`|optional|whether symlink installed files to `/opt/xcpkg/symlinked/*`. values can be `yes` or `no`. default value is `yes`.|
 
-## the function can be declared in a formula
-|function|required?|overview|
-|-|-|-|
-|`prepare(){}`|optional|this function only run once.|
-|`build0(){}`|optional|this function only run once. build for native.|
-|`build(){}`|required|this function will run many times. each time build for one abi.|
-
-## the function can be invoked in a formula at anywhere
-|function|example|
+## the commands can be invoked in prepare and install block
+|command|usage-example|
 |-|-|
-|`print`|`print 'your message.'`|
 |`echo`|`echo 'your message.'`|
 |`info`|`info 'your infomation.'`|
-|`warn`|`warn "--min-sdk-api-level=INTEGER argument is not specified. so, use the default value [21]."`|
+|`warn`|`warn "no package manager found."`|
 |`error`|`error 'error message.'`|
 |`die`|`die "please specify a package name."`|
 |`success`|`success "build success."`|
-|`nproc`|`make --directory="$BUILD_DIR" -j$(nproc)`|
 |`sed_in_place`|`sed_in_place 's/-mandroid//g' Configure`|
 |`format_unix_timestamp`|`format_unix_timestamp "$TIMESTAMP_UNIX" '+%Y/%m/%d %H:%M:%S'`|
-|`getvalue`|`VALUE=$(getvalue --min-sdk-api-level=21)`|
+|`getvalue`|`VALUE=$(getvalue --key=value)`|
 |`sha256sum`|`VALUE=$(sha256sum FILEPATH)`|
 |`is_sha256sum_match`|`is_sha256sum_match FILEPATH SHA256SUM`|
 |`fetch`|`fetch URL [--sha256=SHA256] --output-path=PATH`<br>`fetch URL [--sha256=SHA256] --output-dir=DIR --output-name=NAME`<br>`fetch URL [--sha256=SHA256] --output-dir=DIR [--output-name=NAME]`<br>`fetch URL [--sha256=SHA256] [--output-dir=DIR] --output-name=NAME`|
 
-## the function can be invoked in build function
-|function|example|
+## the commands can be invoked in install block only
+|command|usage-example|
 |-|-|
 |`configure`|`configure --enable-pic`|
 |`mesonw`|`mesonw -Dneon=disabled -Darm-simd=disabled`|
 |`cmakew`|`cmakew -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=ON`|
-|`makew`|`makew`|
-|`cargo`|`cargo`|
+|`gmakew`|`gmakew`|
+|`xmakew`|`xmakew`|
+|`cargow`|`cargow`|
+|`gow`|`gow`|
 
-## the variable can be used in a formula at anywhere
+
+## the variable can be used in prepare and install block
 |variable|overview|
 |-|-|
 |`MY_VERSION`|the version of `xcpkg`.|

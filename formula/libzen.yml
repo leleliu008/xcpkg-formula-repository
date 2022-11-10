@@ -4,6 +4,6 @@ src-url: https://mediaarea.net/download/source/libzen/0.4.39/libzen_0.4.39.tar.b
 src-sha: bd2772ab1ae4e375cdbbbdd114ad8471ebe67bf78c76e3812d66c7d462ed8ae7
 license: BSD-2-Clause
 bsystem: autogen
-dep-upp: libtoolize libtool
+dep-upp: libtool
 bscript: Project/GNU/Library
 binbstd: yes

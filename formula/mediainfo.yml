@@ -4,7 +4,7 @@ src-url: https://mediaarea.net/download/source/mediainfo/21.09/mediainfo_21.09.t
 src-sha: 5362250cf842b958c72f225e70bbe16d4cbe7063e20aee8f685947a208755207
 license: BSD-2-Clause
 bsystem: autogen
-dep-upp: pkg-config libtoolize libtool
+dep-upp: pkg-config libtool
 dep-pkg: libmediainfo
 bscript: Project/GNU/CLI
 binbstd: yes

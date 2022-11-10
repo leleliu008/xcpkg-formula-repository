@@ -4,7 +4,7 @@ src-url: https://download.gnome.org/sources/gdk-pixbuf/2.42/gdk-pixbuf-2.42.6.ta
 src-sha: c4a6b75b7ed8f58ca48da830b9fa00ed96d668d3ab4b1f723dcf902f78bde77f
 license: LGPL-2.1-or-later
 dep-pkg: glib libjpeg-turbo libpng libtiff
-dep-upp: pkg-config glib-compile-resources glib-mkenums
+dep-upp: pkg-config glib
 bsystem: meson
 
 install: |

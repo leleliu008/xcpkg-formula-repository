@@ -5,7 +5,7 @@ src-url: https://nlnetlabs.nl/downloads/unbound/unbound-1.15.0.tar.gz
 src-sha: a480dc6c8937447b98d161fe911ffc76cfaffa2da18788781314e81339f1126f
 license: BSD-3-Clause
 bsystem: configure
-dep-upp: libtoolize libtool
+dep-upp: libtool
 dep-pkg: openssl libevent expat nghttp2
 
 install: |

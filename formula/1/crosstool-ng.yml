@@ -4,7 +4,7 @@ src-url: http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.24.0.tar.x
 src-sha: 804ced838ea7fe3fac1e82f0061269de940c82b05d0de672e7d424af98f22d2d
 license: LGPL-2.1
 bsystem: configure
-dep-upp: libtoolize libtool help2man objcopy
+dep-upp: libtool help2man
 dep-pkg: ncurses
 
 install: |

@@ -4,7 +4,7 @@ git-url: https://gitlab.com/graphviz/graphviz.git
 src-url: https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/2.50.0/graphviz-2.50.0.tar.xz
 src-sha: 6b16bf990df114195be669773a1dae975dbbffada45e1de2849ddeb5851bb9a8
 license: EPL-1.0
-dep-upp: pkg-config libtoolize libtool groff ps2pdf
+dep-upp: pkg-config libtool groff ps2pdf
 dep-pkg: fontconfig libpng expat
 bsystem: autotools
 

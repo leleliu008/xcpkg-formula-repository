@@ -4,6 +4,6 @@ git-url: https://github.com/libimobiledevice/libusbmuxd.git
 src-url: https://github.com/libimobiledevice/libusbmuxd/archive/2.0.2.tar.gz
 src-sha: 8ae3e1d9340177f8f3a785be276435869363de79f491d05d8a84a59efc8a8fdc
 license: LGPL-2.1
-bsystem: autogen
-dep-upp: pkg-config libtoolize libtool
+dep-upp: pkg-config libtool
 dep-pkg: libplist
+bsystem: autogen
